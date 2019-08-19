@@ -61,16 +61,16 @@ library(shiny)
 #' 
 #' A Shiny app is built with two pieces:
 #' 
-#' + a `ui` (*i.e.*, *user interface*), how and where output have to be displayed.
+#' + a `ui` (*i.e.*, user interface), how and where output have to be displayed.
 #' + a `server`, where computations happen.
 #' 
 #+ app, eval = FALSE
 shinyApp(ui = ui, server = server)
 
 #'
-#' Let's test `shiny` and look at some examples (eleven built-in examples available).
+#' Let's test `shiny` and look at some examples (eleven built-in examples available):
 #'  
-#+ example-list, results = "asis"
+#+ example-list, results = "asis", echo = FALSE
 cat(paste("+", list.files(system.file("examples", package = "shiny"))), sep = "\n")
 
 #'
@@ -87,7 +87,7 @@ webshot::appshot(
   vheight = 4.7 * 100 * 1.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/01_hello", 
+  file = "images/01_hello.png", 
 )
 
 #' ![](images/01_hello.png)
@@ -105,6 +105,37 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
+#' ### "timer" {- .tabset}
+#' 
+#+ example-11, eval = FALSE
+runExample("11_timer")
+
+#+ example-11-webshot, echo = FALSE
+webshot::appshot(
+  app = system.file("examples", "11_timer", package = "shiny"), 
+  delay = 1,
+  vwidth = 6.3 * 110 * 1.5,
+  vheight = 4.7 * 110 * 1.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = "images/11_timer.png", 
+)
+
+#' ![](images/11_timer.png)
+#' 
+#' #### ui {-}
+#' 
+#+ example-11-ui, echo = FALSE, comment = ""
+ex_app <- readLines(system.file("examples", "11_timer", "app.R", package = "shiny"))
+ex_app <- ex_app[-c(grep("# ", ex_app), which(nchar(ex_app) == 0))]
+cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
+
+#' #### server {-}
+#' 
+#+ example-11-server, echo = FALSE, comment = ""
+cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
+
+#'
 #' ### "text" {- .tabset}
 #' 
 #+ example-02, eval = FALSE
@@ -118,7 +149,7 @@ webshot::appshot(
   vheight = 4.7 * 100 * 1.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/02_text", 
+  file = "images/02_text.png", 
 )
 
 #' ![](images/02_text.png)
@@ -149,7 +180,7 @@ webshot::appshot(
   vheight = 4.7 * 100 * 1.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/03_reactivity", 
+  file = "images/03_reactivity.png", 
 )
 
 #' ![](images/03_reactivity.png)
@@ -180,7 +211,7 @@ webshot::appshot(
   vheight = 4.7 * 100 * 1.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/04_mpg", 
+  file = "images/04_mpg.png", 
 )
 
 #' ![](images/04_mpg.png)
@@ -211,7 +242,7 @@ webshot::appshot(
   vheight = 4.7 * 100 * 1.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/05_sliders", 
+  file = "images/05_sliders.png", 
 )
 
 #' ![](images/05_sliders.png)
@@ -242,7 +273,7 @@ webshot::appshot(
   vheight = 4.7 * 100 * 1.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/06_tabsets", 
+  file = "images/06_tabsets.png", 
 )
 
 #' ![](images/06_tabsets.png)
@@ -273,7 +304,7 @@ webshot::appshot(
   vheight = 4.7 * 100 * 1.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/07_widgets", 
+  file = "images/07_widgets.png", 
 )
 
 #' ![](images/07_widgets.png)
@@ -290,3 +321,94 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 #+ example-07-server, echo = FALSE, comment = ""
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
+# #'
+# #' ### "html" {- .tabset}
+# #' 
+# #+ example-08, eval = FALSE
+# runExample("08_html")
+# 
+# #+ example-08-webshot, echo = FALSE
+# webshot::appshot(
+#   app = system.file("examples", "08_html", package = "shiny"), 
+#   delay = 1,
+#   vwidth = 6.3 * 100 * 1.5,
+#   vheight = 4.7 * 100 * 1.5,
+#   envvars = c(display.mode = "normal"),
+#   file = "images/08_html.png", 
+# )
+# 
+# #' ![](images/08_html.png)
+# #' 
+# #' #### ui {-}
+# #' 
+# #+ example-08-ui, echo = FALSE, comment = ""
+# ex_app <- readLines(system.file("examples", "08_html", "app.R", package = "shiny"))
+# ex_app <- ex_app[-c(grep("# ", ex_app), which(nchar(ex_app) == 0))]
+# cat(ex_app[grep("ui = ", ex_app)], sep = "\n")
+
+#' #### server {-}
+#' 
+#+ example-08-server, echo = FALSE, comment = ""
+cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
+
+#'
+#' ### "upload" {- .tabset}
+#' 
+#+ example-09, eval = FALSE
+runExample("09_upload")
+
+#+ example-09-webshot, echo = FALSE
+webshot::appshot(
+  app = system.file("examples", "09_upload", package = "shiny"), 
+  delay = 1,
+  vwidth = 6.3 * 100 * 1.5,
+  vheight = 4.7 * 100 * 1.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = "images/09_upload.png", 
+)
+
+#' ![](images/09_upload.png)
+#' 
+#' #### ui {-}
+#' 
+#+ example-09-ui, echo = FALSE, comment = ""
+ex_app <- readLines(system.file("examples", "09_upload", "app.R", package = "shiny"))
+ex_app <- ex_app[-c(grep("# ", ex_app), which(nchar(ex_app) == 0))]
+cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
+
+#' #### server {-}
+#' 
+#+ example-09-server, echo = FALSE, comment = ""
+cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
+
+#'
+#' ### "download" {- .tabset}
+#' 
+#+ example-10, eval = FALSE
+runExample("10_download")
+
+#+ example-10-webshot, echo = FALSE
+webshot::appshot(
+  app = system.file("examples", "10_download", package = "shiny"), 
+  delay = 1,
+  vwidth = 6.3 * 100 * 1.5,
+  vheight = 4.7 * 100 * 1.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = "images/10_download.png", 
+)
+
+#' ![](images/10_download.png)
+#' 
+#' #### ui {-}
+#' 
+#+ example-10-ui, echo = FALSE, comment = ""
+ex_app <- readLines(system.file("examples", "10_download", "app.R", package = "shiny"))
+ex_app <- ex_app[-c(grep("# ", ex_app), which(nchar(ex_app) == 0))]
+cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
+
+#' #### server {-}
+#' 
+#+ example-10-server, echo = FALSE, comment = ""
+cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")

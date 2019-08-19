@@ -36,7 +36,7 @@ library(shiny)
 
 A Shiny app is built with two pieces:
 
-+ a `ui` (*i.e.*, *user interface*), how and where output have to be displayed.
++ a `ui` (*i.e.*, user interface), how and where output have to be displayed.
 + a `server`, where computations happen.
 
 
@@ -46,13 +46,8 @@ shinyApp(ui = ui, server = server)
 ```
 
 
-Let's test `shiny` and look at some examples (eleven built-in examples available).
+Let's test `shiny` and look at some examples (eleven built-in examples available):
  
-
-
-```r
-cat(paste("+", list.files(system.file("examples", package = "shiny"))), sep = "\n")
-```
 
 + 01_hello
 + 02_text
@@ -112,6 +107,41 @@ server <- function(input, output) {
          xlab = "Waiting time to next eruption (in mins)",
          main = "Histogram of waiting times")
     })
+}
+```
+
+
+### "timer" {- .tabset}
+
+
+
+```r
+runExample("11_timer")
+```
+
+
+![](images/11_timer.png)
+
+#### ui {-}
+
+
+
+```
+ui <- fluidPage(
+  h2(textOutput("currentTime"))
+)
+```
+
+#### server {-}
+
+
+
+```
+server <- function(input, output, session) {
+  output$currentTime <- renderText({
+    invalidateLater(1000, session)
+    paste("The current time is", Sys.time())
+  })
 }
 ```
 
@@ -504,6 +534,159 @@ server <- function(input, output) {
   output$view <- renderTable({
     head(datasetInput(), n = isolate(input$obs))
   })
+}
+```
+
+#### server {-}
+
+
+
+```
+server <- function(input, output) {
+  datasetInput <- eventReactive(input$update, {
+    switch(input$dataset,
+           "rock" = rock,
+           "pressure" = pressure,
+           "cars" = cars)
+  }, ignoreNULL = FALSE)
+  output$summary <- renderPrint({
+    dataset <- datasetInput()
+    summary(dataset)
+  })
+  output$view <- renderTable({
+    head(datasetInput(), n = isolate(input$obs))
+  })
+}
+```
+
+
+### "upload" {- .tabset}
+
+
+
+```r
+runExample("09_upload")
+```
+
+
+![](images/09_upload.png)
+
+#### ui {-}
+
+
+
+```
+ui <- fluidPage(
+  titlePanel("Uploading Files"),
+  sidebarLayout(
+    sidebarPanel(
+      fileInput("file1", "Choose CSV File",
+                multiple = TRUE,
+                accept = c("text/csv",
+                         "text/comma-separated-values,text/plain",
+                         ".csv")),
+      tags$hr(),
+      checkboxInput("header", "Header", TRUE),
+      radioButtons("sep", "Separator",
+                   choices = c(Comma = ",",
+                               Semicolon = ";",
+                               Tab = "\t"),
+                   selected = ","),
+      radioButtons("quote", "Quote",
+                   choices = c(None = "",
+                               "Double Quote" = '"',
+                               "Single Quote" = "'"),
+                   selected = '"'),
+      tags$hr(),
+      radioButtons("disp", "Display",
+                   choices = c(Head = "head",
+                               All = "all"),
+                   selected = "head")
+    ),
+    mainPanel(
+      tableOutput("contents")
+    )
+  )
+)
+```
+
+#### server {-}
+
+
+
+```
+server <- function(input, output) {
+  output$contents <- renderTable({
+    req(input$file1)
+    df <- read.csv(input$file1$datapath,
+             header = input$header,
+             sep = input$sep,
+             quote = input$quote)
+    if(input$disp == "head") {
+      return(head(df))
+    }
+    else {
+      return(df)
+    }
+  })
+}
+```
+
+
+### "download" {- .tabset}
+
+
+
+```r
+runExample("10_download")
+```
+
+
+![](images/10_download.png)
+
+#### ui {-}
+
+
+
+```
+ui <- fluidPage(
+  titlePanel("Downloading Data"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("dataset", "Choose a dataset:",
+                  choices = c("rock", "pressure", "cars")),
+      downloadButton("downloadData", "Download")
+    ),
+    mainPanel(
+      tableOutput("table")
+    )
+  )
+)
+```
+
+#### server {-}
+
+
+
+```
+server <- function(input, output) {
+  datasetInput <- reactive({
+    switch(input$dataset,
+           "rock" = rock,
+           "pressure" = pressure,
+           "cars" = cars)
+  })
+  output$table <- renderTable({
+    datasetInput()
+  })
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      paste(input$dataset, ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(datasetInput(), file, row.names = FALSE)
+    }
+  )
 }
 ```
 
