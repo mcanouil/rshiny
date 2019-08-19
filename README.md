@@ -32,7 +32,7 @@ remotes::install_github("rstudio/shiny")
 library(shiny)
 ```
 
-## Built-in examples {.tabset .tabset-pills}
+## Built-in examples
 
 A Shiny app is built with two pieces:
 
@@ -62,7 +62,9 @@ Let's test `shiny` and look at some examples (eleven built-in examples available
 + 11_timer
 
 
-### "hello" {- .tabset}
+### "hello" {.tabset .tabset-pills}
+
+#### app {-}
 
 
 
@@ -111,7 +113,9 @@ server <- function(input, output) {
 ```
 
 
-### "timer" {- .tabset}
+### "timer" {.tabset .tabset-pills}
+
+#### app {-}
 
 
 
@@ -146,7 +150,9 @@ server <- function(input, output, session) {
 ```
 
 
-### "text" {- .tabset}
+### "text" {.tabset .tabset-pills}
+
+#### app {-}
 
 
 
@@ -204,7 +210,9 @@ server <- function(input, output) {
 ```
 
 
-### "reactivity" {- .tabset}
+### "reactivity" {.tabset .tabset-pills}
+
+#### app {-}
 
 
 
@@ -272,7 +280,9 @@ server <- function(input, output) {
 ```
 
 
-### "mpg" {- .tabset}
+### "mpg" {.tabset .tabset-pills}
+
+#### app {-}
 
 
 
@@ -328,8 +338,10 @@ server <- function(input, output) {
 ```
 
 
-### "sliders" {- .tabset}
+### "sliders" {.tabset .tabset-pills}
 
+#### app {-}
+ 
 
 
 ```r
@@ -402,8 +414,10 @@ server <- function(input, output) {
 ```
 
 
-### "tabsets" {- .tabset}
+### "tabsets" {.tabset .tabset-pills}
 
+#### app {-}
+ 
 
 
 ```r
@@ -477,7 +491,9 @@ server <- function(input, output) {
 ```
 
 
-### "widgets" {- .tabset}
+### "widgets" {.tabset .tabset-pills}
+
+#### app {-}
 
 
 
@@ -537,30 +553,10 @@ server <- function(input, output) {
 }
 ```
 
-#### server {-}
 
+### "upload" {.tabset .tabset-pills}
 
-
-```
-server <- function(input, output) {
-  datasetInput <- eventReactive(input$update, {
-    switch(input$dataset,
-           "rock" = rock,
-           "pressure" = pressure,
-           "cars" = cars)
-  }, ignoreNULL = FALSE)
-  output$summary <- renderPrint({
-    dataset <- datasetInput()
-    summary(dataset)
-  })
-  output$view <- renderTable({
-    head(datasetInput(), n = isolate(input$obs))
-  })
-}
-```
-
-
-### "upload" {- .tabset}
+#### ui {-}
 
 
 
@@ -633,7 +629,9 @@ server <- function(input, output) {
 ```
 
 
-### "download" {- .tabset}
+### "download" {.tabset .tabset-pills}
+
+#### ui {-}
 
 
 

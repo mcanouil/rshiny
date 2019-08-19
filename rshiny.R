@@ -57,7 +57,7 @@ remotes::install_github("rstudio/shiny")
 #+ shiny-load
 library(shiny)
 
-#' ## Built-in examples {.tabset .tabset-pills}
+#' ## Built-in examples
 #' 
 #' A Shiny app is built with two pieces:
 #' 
@@ -74,7 +74,9 @@ shinyApp(ui = ui, server = server)
 cat(paste("+", list.files(system.file("examples", package = "shiny"))), sep = "\n")
 
 #'
-#' ### "hello" {- .tabset}
+#' ### "hello" {.tabset .tabset-pills}
+#' 
+#' #### app {-}
 #' 
 #+ example-01, eval = FALSE
 runExample("01_hello")
@@ -105,7 +107,9 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
-#' ### "timer" {- .tabset}
+#' ### "timer" {.tabset .tabset-pills}
+#' 
+#' #### app {-}
 #' 
 #+ example-11, eval = FALSE
 runExample("11_timer")
@@ -136,7 +140,9 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
-#' ### "text" {- .tabset}
+#' ### "text" {.tabset .tabset-pills}
+#' 
+#' #### app {-}
 #' 
 #+ example-02, eval = FALSE
 runExample("02_text")
@@ -167,7 +173,9 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
-#' ### "reactivity" {- .tabset}
+#' ### "reactivity" {.tabset .tabset-pills}
+#' 
+#' #### app {-}
 #' 
 #+ example-03, eval = FALSE
 runExample("03_reactivity")
@@ -198,7 +206,9 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
-#' ### "mpg" {- .tabset}
+#' ### "mpg" {.tabset .tabset-pills}
+#' 
+#' #### app {-}
 #' 
 #+ example-04, eval = FALSE
 runExample("04_mpg")
@@ -229,8 +239,10 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
-#' ### "sliders" {- .tabset}
+#' ### "sliders" {.tabset .tabset-pills}
 #' 
+#' #### app {-}
+#'  
 #+ example-05, eval = FALSE
 runExample("05_sliders")
 
@@ -260,8 +272,10 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
-#' ### "tabsets" {- .tabset}
+#' ### "tabsets" {.tabset .tabset-pills}
 #' 
+#' #### app {-}
+#'  
 #+ example-06, eval = FALSE
 runExample("06_tabsets")
 
@@ -291,7 +305,9 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
-#' ### "widgets" {- .tabset}
+#' ### "widgets" {.tabset .tabset-pills}
+#' 
+#' #### app {-}
 #' 
 #+ example-07, eval = FALSE
 runExample("07_widgets")
@@ -322,7 +338,9 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 # #'
-# #' ### "html" {- .tabset}
+# #' ### "html" {.tabset .tabset-pills}
+# #' 
+# #' #### app {-}
 # #' 
 # #+ example-08, eval = FALSE
 # runExample("08_html")
@@ -345,15 +363,17 @@ cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 # ex_app <- readLines(system.file("examples", "08_html", "app.R", package = "shiny"))
 # ex_app <- ex_app[-c(grep("# ", ex_app), which(nchar(ex_app) == 0))]
 # cat(ex_app[grep("ui = ", ex_app)], sep = "\n")
-
-#' #### server {-}
-#' 
-#+ example-08-server, echo = FALSE, comment = ""
-cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
+# 
+# #' #### server {-}
+# #' 
+# #+ example-08-server, echo = FALSE, comment = ""
+# cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
-#' ### "upload" {- .tabset}
+#' ### "upload" {.tabset .tabset-pills}
 #' 
+#' #### ui {-}
+#'
 #+ example-09, eval = FALSE
 runExample("09_upload")
 
@@ -383,7 +403,9 @@ cat(ex_app[grep("^ui <- ", ex_app):grep("^)$", ex_app)[1]], sep = "\n")
 cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 
 #'
-#' ### "download" {- .tabset}
+#' ### "download" {.tabset .tabset-pills}
+#' 
+#' #### ui {-}
 #' 
 #+ example-10, eval = FALSE
 runExample("10_download")
