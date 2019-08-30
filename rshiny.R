@@ -372,7 +372,7 @@ cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 #'
 #' ### "upload" {.tabset .tabset-pills}
 #' 
-#' #### ui {-}
+#' #### app {-}
 #'
 #+ example-09, eval = FALSE
 runExample("09_upload")
@@ -405,7 +405,7 @@ cat(ex_app[grep("^server <- ", ex_app):grep("^}$", ex_app)[1]], sep = "\n")
 #'
 #' ### "download" {.tabset .tabset-pills}
 #' 
-#' #### ui {-}
+#' #### app {-}
 #' 
 #+ example-10, eval = FALSE
 runExample("10_download")
