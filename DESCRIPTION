@@ -3,5 +3,6 @@ Title: A Web Application: The Shiny Package
 Version: 0.0.1
 Imports: 
   rmarkdown,
+  bookdown,
   shiny,
   webshot
