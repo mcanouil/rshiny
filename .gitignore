@@ -12,4 +12,5 @@
 **.fdb_latexmk
 **.fls
 **.log
+**.html
 .Rproj.user
