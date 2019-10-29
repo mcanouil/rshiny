@@ -1,0 +1,140 @@
+---
+title: "Shiny"
+subtitle: "Mes Premiers Pas"
+author: "Mickaël CANOUIL, *Ph.D.*"
+date: "21 November 2019"
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
+csl: template/csl/apa.csl
+params:
+  output_directory: "./"
+  eval: TRUE
+output:
+  ioslides_presentation:
+    css: "template/mc_theme.css"
+    logo: "template/logo_UMR.png"
+    smaller: false
+    self_contained: true
+    mathjax: default
+    fig_width: 5.94
+    fig_height: 3.30
+    transition: 0.5
+    incremental: false
+    code_download: true
+---
+
+
+```{r setup, include = FALSE}
+options(stringsAsFactors = FALSE)
+options(width = 80)
+options(kableExtra.html.bsTable = TRUE)
+# options(tibble.print_max = 3, tibble.print_min = 3)
+# Sys.setlocale("LC_TIME", "english_united kingdom.1252")
+
+output_directory <- params[["output_directory"]]
+
+### Load packages and functions
+library(tidyverse)
+library(broom)
+library(scales)
+library(parallel)
+library(grid)
+library(knitr)
+library(rmarkdown)
+library(kableExtra)
+
+devtools::source_url("https://github.com/mcanouil/DEV/raw/master/R/theme_black.R")
+
+### Set knitr rmarkdown chunk options
+opts_chunk$set(
+  include = TRUE,
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  eval = params[["eval"]],
+  tidy = FALSE,
+  crop = TRUE,
+  autodep = FALSE,
+  dpi = 120,
+  # cache = FALSE,
+  # cache.path = NULL,
+  width = getOption("width"),
+  results = "asis",
+  comment = "#>",
+  fig.align = "center",
+  fig.path = "images/"
+)
+
+### Define theme
+theme_set(theme_black(base_size = 11))
+```
+
+# Préparer sa session {.flexbox .vcenter}
+
+<img src="images/logo_Rbig.png" class="auto-fadein"></img> 
+
+
+## Trucs et astuces
+
+*  Eviter de changer votre répertoire de travail avec `setwd()`.
+*  Ne pas utiliser de `.Rprofile` modifiant R.
+*  Désactiver la conversion automatique en facteurs `options(stringsAsFactors = FALSE)`.
+*  Ne pas utiliser `rm(list = ls())` pour "rafraichir".
+*  Ne pas utiliser la sauvegarde/restauration par défaut de R.
+
+<div class="columns-2">
+<img src="images/rstudio_setup.png" width="350"></img>
+
+<img src="images/rwindows_setup.png" width="350"></img>
+</div>
+
+# Qu'est-ce que Shiny ? {.flexbox .vcenter}
+
+## Avant Shiny ...
+
+Il était nécessaire de connaître/maîtriser :
+
+* **HTML**, pour concevoir des pages (statique) web; 
+* **CSS**, pour ajouter du _**style**_ à une page HTML;
+* **JavaScript**, pour effectuer des "calculs" au sein d'une page HTML (via un navigateur).
+
+## Shiny
+
+Shiny is an R package that makes it easy to build interactive web apps straight from R. 
+
+You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards. 
+
+You can also extend your Shiny apps with CSS themes, html widgets, and JavaScript actions.
+
+## Installation
+
+To install the stable version from CRAN, simply run the following from an R console:
+
+
+# <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" id = "picture"></img> {.flexbox .vcenter}
+
+<div class="auto-fadein">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+<div class="columns-2">
+
+<span class="uk-icon-button" uk-icon="icon: receiver; ratio: 1"></span>
+    <a id="social" href="" target="_blank">+33 (0) 374 00 81 29</a> 
+    
+<span class="uk-icon-button" uk-icon="icon: mail; ratio: 1"></span>
+    <a id="social" href="mailto:mickael.canouil@cnrs.fr" target="_blank">mickael.canouil@cnrs.fr</a> 
+
+<span class="uk-icon-button" uk-icon="icon: home; ratio: 1"></span>
+    <a id="social" href="http://mickael.canouil.fr" target="_blank">mickael.canouil.fr</a> 
+
+<span class="uk-icon-button" uk-icon="icon: linkedin; ratio: 1"></span>
+    <a id="social" href="https://www.linkedin.com/in/mickael-canouil" target="_blank">mickael-canouil</a> 
+
+<span class="uk-icon-button" uk-icon="icon: github; ratio: 1"></span>
+    <a id="social" href="https://github.com/mcanouil" target="_blank">mcanouil</a> 
+
+<span class="uk-icon-button" uk-icon="icon: twitter; ratio: 1"></span>
+    <a id="social" href="https://twitter.com/mickaelcanouil" target="_blank">@mickaelcanouil</a> 
+
+</div>
+</div>
