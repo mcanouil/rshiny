@@ -8,10 +8,10 @@ monofontoptions: "Scale=0.7"
 csl: template/csl/apa.csl
 params:
   output_directory: "./"
-  eval: TRUE
+  eval: FALSE
 output:
   ioslides_presentation:
-    css: "template/mc_theme.css"
+    css: [ "template/mc_theme.css", "template/r_colour.css"]
     logo: "template/logo_UMR.png"
     smaller: false
     self_contained: true
@@ -48,13 +48,13 @@ devtools::source_url("https://github.com/mcanouil/DEV/raw/master/R/theme_black.R
 ### Set knitr rmarkdown chunk options
 opts_chunk$set(
   include = TRUE,
-  echo = FALSE,
-  warning = FALSE,
-  message = FALSE,
+  echo = TRUE,
+  warning = TRUE,
+  message = TRUE,
   eval = params[["eval"]],
   tidy = FALSE,
   crop = TRUE,
-  autodep = FALSE,
+  autodep = TRUE,
   dpi = 120,
   # cache = FALSE,
   # cache.path = NULL,
@@ -84,13 +84,13 @@ theme_set(theme_black(base_size = 11))
 
 <div class="columns-2">
 <img src="images/rstudio_setup.png" width="350"></img>
-
+</br>
 <img src="images/rwindows_setup.png" width="350"></img>
 </div>
 
 # Qu'est-ce que Shiny ? {.flexbox .vcenter}
 
-## Avant Shiny ...
+## Avant library(shiny) ...
 
 Il était nécessaire de connaître/maîtriser :
 
@@ -100,15 +100,94 @@ Il était nécessaire de connaître/maîtriser :
 
 ## Shiny
 
-Shiny is an R package that makes it easy to build interactive web apps straight from R. 
+Shiny est une extension R permettant la création d'application web interactive directement depuis R. 
 
-You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards. 
+* Page internet.
+* Documents (R Markdown) interactifs.
+* Tableaux de bords.
 
-You can also extend your Shiny apps with CSS themes, html widgets, and JavaScript actions.
+Les applications Shiny sont compatibles avec les thèmes CSS, "html widgets" et JavaScript.
 
-## Installation
+## Installation & Chargement
 
-To install the stable version from CRAN, simply run the following from an R console:
+La version stable de Shiny peut se télécharger sur le CRAN.
+```{r}
+install.packages("shiny")
+```
+
+La version en développement est disponible sur GitHub.
+```{r}
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("rstudio/shiny")
+```
+
+Charger Shiny dans sa session R.
+```{r}
+library(shiny)
+```
+
+
+## Composantes d'une application Shiny
+
++ L'extension Shiny.
+    ```{r, code = readLines("materials/00-app/app.R")[1]}
+    ```
+
++ Une interface `ui` (*i.e.*, "user interface").
+    ```{r, code = readLines("materials/00-app/app.R")[3]}
+    ```
+
++ Une fonction serveur `server`.
+    ```{r, code = readLines("materials/00-app/app.R")[5]}
+    ```
+
++ La construction d'un objet "Shiny app".
+    ```{r, code = readLines("materials/00-app/app.R")[7]}
+    ```
+
+
+## Composantes d'une application Shiny
+
+L'application Shiny peut être démarrée par simple exécution.
+
+```{r, code = readLines("materials/00-app/app.R")}
+```
+
+
+## Composantes d'une application Shiny
+
+Ou via un script `app.R`:
+
+```{r, code = readLines("materials/00-app/app.R")}
+```
+
+```{r}
+shiny::runApp("materials/00-app/app.R")
+```
+
+
+## Composantes d'une application Shiny
+
+Une fois l'application démarré, vous devriez voir une fenêtre s'ouvrir.
+```{r}
+shiny::runApp("materials/00-app/app.R")
+```
+```{r}
+#> Listening on http://127.0.0.1:4550
+```
+```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left"}
+dpi <- 100
+webshot::appshot(
+  app = "materials/00-app/app.R", 
+  delay = 1,
+  vwidth = 6.3 * dpi,
+  vheight = 4.7 * dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = "images/00-default.png", 
+)
+knitr::include_graphics("images/00-default.png", dpi = dpi)
+```
 
 
 # <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" id = "picture"></img> {.flexbox .vcenter}
