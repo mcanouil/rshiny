@@ -1,17 +1,18 @@
 ---
-title: "Shiny"
+title: '<i class="glow">Shiny</i>'
 subtitle: "Mes Premiers Pas"
 author: "Mickaël CANOUIL, *Ph.D.*"
-date: "21 November 2019"
+date: "21 Novembre 2019"
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
 csl: template/csl/apa.csl
+mang: "fr-FR"
 params:
   output_directory: "./"
   eval: FALSE
 output:
   ioslides_presentation:
-    css: [ "template/mc_theme.css", "template/r_colour.css"]
+    css: [ "template/mc_theme.css", "template/r_colour.css", "template/shine.css"]
     logo: "template/logo_UMR.png"
     smaller: false
     self_contained: true
@@ -23,6 +24,8 @@ output:
     code_download: true
 ---
 
+<style>.title-slide hgroup h1 { font-size: 600%; }</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 
 ```{r setup, include = FALSE}
 options(stringsAsFactors = FALSE)
@@ -35,13 +38,12 @@ output_directory <- params[["output_directory"]]
 
 ### Load packages and functions
 library(tidyverse)
-library(broom)
 library(scales)
-library(parallel)
 library(grid)
 library(knitr)
 library(rmarkdown)
 library(kableExtra)
+library(fs)
 
 devtools::source_url("https://github.com/mcanouil/DEV/raw/master/R/theme_black.R")
 
@@ -71,42 +73,50 @@ theme_set(theme_black(base_size = 11))
 
 # Préparer sa session {.flexbox .vcenter}
 
-<img src="images/logo_Rbig.png" class="auto-fadein"></img> 
+<img src="images/logo_Rbig.png" height="250" class="auto-fadein"></img> 
 
 
 ## Trucs et astuces
 
 *  Eviter de changer votre répertoire de travail avec `setwd()`.
-*  Ne pas utiliser de `.Rprofile` modifiant R.
+*  Ne pas utiliser de `.Rprofile` modifiant <i class="fab fa-r-project"></i>.
 *  Désactiver la conversion automatique en facteurs `options(stringsAsFactors = FALSE)`.
 *  Ne pas utiliser `rm(list = ls())` pour "rafraichir".
-*  Ne pas utiliser la sauvegarde/restauration par défaut de R.
+*  Ne pas utiliser la sauvegarde/restauration par défaut de <i class="fab fa-r-project"></i>.
 
 <div class="columns-2">
-<img src="images/rstudio_setup.png" width="350"></img>
+<img src="images/rstudio_setup.png" width="350" class="shadow"></img>
 </br>
-<img src="images/rwindows_setup.png" width="350"></img>
+<img src="images/rwindows_setup.png" width="350" class="shadow"></img>
 </div>
 
-# Qu'est-ce que Shiny ? {.flexbox .vcenter}
+# Qu'est-ce que <i class="glow">Shiny</i> ? {.flexbox .vcenter}
 
-## Avant library(shiny) ...
+<img src="images/shiny.png" height="250" class="auto-fadein"></img> 
+
+## Avant <i class="glow">Shiny</i> ...
 
 Il était nécessaire de connaître/maîtriser :
 
-* **HTML**, pour concevoir des pages (statique) web; 
-* **CSS**, pour ajouter du _**style**_ à une page HTML;
+* **HTML**, pour concevoir des pages (statique) web.
+
+* **CSS**, pour ajouter du _style_ à une page HTML.
+
 * **JavaScript**, pour effectuer des "calculs" au sein d'une page HTML (via un navigateur).
 
-## Shiny
+## <i class="glow">Shiny</i>
 
-Shiny est une extension R permettant la création d'application web interactive directement depuis R. 
+Shiny est une extension <i class="fab fa-r-project"></i> permettant la création d'application web interactive directement depuis <i class="fab fa-r-project"></i>. 
 
 * Page internet.
 * Documents (R Markdown) interactifs.
 * Tableaux de bords.
 
-Les applications Shiny sont compatibles avec les thèmes CSS, "html widgets" et JavaScript.
+Les applications Shiny sont compatibles avec :
+
+* CSS.
+* "html widgets".
+* JavaScript.
 
 ## Installation & Chargement
 
@@ -115,50 +125,55 @@ La version stable de Shiny peut se télécharger sur le CRAN.
 install.packages("shiny")
 ```
 
-La version en développement est disponible sur GitHub.
+La version en développement est disponible sur GitHub <i class="fab fa-github"></i>.
 ```{r}
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("rstudio/shiny")
 ```
 
-Charger Shiny dans sa session R.
+Charger Shiny dans sa session <i class="fab fa-r-project"></i>.
 ```{r}
 library(shiny)
 ```
 
 
-## Composantes d'une application Shiny
+## Composantes d'une application <i class="glow">Shiny</i>
 
 + L'extension Shiny.
-    ```{r, code = readLines("materials/00-app/app.R")[1]}
+    ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[1]}
     ```
 
 + Une interface `ui` (*i.e.*, "user interface").
-    ```{r, code = readLines("materials/00-app/app.R")[3]}
+    ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
     ```
 
 + Une fonction serveur `server`.
-    ```{r, code = readLines("materials/00-app/app.R")[5]}
+    ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[5]}
     ```
 
 + La construction d'un objet "Shiny app".
-    ```{r, code = readLines("materials/00-app/app.R")[7]}
+    ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[7]}
     ```
 
 
-## Composantes d'une application Shiny
+## Composantes d'une application <i class="glow">Shiny</i>
 
 L'application Shiny peut être démarrée par simple exécution.
 
-```{r, code = readLines("materials/00-app/app.R")}
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")}
 ```
 
 
-## Composantes d'une application Shiny
+## Composantes d'une application <i class="glow">Shiny</i>
 
-Ou via un script `app.R`:
+Ou via un script `app.R`, placé dans un répertoire portant généralement le nom de l'application.
 
-```{r, code = readLines("materials/00-app/app.R")}
+```{r, echo = FALSE, eval = TRUE, results = "markup", comment = ""}
+fs::dir_tree("materials")
+```
+
+
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")}
 ```
 
 ```{r}
@@ -166,9 +181,9 @@ shiny::runApp("materials/00-app/app.R")
 ```
 
 
-## Composantes d'une application Shiny
+## Composantes d'une application <i class="glow">Shiny</i>
 
-Une fois l'application démarré, vous devriez voir une fenêtre s'ouvrir.
+Une fois l'application démarrée, vous devriez voir une fenêtre s'ouvrir.
 ```{r}
 shiny::runApp("materials/00-app/app.R")
 ```
@@ -176,44 +191,108 @@ shiny::runApp("materials/00-app/app.R")
 #> Listening on http://127.0.0.1:4550
 ```
 ```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left"}
-dpi <- 100
+dpi <- 120
 webshot::appshot(
   app = "materials/00-app/app.R", 
   delay = 1,
   vwidth = 6.3 * dpi,
-  vheight = 4.7 * dpi,
-  selector = ".container-fluid",
+  vheight = 4.7 * dpi / 2,
+  # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/00-default.png", 
+  file = "images/00-app.png", 
 )
-knitr::include_graphics("images/00-default.png", dpi = dpi)
+# knitr::include_graphics("images/00-app.png", dpi = dpi)
 ```
+
+![](images/00-app.png){.shadow}
+<div class="notes">
+* URL par défaut (hôte)
+* Port défini au hasard
+* Console R "occupée"
+    * Bouton "stop"
+    * `Ctrl`+ `c`
+    * Fermer la fenêtre de l'application
+</div>
+
+
+## L'interface `ui`
+
+Pour ajouter des entrées (`*Input()`).
+
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
+```
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 7, 10, 13)]}
+```
+
+
+## L'interface `ui`
+
+Pour ajouter des contrôles et affichages à l'interface.
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(3:5, 7, 10, 12:14)]}
+```
+
+* `fluidPage()`, la fonction gérant la structure de la page internet ("responsive web design").
+
+
+## L'interface `ui`
+
+Pour ajouter des contrôles et affichages à l'interface.
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 6:8, 10, 13)]}
+```
+
+* `textInput()`, la fonction gérant un champ de saisie de texte.
+
+
+## L'interface `ui`
+
+Pour ajouter des contrôles et affichages à l'interface.
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 7, 9:11, 13)]}
+```
+
+* `textOutput()`, la fonction gérant l'affichage des éléments construit par le serveur `server`.
+
+
+## L'interface `ui`
+
+```{r}
+shiny::runApp("materials/01-app/app.R")
+```
+```{r}
+#> Listening on http://127.0.0.1:4550
+```
+```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left"}
+dpi <- 120
+webshot::appshot(
+  app = "materials/01-app/app.R", 
+  delay = 1,
+  vwidth = 6.3 * dpi,
+  vheight = 4.7 * dpi / 2,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = "images/01-app.png", 
+)
+# knitr::include_graphics("images/01-app.png", dpi = dpi)
+```
+
+![](images/01-app.png){.shadow}
 
 
 # <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" id = "picture"></img> {.flexbox .vcenter}
 
-<div class="auto-fadein">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
-<div class="columns-2">
-
-<span class="uk-icon-button" uk-icon="icon: receiver; ratio: 1"></span>
-    <a id="social" href="" target="_blank">+33 (0) 374 00 81 29</a> 
+<div class="columns-2 auto-fadein">
+  <a id="social" href="" target="_blank"><i class="fas fa-phone"></i> +33 (0) 374 00 81 29</a> 
     
-<span class="uk-icon-button" uk-icon="icon: mail; ratio: 1"></span>
-    <a id="social" href="mailto:mickael.canouil@cnrs.fr" target="_blank">mickael.canouil@cnrs.fr</a> 
+  <a id="social" href="mailto:mickael.canouil@cnrs.fr" target="_blank"><i class="fas fa-envelope"></i> mickael.canouil@cnrs.fr</a> 
 
-<span class="uk-icon-button" uk-icon="icon: home; ratio: 1"></span>
-    <a id="social" href="http://mickael.canouil.fr" target="_blank">mickael.canouil.fr</a> 
+  <a id="social" href="http://mickael.canouil.fr" target="_blank"><i class="fas fa-home"></i> mickael.canouil.fr</a> 
 
-<span class="uk-icon-button" uk-icon="icon: linkedin; ratio: 1"></span>
-    <a id="social" href="https://www.linkedin.com/in/mickael-canouil" target="_blank">mickael-canouil</a> 
+  <a id="social" href="https://www.linkedin.com/in/mickael-canouil" target="_blank"><i class="fab fa-linkedin"></i> mickael-canouil</a> 
 
-<span class="uk-icon-button" uk-icon="icon: github; ratio: 1"></span>
-    <a id="social" href="https://github.com/mcanouil" target="_blank">mcanouil</a> 
+  <a id="social" href="https://github.com/mcanouil" target="_blank"><i class="fab fa-github"></i> mcanouil</a> 
 
-<span class="uk-icon-button" uk-icon="icon: twitter; ratio: 1"></span>
-    <a id="social" href="https://twitter.com/mickaelcanouil" target="_blank">@mickaelcanouil</a> 
-
-</div>
+  <a id="social" href="https://twitter.com/mickaelcanouil" target="_blank"><i class="fab fa-twitter"></i> @mickaelcanouil</a>
 </div>
