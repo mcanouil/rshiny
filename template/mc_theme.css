@@ -73,7 +73,7 @@ pre {
   line-height: 28px;
   padding: 10px 10px 10px 60px;
   letter-spacing: -1px;
-  margin-bottom: 5px;
+  /*margin-bottom: 5px;*/
   width: 840px;
   left: -60px;
   position: relative;
@@ -109,7 +109,7 @@ table thead th {
 }
 
 table tbody {
-   font-size: 75%;
+  font-size: 75%;
 }
 
 aside.gdbar {
@@ -198,6 +198,10 @@ slide img {
   margin-right: auto;
 }
 
+.shadow {
+  box-shadow: 4px 4px 8px 4px #e6e6e6;
+}
+
 slides > slide {
   z-index: 1;
   background-image: var(--bg-img);
@@ -228,3 +232,4 @@ article.smaller pre {
 slides > slide > hgroup + article {
   margin-top: 20px;
 }
+
