@@ -1,15 +1,12 @@
-library(shiny)
+library("shiny")
 
 ###<b>
 ui <- fluidPage(
-  ###</b>
+###</b>
   ###<b>
-  textInput(inputId = "name", label = "Nom", value = "default"),
+  textInput(inputId = "name", label = "Nom", value = "default")
   ###</b>
-  ###<b>
-  textOutput(outputId = "name")
-  ###</b>
-  ###<b>
+###<b>
 )
 ###</b>
 

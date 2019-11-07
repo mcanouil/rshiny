@@ -1,4 +1,4 @@
-library(shiny)
+library("shiny")
 
 ui <- fluidPage("Bonjour, vous êtes sur une application Shiny !")
 
