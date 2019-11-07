@@ -22,6 +22,8 @@ output:
     transition: 0.5
     incremental: false
     code_download: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 <style>.title-slide hgroup h1 { font-size: 600%; }</style>
@@ -44,6 +46,7 @@ library(knitr)
 library(rmarkdown)
 library(kableExtra)
 library(fs)
+library(shiny)
 
 devtools::source_url("https://github.com/mcanouil/DEV/raw/master/R/theme_black.R")
 
@@ -71,9 +74,9 @@ opts_chunk$set(
 theme_set(theme_black(base_size = 11))
 ```
 
-# Préparer sa session {.flexbox .vcenter}
+# Préparer sa session | <i class="fab fa-r-project" style="font-size: 250px;"></i> {.flexbox .vcenter}
 
-<img src="images/logo_Rbig.png" height="250" class="auto-fadein"></img> 
+<!-- <img src="images/logo_Rbig.png" height="250" class="auto-fadein"></img> -->
 
 
 ## Trucs et astuces
@@ -90,9 +93,8 @@ theme_set(theme_black(base_size = 11))
 <img src="images/rwindows_setup.png" width="350" class="shadow"></img>
 </div>
 
-# Qu'est-ce que <i class="glow">Shiny</i> ? {.flexbox .vcenter}
+# Qu'est-ce que <i class="glow">Shiny</i> ? | <img src="images/shiny.png" height="250"></img> {.flexbox .vcenter}
 
-<img src="images/shiny.png" height="250" class="auto-fadein"></img> 
 
 ## Avant <i class="glow">Shiny</i> ...
 
@@ -133,7 +135,7 @@ remotes::install_github("rstudio/shiny")
 
 Charger Shiny dans sa session <i class="fab fa-r-project"></i>.
 ```{r}
-library(shiny)
+library("shiny")
 ```
 
 
@@ -143,11 +145,11 @@ library(shiny)
     ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[1]}
     ```
 
-+ Une interface `ui` (*i.e.*, "user interface").
++ Une interface (`ui`, *i.e.*, "user interface").
     ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
     ```
 
-+ Une fonction serveur `server`.
++ Une fonction serveur (`server`).
     ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[5]}
     ```
 
@@ -169,7 +171,7 @@ L'application Shiny peut être démarrée par simple exécution.
 Ou via un script `app.R`, placé dans un répertoire portant généralement le nom de l'application.
 
 ```{r, echo = FALSE, eval = TRUE, results = "markup", comment = ""}
-fs::dir_tree("materials")
+fs::dir_tree("materials/00-app")
 ```
 
 
@@ -215,48 +217,58 @@ webshot::appshot(
 </div>
 
 
-## L'interface `ui`
+## L'interface (`ui`)
 
-Pour ajouter des entrées (`*Input()`).
+Pour ajouter des contrôles (`*Input()`).
 
 ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
 ```
 
-```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 7, 10, 13)]}
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 7, 10)]}
 ```
 
 
-## L'interface `ui`
+## L'interface (`ui`)
 
-Pour ajouter des contrôles et affichages à l'interface.
+Pour ajouter des contrôles (`*Input()`).
 
-```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(3:5, 7, 10, 12:14)]}
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
+```
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(3:5, 7, 9:11)]}
 ```
 
 * `fluidPage()`, la fonction gérant la structure de la page internet ("responsive web design").
 
 
-## L'interface `ui`
+## L'interface (`ui`)
 
-Pour ajouter des contrôles et affichages à l'interface.
+Pour ajouter des contrôles (`*Input()`).
 
-```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 6:8, 10, 13)]}
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
+```
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 6:8, 10)]}
 ```
 
 * `textInput()`, la fonction gérant un champ de saisie de texte.
 
+## L'interface (`ui`)
 
-## L'interface `ui`
+Les contrôles (`*Input()`) nativement disponibles :
 
-Pour ajouter des contrôles et affichages à l'interface.
+```{r, eval = TRUE, echo = FALSE, results = "asis"}
+list_input <- grep("^[^uv].+Input$", ls("package:shiny"), value = TRUE)
+list_input <- setdiff(list_input, c("snapshotPreprocessInput", "restoreInput"))
 
-```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 7, 9:11, 13)]}
+cat('<div style="font-size: 75%;">')
+cat(paste0("* `", list_input[1:floor(length(list_input) / 2)], "()`"), sep = "\n")
+cat(paste0("* `", list_input[(floor(length(list_input) / 2) + 1): length(list_input)], "()`"), sep = "\n")
+cat("</div>")
 ```
 
-* `textOutput()`, la fonction gérant l'affichage des éléments construit par le serveur `server`.
 
-
-## L'interface `ui`
+## L'interface (`ui`)
 
 ```{r}
 shiny::runApp("materials/01-app/app.R")
@@ -281,7 +293,105 @@ webshot::appshot(
 ![](images/01-app.png){.shadow}
 
 
-# <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" id = "picture"></img> {.flexbox .vcenter}
+## Le serveur (`server`)
+
+Notre application ne contient aucune action serveur (`server`).
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(1:2, 4, 7, 10, 12:15)]}
+```
+
+
+## Le serveur (`server`)
+
+* Du `server` à `ui` \(\rightarrow\) `output`.
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(17, 19:20, 31:32, 34)]}
+```
+
+```{r}
+###<b>
+output$id <- renderTYPE({
+###</b>
+  # Une expression générant la sortie de type "TYPE"
+###<b>
+})
+###</b>
+```
+
+* Partie gauche : objet (`output`) renvoyé vers l'interface (`ui`) avec un identifiant unique (`id`).
+
+* Partie droite : fonction spécifique pour générer la sortie qui pourra être affiché dans l'interface (`ui`).
+
+
+## Le serveur (`server`)
+
+Les fonctions `render*()` nativement disponibles :
+
+```{r, eval = TRUE, echo = FALSE, results = "asis"}
+cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), sep = "\n")
+```
+
+
+## Le serveur (`server`)
+
+* Du `server` à `ui` \(\rightarrow\) `output`.
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(17, 19:20, 31:32, 34)]}
+```
+
+* `textOutput()`, la fonction gérant l'affichage des éléments construit par le serveur (`server`).
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(4, 7, 9:11, 13)]}
+```
+
+
+## Le serveur (`server`)
+
+* De `ui` au `server` \(\rightarrow\) `input`.
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(4, 6:8, 10, 13)]}
+```
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(17, 20, 23:28, 31, 34)]}
+```
+
+## Première application <i class="glow">Shiny</i>
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(1:2, 4, 7, 10, 13, 15, 17, 20, 23:24, 26, 28, 31, 34, 36:37)]}
+```
+
+
+## Première application <i class="glow">Shiny</i>
+
+```{r}
+shiny::runApp("materials/02-app/app.R")
+```
+```{r}
+#> Listening on http://127.0.0.1:4550
+```
+```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left"}
+dpi <- 120
+webshot::appshot(
+  app = "materials/02-app/app.R", 
+  delay = 1,
+  vwidth = 6.3 * dpi,
+  vheight = 4.7 * dpi / 2,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = "images/02-app.png", 
+)
+# knitr::include_graphics("images/01-app.png", dpi = dpi)
+```
+
+![](images/02-app.png){.shadow}
+
+
+## Mise en pratique
+
+Quelques exercices ...
+
+
+# <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" class = "glowpic" id = "picture"></img> {.flexbox .vcenter}
 
 <div class="columns-2 auto-fadein">
   <a id="social" href="" target="_blank"><i class="fas fa-phone"></i> +33 (0) 374 00 81 29</a> 
