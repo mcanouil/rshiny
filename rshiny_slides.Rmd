@@ -88,12 +88,20 @@ theme_set(theme_black(base_size = 11))
 *  Ne pas utiliser la sauvegarde/restauration par défaut de <i class="fab fa-r-project"></i>.
 
 <div class="columns-2">
-<img src="images/rstudio_setup.png" width="350" class="shadow"></img>
+```{r, eval = TRUE, echo = FALSE, out.width = 350, out.extra = 'width="350" class="shadow" style="margin: auto;"'}
+knitr::include_graphics("images/rstudio_setup.png")
+```
 </br>
-<img src="images/rwindows_setup.png" width="350" class="shadow"></img>
+```{r, eval = TRUE, echo = FALSE, out.width = 350, out.extra = 'width="350" class="shadow" style="margin: auto;"'}
+knitr::include_graphics("images/rwindows_setup.png")
+```
 </div>
 
-# Qu'est-ce que <i class="glow">Shiny</i> ? | <img src="images/shiny.png" height="250"></img> {.flexbox .vcenter}
+# Qu'est-ce que <i class="glow">Shiny</i> ? {.flexbox .vcenter}
+
+```{r, eval = TRUE, echo = FALSE, out.height = 250, out.width = 216, out.extra = 'class="auto-fadein" style="margin: 20px auto auto auto;"'}
+knitr::include_graphics("images/shiny.png")
+```
 
 
 ## Avant <i class="glow">Shiny</i> ...
@@ -105,6 +113,7 @@ Il était nécessaire de connaître/maîtriser :
 * **CSS**, pour ajouter du _style_ à une page HTML.
 
 * **JavaScript**, pour effectuer des "calculs" au sein d'une page HTML (via un navigateur).
+
 
 ## <i class="glow">Shiny</i>
 
@@ -192,7 +201,7 @@ shiny::runApp("materials/00-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left"}
+```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
 dpi <- 120
 webshot::appshot(
   app = "materials/00-app/app.R", 
@@ -203,10 +212,9 @@ webshot::appshot(
   envvars = c(display.mode = "normal"),
   file = "images/00-app.png", 
 )
-# knitr::include_graphics("images/00-app.png", dpi = dpi)
+knitr::include_graphics("images/00-app.png", dpi = dpi)
 ```
 
-![](images/00-app.png){.shadow}
 <div class="notes">
 * URL par défaut (hôte)
 * Port défini au hasard
@@ -276,7 +284,7 @@ shiny::runApp("materials/01-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left"}
+```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
 dpi <- 120
 webshot::appshot(
   app = "materials/01-app/app.R", 
@@ -287,10 +295,8 @@ webshot::appshot(
   envvars = c(display.mode = "normal"),
   file = "images/01-app.png", 
 )
-# knitr::include_graphics("images/01-app.png", dpi = dpi)
+knitr::include_graphics("images/01-app.png", dpi = dpi)
 ```
-
-![](images/01-app.png){.shadow}
 
 
 ## Le serveur (`server`)
@@ -318,9 +324,9 @@ output$id <- renderTYPE({
 ###</b>
 ```
 
-* Partie gauche : objet (`output`) renvoyé vers l'interface (`ui`) avec un identifiant unique (`id`).
+* Partie _gauche_ : objet (`output`) renvoyé vers l'interface (`ui`) avec un identifiant unique (`id`).
 
-* Partie droite : fonction spécifique pour générer la sortie qui pourra être affiché dans l'interface (`ui`).
+* Partie _droite_ : fonction spécifique pour générer la sortie qui pourra être affichée dans l'interface (`ui`).
 
 
 ## Le serveur (`server`)
@@ -339,7 +345,7 @@ cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), s
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(17, 19:20, 31:32, 34)]}
 ```
 
-* `textOutput()`, la fonction gérant l'affichage des éléments construit par le serveur (`server`).
+* `textOutput()`, la fonction gérant l'affichage des éléments construits par le serveur (`server`).
 
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(4, 7, 9:11, 13)]}
 ```
@@ -369,7 +375,7 @@ shiny::runApp("materials/02-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left"}
+```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
 dpi <- 120
 webshot::appshot(
   app = "materials/02-app/app.R", 
@@ -380,10 +386,8 @@ webshot::appshot(
   envvars = c(display.mode = "normal"),
   file = "images/02-app.png", 
 )
-# knitr::include_graphics("images/01-app.png", dpi = dpi)
+knitr::include_graphics("images/02-app.png", dpi = dpi)
 ```
-
-![](images/02-app.png){.shadow}
 
 
 ## Mise en pratique
