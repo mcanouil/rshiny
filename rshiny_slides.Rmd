@@ -50,6 +50,8 @@ library(shiny)
 
 devtools::source_url("https://github.com/mcanouil/DEV/raw/master/R/theme_black.R")
 
+dpi <- 120
+
 ### Set knitr rmarkdown chunk options
 opts_chunk$set(
   include = TRUE,
@@ -60,7 +62,7 @@ opts_chunk$set(
   tidy = FALSE,
   crop = TRUE,
   autodep = TRUE,
-  dpi = 120,
+  dpi = dpi,
   # cache = FALSE,
   # cache.path = NULL,
   width = getOption("width"),
@@ -201,18 +203,18 @@ shiny::runApp("materials/00-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
-dpi <- 120
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "01"
 webshot::appshot(
-  app = "materials/00-app/app.R", 
+  app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 6.3 * dpi,
-  vheight = 4.7 * dpi / 2,
-  # selector = ".container-fluid",
+  vwidth = 7.56 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/00-app.png", 
+  file = paste0("images/", app_name, ".png"), 
 )
-knitr::include_graphics("images/00-app.png", dpi = dpi)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">
@@ -284,18 +286,18 @@ shiny::runApp("materials/01-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
-dpi <- 120
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "01"
 webshot::appshot(
-  app = "materials/01-app/app.R", 
+  app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 6.3 * dpi,
-  vheight = 4.7 * dpi / 2,
-  # selector = ".container-fluid",
+  vwidth = 7.56 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/01-app.png", 
+  file = paste0("images/", app_name, ".png"), 
 )
-knitr::include_graphics("images/01-app.png", dpi = dpi)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
 
@@ -375,24 +377,269 @@ shiny::runApp("materials/02-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, out.width = NULL, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
-dpi <- 120
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "02"
 webshot::appshot(
-  app = "materials/02-app/app.R", 
+  app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 6.3 * dpi,
-  vheight = 4.7 * dpi / 2,
-  # selector = ".container-fluid",
+  vwidth = 7.56 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = "images/02-app.png", 
+  file = paste0("images/", app_name, ".png"), 
 )
-knitr::include_graphics("images/02-app.png", dpi = dpi)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
 
 ## Mise en pratique
 
 Quelques exercices ...
+
+
+## Les `input` en détails
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[7]}
+```
+
+Contraintes sur les valeurs de `inputID` :
+
+* Doit être unique.
+* Chaîne de caractères alphanumériques et "underscores".
+
+
+## `input` de type texte
+
+```{r, code = readLines("materials/03-app/app.R", encoding = "UTF-8")[3:7]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "03"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## `input` de type numérique
+
+```{r, code = readLines("materials/04-app/app.R", encoding = "UTF-8")[3:10]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "04"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## `input` de type date
+
+```{r, code = readLines("materials/05-app/app.R", encoding = "UTF-8")[3:7]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "05"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## `input` de sélection simple
+
+```{r, code = readLines("materials/06-app/app.R", encoding = "UTF-8")[3:6]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "06"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## `input` de sélection multiple
+
+```{r, code = readLines("materials/07-app/app.R", encoding = "UTF-8")[3:9]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "07"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+## `input` d'action
+
+```{r, code = readLines("materials/08-app/app.R", encoding = "UTF-8")[3:7]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "08"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+_Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fontawesome.com/)._
+
+
+## Mise en pratique
+
+Quelques exercices ...
+
+
+## Les `output` en détails
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[10]}
+```
+
+Contraintes sur les valeurs de `outputId` :
+
+* Doit être unique.
+* Chaîne de caractères alphanumériques et "underscores".
+
+
+## `output` de type texte
+
+```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")}
+```
+
+
+## `output` de type texte
+
+```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[-c(1:2, 24:26)]}
+```
+
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "09"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3.5 * dpi,
+  # vheight = 4.7 * dpi / 5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## `output` de type texte
+
+```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")[-c(1:2, 24:26)]}
+```
+
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "10"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3.5 * dpi,
+  # vheight = 4.7 * dpi / 5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+## `output` de type texte
+
+```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[-c(1:2, 24:26)]}
+```
+
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "11"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4 * dpi,
+  # vheight = 4.7 * dpi / 5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## `output` de type tableau statique
+
+```{r, code = readLines("materials/12-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "12"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 5.2 * dpi,
+  # vheight = 4.7 * dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## `output` de type tableau dynamique
+
+```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")[-c(1:2, 16:18)]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "13"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.56 * dpi,
+  # vheight = 4.7 * dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
 
 
 # <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" class = "glowpic" id = "picture"></img> {.flexbox .vcenter}
