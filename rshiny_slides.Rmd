@@ -397,6 +397,10 @@ knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 Quelques exercices ...
 
 
+
+# <i class="glow">Shiny</i> | Les entrées `input` {.flexbox .vcenter}
+
+
 ## Les `input` en détails
 
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[7]}
@@ -528,6 +532,10 @@ _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fonta
 Quelques exercices ...
 
 
+
+# <i class="glow">Shiny</i> | Les sorties `output` {.flexbox .vcenter}
+
+
 ## Les `output` en détails
 
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[10]}
@@ -547,7 +555,7 @@ Contraintes sur les valeurs de `outputId` :
 
 ## `output` de type texte
 
-```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[-c(1:2, 24:26)]}
+```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
 ```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
@@ -555,7 +563,7 @@ app_name <- "09"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 3.5 * dpi,
+  vwidth = 4.1 * dpi,
   # vheight = 4.7 * dpi / 5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
@@ -567,7 +575,7 @@ knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 
 ## `output` de type texte
 
-```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")[-c(1:2, 24:26)]}
+```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
 ```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
@@ -584,9 +592,10 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+
 ## `output` de type texte
 
-```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[-c(1:2, 24:26)]}
+```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
 ```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
@@ -594,7 +603,7 @@ app_name <- "11"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 4 * dpi,
+  vwidth = 4.1 * dpi,
   # vheight = 4.7 * dpi / 5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
@@ -640,6 +649,172 @@ webshot::appshot(
 )
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
+
+
+## `output` de type image (`base`)
+
+```{r, code = readLines("materials/14-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "14"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.56 * dpi,
+  # vheight = 4.7 * dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## `output` de type image (`ggplot2`)
+
+```{r, code = readLines("materials/15-app/app.R", encoding = "UTF-8")[-c(1, 3, 17:19)]}
+```
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "15"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.56 * dpi,
+  # vheight = 4.7 * dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+
+# <i class="glow">Shiny</i> | L'affichage {.flexbox .vcenter}
+
+
+## La mise en page "sidebar"
+
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
+knitr::include_graphics(paste0("images/sidebar.png"), dpi = dpi)
+```
+
+
+## La mise en page "sidebar" en code
+
+```{r, code = readLines("materials/16-app/app.R", encoding = "UTF-8")[-c(2, 20, 24)]}
+```
+
+
+## La mise en page "sidebar" en image
+
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "16"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.56 * dpi,
+  vheight = 4 * dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## La mise en page "multirow"
+
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
+knitr::include_graphics(paste0("images/multirow.png"), dpi = dpi)
+```
+
+
+## La mise en page "multirow" en code
+
+```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[c(3:22)]}
+```
+
+
+## La mise en page "multirow" en code
+
+```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[c(24:29)]}
+```
+
+
+## La mise en page "multirow" en image
+
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "17"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.56 * dpi,
+  vheight = 4 * dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## La mise en page "dashboard" en code
+
+```{r, code = readLines("materials/18-app/app.R", encoding = "UTF-8")}
+```
+
+
+## La mise en page "dashboard" en image
+
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "18"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.56 * dpi,
+  vheight = 4 * dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## La mise en page "dashboard" en code
+
+```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")[c(4:21)]}
+```
+
+
+## La mise en page "dashboard" en code
+
+```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")[c(23:31)]}
+```
+
+
+## La mise en page "dashboard" en image
+
+```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "19"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.56 * dpi,
+  vheight = 4 * dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+
+# <i class="glow">Shiny</i> | LLa face caché `server` {.flexbox .vcenter}
+
+## 
 
 
 # <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" class = "glowpic" id = "picture"></img> {.flexbox .vcenter}
