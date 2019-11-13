@@ -19,7 +19,7 @@ ui <- fluidPage(
 ###</b>
 
 server <- function(input, output, session) {
-  output$plot <- renderPlot(plot(seq(input$point)))
+  output$plot <- renderPlot(plot(1:10))
 }
 
 shinyApp(ui, server)

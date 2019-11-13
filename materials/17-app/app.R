@@ -21,11 +21,9 @@ ui <- fluidPage(
 )
 ###</b>
 
-server <- function(input, output, session) {
-  output$plot <- renderPlot(plot(seq(input$point)))
-  output$plot2 <- renderPlot(
-    plot(density(rnorm(n = 25, mean = input$mean)))
-  )
+server <- function(input, output) {
+  output$plot <- renderPlot(plot(1:10))
+  output$plot2 <- renderPlot(plot(density(rnorm(n = 25))))
 }
 
 shinyApp(ui, server)

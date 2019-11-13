@@ -168,6 +168,8 @@ library("shiny")
     ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[7]}
     ```
 
+<div class="notes"> App `"materials/00-app"`</div>
+
 
 ## Composantes d'une application <i class="glow">Shiny</i>
 
@@ -175,6 +177,8 @@ L'application Shiny peut être démarrée par simple exécution.
 
 ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")}
 ```
+
+<div class="notes"> App `"materials/00-app"`</div>
 
 
 ## Composantes d'une application <i class="glow">Shiny</i>
@@ -185,13 +189,14 @@ Ou via un script `app.R`, placé dans un répertoire portant généralement le n
 fs::dir_tree("materials/00-app")
 ```
 
-
 ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")}
 ```
 
 ```{r}
 shiny::runApp("materials/00-app/app.R")
 ```
+
+<div class="notes"> App `"materials/00-app"`</div>
 
 
 ## Composantes d'une application <i class="glow">Shiny</i>
@@ -203,7 +208,7 @@ shiny::runApp("materials/00-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "01"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -237,6 +242,8 @@ Pour ajouter des contrôles (`*Input()`).
 ```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 7, 10)]}
 ```
 
+<div class="notes"> App `"materials/01-app"`</div>
+
 
 ## L'interface (`ui`)
 
@@ -250,6 +257,8 @@ Pour ajouter des contrôles (`*Input()`).
 
 * `fluidPage()`, la fonction gérant la structure de la page internet ("responsive web design").
 
+<div class="notes"> App `"materials/01-app"`</div>
+
 
 ## L'interface (`ui`)
 
@@ -262,6 +271,9 @@ Pour ajouter des contrôles (`*Input()`).
 ```
 
 * `textInput()`, la fonction gérant un champ de saisie de texte.
+
+<div class="notes"> App `"materials/01-app"`</div>
+
 
 ## L'interface (`ui`)
 
@@ -286,7 +298,7 @@ shiny::runApp("materials/01-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "01"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -307,6 +319,8 @@ Notre application ne contient aucune action serveur (`server`).
 
 ```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(1:2, 4, 7, 10, 12:15)]}
 ```
+
+<div class="notes"> App `"materials/01-app"`</div>
 
 
 ## Le serveur (`server`)
@@ -330,6 +344,8 @@ output$id <- renderTYPE({
 
 * Partie _droite_ : fonction spécifique pour générer la sortie qui pourra être affichée dans l'interface (`ui`).
 
+<div class="notes"> App `"materials/02-app"`</div>
+
 
 ## Le serveur (`server`)
 
@@ -352,6 +368,8 @@ cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), s
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(4, 7, 9:11, 13)]}
 ```
 
+<div class="notes"> App `"materials/02-app"`</div>
+
 
 ## Le serveur (`server`)
 
@@ -363,10 +381,14 @@ cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), s
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(17, 20, 23:28, 31, 34)]}
 ```
 
+<div class="notes"> App `"materials/02-app"`</div>
+
 ## Première application <i class="glow">Shiny</i>
 
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(1:2, 4, 7, 10, 13, 15, 17, 20, 23:24, 26, 28, 31, 34, 36:37)]}
 ```
+
+<div class="notes"> App `"materials/02-app"`</div>
 
 
 ## Première application <i class="glow">Shiny</i>
@@ -377,7 +399,7 @@ shiny::runApp("materials/02-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "02"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -411,12 +433,14 @@ Contraintes sur les valeurs de `inputID` :
 * Doit être unique.
 * Chaîne de caractères alphanumériques et "underscores".
 
+<div class="notes"> App `"materials/02-app"`</div>
+
 
 ## `input` de type texte
 
 ```{r, code = readLines("materials/03-app/app.R", encoding = "UTF-8")[3:7]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "03"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -430,12 +454,14 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/03-app"`</div>
+
 
 ## `input` de type numérique
 
 ```{r, code = readLines("materials/04-app/app.R", encoding = "UTF-8")[3:10]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "04"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -449,12 +475,14 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/04-app"`</div>
+
 
 ## `input` de type date
 
 ```{r, code = readLines("materials/05-app/app.R", encoding = "UTF-8")[3:7]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "05"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -468,12 +496,14 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/05-app"`</div>
+
 
 ## `input` de sélection simple
 
 ```{r, code = readLines("materials/06-app/app.R", encoding = "UTF-8")[3:6]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "06"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -487,12 +517,14 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/06-app"`</div>
+
 
 ## `input` de sélection multiple
 
 ```{r, code = readLines("materials/07-app/app.R", encoding = "UTF-8")[3:9]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "07"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -506,11 +538,14 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/07-app"`</div>
+
+
 ## `input` d'action
 
 ```{r, code = readLines("materials/08-app/app.R", encoding = "UTF-8")[3:7]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "08"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -525,6 +560,8 @@ knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
 _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fontawesome.com/)._
+
+<div class="notes"> App `"materials/08-app"`</div>
 
 
 ## Mise en pratique
@@ -546,11 +583,15 @@ Contraintes sur les valeurs de `outputId` :
 * Doit être unique.
 * Chaîne de caractères alphanumériques et "underscores".
 
+<div class="notes"> App `"materials/02-app"`</div>
+
 
 ## `output` de type texte
 
 ```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")}
 ```
+
+<div class="notes"> App `"materials/09-app"`</div>
 
 
 ## `output` de type texte
@@ -558,7 +599,7 @@ Contraintes sur les valeurs de `outputId` :
 ```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "09"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -572,13 +613,15 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/09-app"`</div>
+
 
 ## `output` de type texte
 
 ```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "10"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -592,13 +635,15 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/10-app"`</div>
+
 
 ## `output` de type texte
 
 ```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "11"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -612,12 +657,15 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/11-app"`</div>
+
 
 ## `output` de type tableau statique
 
 ```{r, code = readLines("materials/12-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "12"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -631,12 +679,15 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/12-app"`</div>
+
 
 ## `output` de type tableau dynamique
 
 ```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")[-c(1:2, 16:18)]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "13"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -650,12 +701,15 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/13-app"`</div>
+
 
 ## `output` de type image (`base`)
 
 ```{r, code = readLines("materials/14-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "14"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -669,12 +723,15 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/14-app"`</div>
+
 
 ## `output` de type image (`ggplot2`)
 
 ```{r, code = readLines("materials/15-app/app.R", encoding = "UTF-8")[-c(1, 3, 17:19)]}
 ```
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "15"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -688,6 +745,8 @@ webshot::appshot(
 knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
+<div class="notes"> App `"materials/15-app"`</div>
+
 
 
 # <i class="glow">Shiny</i> | L'affichage {.flexbox .vcenter}
@@ -695,20 +754,22 @@ knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 
 ## La mise en page "sidebar"
 
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
 knitr::include_graphics(paste0("images/sidebar.png"), dpi = dpi)
 ```
 
 
 ## La mise en page "sidebar" en code
 
-```{r, code = readLines("materials/16-app/app.R", encoding = "UTF-8")[-c(2, 20, 24)]}
+```{r, code = readLines("materials/16-app/app.R", encoding = "UTF-8")[c(3:19)]}
 ```
+
+<div class="notes"> App `"materials/16-app"`</div>
 
 
 ## La mise en page "sidebar" en image
 
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "16"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -725,7 +786,7 @@ knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 
 ## La mise en page "multirow"
 
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
 knitr::include_graphics(paste0("images/multirow.png"), dpi = dpi)
 ```
 
@@ -735,16 +796,12 @@ knitr::include_graphics(paste0("images/multirow.png"), dpi = dpi)
 ```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[c(3:22)]}
 ```
 
-
-## La mise en page "multirow" en code
-
-```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[c(24:29)]}
-```
+<div class="notes"> App `"materials/17-app"`</div>
 
 
 ## La mise en page "multirow" en image
 
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "17"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -759,15 +816,17 @@ knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
 
-## La mise en page "dashboard" en code
+## La mise en page "tabset" en code
 
-```{r, code = readLines("materials/18-app/app.R", encoding = "UTF-8")}
+```{r, code = readLines("materials/18-app/app.R", encoding = "UTF-8")[c(3:13)]}
 ```
 
+<div class="notes"> App `"materials/18-app"`</div>
 
-## La mise en page "dashboard" en image
 
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+## La mise en page "tabset" en image
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "18"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -784,19 +843,15 @@ knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 
 ## La mise en page "dashboard" en code
 
-```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")[c(4:21)]}
+```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")[c(2:10)]}
 ```
 
-
-## La mise en page "dashboard" en code
-
-```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")[c(23:31)]}
-```
+<div class="notes"> App `"materials/19-app"`</div>
 
 
 ## La mise en page "dashboard" en image
 
-```{r, echo = FALSE, eval = TRUE, fig.align = "left", out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "19"
 webshot::appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -811,10 +866,165 @@ knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
 ```
 
 
+## La mise en page "dashboard" en code
 
-# <i class="glow">Shiny</i> | LLa face caché `server` {.flexbox .vcenter}
+```{r, code = readLines("materials/20-app/app.R", encoding = "UTF-8")[c(4:21)]}
+```
 
-## 
+<div class="notes"> App `"materials/20-app"`</div>
+
+
+## La mise en page "dashboard" en image
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "20"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.56 * dpi,
+  vheight = 4 * dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+
+# <i class="glow">Shiny</i> | La face cachée `server` {.flexbox .vcenter}
+
+
+## La fonction `server`
+
+```{r}
+server <- function(
+  ###<b>
+  input, 
+  output, 
+  session
+  ###</b>
+) {
+  ...
+}
+```
+
+* `input`, une liste de paramètres d'entrées.
+* `output`, une liste d'objets à afficher dans `ui`.
+* `session`, environnement relatif à la session,  
+    *c.-à-d.*, la connection.
+
+
+## La fonction `server`
+
+```{r, code = readLines("materials/21-app/app.R", encoding = "UTF-8")}
+```
+
+<div class="notes"> App `"materials/21-app"`</div>
+
+
+## La fonction `server`
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "21"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.56 * dpi,
+  vheight = 4 * dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## La liste d'entrées `input`
+
+* `input`, une liste de paramètres d'entrées __non-modifiable__.
+
+```{r, code = readLines("materials/22-app/app.R", encoding = "UTF-8")}
+```
+
+
+## La liste d'entrées `input`
+
+* `input`, une liste de paramètres d'entrées "__reactive__".
+
+```{r, code = readLines("materials/23-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
+```
+
+<div class="notes"> App `"materials/23-app"`</div>
+
+
+## La liste de sorties `output`
+
+* `output`, une liste __non-modifiable__ d'objets à afficher dans `ui`.
+
+```{r, code = readLines("materials/24-app/app.R", encoding = "UTF-8")}
+```
+
+<div class="notes"> App `"materials/24-app"`</div>
+
+
+## La liste de sorties `output`
+
+* `output`, une liste "__reactive__" d'objets à afficher dans `ui`.
+
+```{r, code = readLines("materials/25-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
+```
+
+<div class="notes"> App `"materials/25-app"`</div>
+
+
+## La notion de réactivité `reactive`
+
+Les sorties (`output`) sont mises à jour à la volée par Shiny lorsque les entrées (`input`) sont modifiées.
+
+* La fonction `server` renseigne Shiny sur la __façon__ de produire les sorties.
+
+* Shiny "décide" de __quand__ produire les sorties.
+
+* Shiny n'exécute que les morceaux de code __utiles__.
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "26"
+webshot::appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4 * dpi,
+  # vheight = 4 * dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("images/", app_name, ".png"), 
+)
+knitr::include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+```
+
+
+## La notion de réactivité `reactive`
+
+```{r, code = readLines("materials/26-app/app.R", encoding = "UTF-8")[-c(2, 8, 19)]}
+```
+
+<div class="notes"> App `"materials/26-app"`</div>
+
+
+## Les expressions `reactive`
+
+Reactive expressions are important for two reasons:
+
+* They give Shiny more information so that it can do less recomputation when inputs change, making apps more efficient.
+
+* They make it easier for humans to understand the app by simplifying the reactive graph.
+
+Reactive expressions have a flavour of both inputs and outputs:
+
+* Like inputs, you can use the results of a reactive expression in an output.
+
+* Like outputs, reactive expressions depend on inputs and automatically know when they need updating.
+
 
 
 # <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" class = "glowpic" id = "picture"></img> {.flexbox .vcenter}
