@@ -3,12 +3,12 @@ cache: packages
 
 pandoc_version: 2.3.1
 
-script: Rscript -e 'webshot::install_phantomjs(); rmarkdown::render(input = "rshiny.R")'
+script: Rscript -e 'webshot::install_phantomjs(); rmarkdown::render(input = "rshiny.Rmd")'
 
 before_deploy: Rscript -e 'webshot::install_phantomjs(); remotes::install_cran("pkgdown")'
 
 deploy:
   provider: script
-  script: Rscript -e 'source("https://raw.githubusercontent.com/mcanouil/DEV/master/R/deploy.R"); deploy_site("rshiny.R", commit_message = "rshiny")'
+  script: Rscript -e 'source("https://raw.githubusercontent.com/mcanouil/DEV/master/R/deploy.R"); deploy_site("rshiny.Rmd", commit_message = "rshiny")'
   skip_cleanup: true
 
