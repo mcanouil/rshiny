@@ -9,4 +9,6 @@ Imports:
   rmarkdown,
   kableExtra,
   fs,
-  shiny
+  shiny,
+  devtools,
+  webshot

@@ -17,18 +17,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
 ###</b>
   ###<b>
-  output$hello_message <- renderText({
-  ###</b>
-    ###<b>
-    paste(
-      "Bonjour",
-      ###<b>
-      input$name
-      ###</b>
-    )
-    ###</b>
-  ###<b>
-  })
+  output$hello_message <- renderText("Bonjour")
   ###</b>
 ###<b>
 }
