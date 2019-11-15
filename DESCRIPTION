@@ -12,4 +12,5 @@ Imports:
   shiny,
   devtools,
   webshot,
-  shinydashboard
+  shinydashboard,
+  ggpubr
