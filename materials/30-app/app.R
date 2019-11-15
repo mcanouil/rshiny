@@ -10,7 +10,7 @@ ui <- fluidPage(
   fluidRow(
     column(4, 
      "Exemple 1",
-      textInput("species1", "Espèce: ", value = "setosa"),
+      textInput("species1", "Espèce : ", value = "setosa"),
       textInput("col1x", "Axe x : ", value = "Petal.Length"),
       textInput("col1y", "Axe y : ", value = "Sepal.Length")
     ),
@@ -58,6 +58,7 @@ server <- function(input, output, session) {
   ###<b>
   })
   ###</b>
+  
   ###<b>
   output$point1 <- renderPlot(gg_species1())
   output$point2 <- renderPlot(gg_species2())
