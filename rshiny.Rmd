@@ -10,6 +10,7 @@ mang: "fr-FR"
 params:
   output_directory: "./"
   eval: FALSE
+  dpi: 120
 output:
   ioslides_presentation:
     css: [ "template/mc_theme.css", "template/r_colour.css", "template/shine.css"]
@@ -50,10 +51,6 @@ library(shiny)
 library(webshot)
 library(devtools)
 
-source_url("https://github.com/mcanouil/DEV/raw/master/R/theme_black.R")
-
-dpi <- 120
-
 ### Set knitr rmarkdown chunk options
 opts_chunk$set(
   include = TRUE,
@@ -64,7 +61,7 @@ opts_chunk$set(
   tidy = FALSE,
   crop = TRUE,
   autodep = TRUE,
-  dpi = dpi,
+  dpi = params$dpi,
   # cache = FALSE,
   # cache.path = NULL,
   width = getOption("width"),
@@ -75,7 +72,8 @@ opts_chunk$set(
 )
 
 ### Define theme
-theme_set(theme_black(base_size = 11))
+# source_url("https://github.com/mcanouil/DEV/raw/master/R/theme_black.R")
+# theme_set(theme_black(base_size = 11))
 ```
 
 # Préparer sa session | <i class="fab fa-r-project" style="font-size: 250px;"></i> {.flexbox .vcenter}
@@ -215,13 +213,13 @@ app_name <- "01"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
@@ -308,13 +306,13 @@ app_name <- "01"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/01-app"`</div>
@@ -399,13 +397,13 @@ app_name <- "02"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/02-app"`</div>
@@ -442,13 +440,13 @@ app_name <- "03"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 3 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/03-app"`</div>
@@ -463,13 +461,13 @@ app_name <- "04"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 3 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/04-app"`</div>
@@ -484,13 +482,13 @@ app_name <- "05"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 3 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/05-app"`</div>
@@ -505,13 +503,13 @@ app_name <- "06"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 3 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/06-app"`</div>
@@ -526,13 +524,13 @@ app_name <- "07"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 3 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/07-app"`</div>
@@ -547,13 +545,13 @@ app_name <- "08"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 3 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fontawesome.com/)._
@@ -601,13 +599,13 @@ app_name <- "09"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 4.1 * dpi,
-  # vheight = 4.7 * dpi / 5,
+  vwidth = 4.1 * params$dpi,
+  # vheight = 4.7 * params$dpi / 5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/09-app"`</div>
@@ -623,13 +621,13 @@ app_name <- "10"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 3.5 * dpi,
-  # vheight = 4.7 * dpi / 5,
+  vwidth = 3.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/10-app"`</div>
@@ -645,13 +643,13 @@ app_name <- "11"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 4.1 * dpi,
-  # vheight = 4.7 * dpi / 5,
+  vwidth = 4.1 * params$dpi,
+  # vheight = 4.7 * params$dpi / 5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/11-app"`</div>
@@ -667,13 +665,13 @@ app_name <- "12"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 5.2 * dpi,
-  # vheight = 4.7 * dpi / 2,
+  vwidth = 5.2 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/12-app"`</div>
@@ -689,13 +687,13 @@ app_name <- "13"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  # vheight = 4.7 * dpi / 2.5,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/13-app"`</div>
@@ -711,13 +709,13 @@ app_name <- "14"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  # vheight = 4.7 * dpi / 2.5,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/14-app"`</div>
@@ -733,13 +731,13 @@ app_name <- "15"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  # vheight = 4.7 * dpi / 2.5,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/15-app"`</div>
@@ -752,7 +750,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ## La mise en page "sidebar"
 
 ```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
-include_graphics(paste0("images/sidebar.png"), dpi = dpi)
+include_graphics(paste0("images/sidebar.png"), dpi = params$dpi)
 ```
 
 
@@ -771,13 +769,13 @@ app_name <- "16"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  vheight = 4 * dpi,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/16-app"`</div>
@@ -786,7 +784,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ## La mise en page "multirow"
 
 ```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
-include_graphics(paste0("images/multirow.png"), dpi = dpi)
+include_graphics(paste0("images/multirow.png"), dpi = params$dpi)
 ```
 
 
@@ -805,13 +803,13 @@ app_name <- "17"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  vheight = 4 * dpi,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/17-app"`</div>
@@ -832,13 +830,13 @@ app_name <- "18"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  vheight = 4 * dpi,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/18-app"`</div>
@@ -859,13 +857,13 @@ app_name <- "19"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  vheight = 4 * dpi,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/19-app"`</div>
@@ -886,16 +884,21 @@ app_name <- "20"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  vheight = 4 * dpi,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/20-app"`</div>
+
+
+## Mise en pratique
+
+Quelques exercices ...
 
 
 
@@ -942,13 +945,13 @@ app_name <- "21"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 7.5 * dpi,
-  vheight = 4 * dpi,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/21-app"`</div>
@@ -969,13 +972,13 @@ app_name <- "22"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 4 * dpi,
-  vheight = 3 * dpi,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 </div>
 
@@ -995,13 +998,13 @@ app_name <- "23"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 4 * dpi,
-  vheight = 3 * dpi,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 </div>
 
@@ -1021,13 +1024,13 @@ app_name <- "24"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 4 * dpi,
-  vheight = 3 * dpi,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 </div>
 
@@ -1047,13 +1050,13 @@ app_name <- "25"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 4 * dpi,
-  vheight = 3 * dpi,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 </div>
 
@@ -1082,13 +1085,13 @@ app_name <- "26"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 4 * dpi,
-  # vheight = 4 * dpi,
+  vwidth = 4 * params$dpi,
+  # vheight = 4 * params$dpi,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 </div>
 
@@ -1113,9 +1116,9 @@ Pourquoi utiliser des expressions `reactive` ?
 
 * Similaire à `output`.  
     \(\Rightarrow\) Elles sont mises à jour au besoin selon `input`.
+    
 
-
-## `reactive` : Exemple 1 {.smaller}
+## `reactive()` : Exemple 1 {.smaller}
 
 ```{r, code = readLines("materials/27-app/app.R", encoding = "UTF-8")[6:28]}
 ```
@@ -1123,26 +1126,26 @@ Pourquoi utiliser des expressions `reactive` ?
 <div class="notes">App `"materials/27-app"`</div>
 
 
-## `reactive` : Exemple 1
+## `reactive()` : Exemple 1
 
 ```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "27"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 2,
-  vwidth = 7.5 * dpi,
-  vheight = 4 * dpi,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/27-app"`</div>
 
 
-## `reactive` : Exemple 1 {.smaller}
+## `reactive()` : Exemple 1 {.smaller}
 
 ```{r, code = readLines("materials/27-app/app.R", encoding = "UTF-8")[30:55]}
 ```
@@ -1150,7 +1153,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 <div class="notes">App `"materials/27-app"`</div>
 
 
-## `reactive` : Exemple 2 {.smaller}
+## `reactive()` : Exemple 2 {.smaller}
 
 ```{r, code = readLines("materials/28-app/app.R", encoding = "UTF-8")[30:66]}
 ```
@@ -1163,18 +1166,18 @@ app_name <- "28"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 2,
-  vwidth = 4 * dpi,
-  vheight = 3 * dpi,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 </div>
 
 
-## `reactive` : Exemple 3 {.smaller}
+## `reactive()` : Exemple 3 {.smaller}
 
 ```{r, code = readLines("materials/29-app/app.R", encoding = "UTF-8")[30:67]}
 ```
@@ -1187,18 +1190,18 @@ app_name <- "29"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 2,
-  vwidth = 4 * dpi,
-  vheight = 3 * dpi,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 </div>
 
 
-## `eventReactive` : Exemple 4 {.smaller}
+## `reactive()` : Exemple 4 {.smaller}
 
 ```{r, code = readLines("materials/30-app/app.R", encoding = "UTF-8")[6:31]}
 ```
@@ -1206,7 +1209,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 <div class="notes">App `"materials/30-app"`</div>
 
 
-## `eventReactive` : Exemple 4 {.smaller}
+## `reactive()` : Exemple 4 {.smaller}
 
 ```{r, code = readLines("materials/30-app/app.R", encoding = "UTF-8")[33:70]}
 ```
@@ -1214,24 +1217,191 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 <div class="notes">App `"materials/30-app"`</div>
 
 
-## `eventReactive` : Exemple 4 {.smaller}
+## `reactive()` : Exemple 4 {.smaller}
 
 ```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "30"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 2,
-  vwidth = 7.5 * dpi,
-  vheight = 4 * dpi,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App `"materials/30-app"`</div>
 
+
+## `eventReactive()` & `observeEvent()`
+
+Execution selon un événement, *p. ex.*, un changement de valeur d'un `input`.
+
+```{r}
+output$something <- eventReactive(eventExpr = ..., valueExpr = ...)
+
+observeEvent(eventExpr = ..., handlerExpr = ...)
+```
+
+* `eventExpr`, une expression ou valeur `reactive`.
+
+* `valueExpr`, une expression similaire à celle fournie dans `reactive()`.
+
+* `handlerExpr`, une expression ne retournant rien (`return()`).
+
+
+## Exemple : `reactive()` {.smaller}
+
+```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(16, 18, 21, 23)]}
+```
+
+<div class="notes">App `"materials/31-app"`</div>
+
+
+## Exemple : `eventReactive()` {.smaller}
+
+```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(11, 13, 21, 23)]}
+```
+
+<div class="notes">App `"materials/31-app"`</div>
+
+
+## Exemple : `observeEvent()` {.smaller}
+
+```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(11, 13, 16, 18)]}
+```
+
+<div class="notes">App `"materials/31-app"`</div>
+
+
+## Exemple : App
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "31"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App `"materials/31-app"`</div>
+
+
+## Mise en pratique
+
+Quelques exercices ...
+
+
+
+# <i class="glow">Shiny</i> | Contrôle, Validation & Notifications {.flexbox .vcenter}
+
+
+## `input` : Contrôle & Validation
+
+```{r}
+req()
+validate()
+```
+
+* `req()`, contrôle si un `input` a été défini.
+
+* `validate()`, fonctionne comme un `tryCatch`.
+
+
+## `input` : Contrôle & Validation
+
+```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")}
+```
+
+<div class="notes">App `"materials/32-app"`</div>
+
+
+## `input` : Contrôle & Validation
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "32"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App `"materials/32-app"`</div>
+
+
+## `input` : Contrôle & Validation
+
+```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")}
+```
+
+<div class="notes">App `"materials/33-app"`</div>
+
+
+## `input` : Contrôle & Validation
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "33"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App `"materials/33-app"`</div>
+
+
+## Notifications
+
+* `showNotification()` / `removeNotification()`, .
+
+
+## Progression
+
+* `withProgress()` / `setProgress()`, .
+
+
+## Mise en pratique
+
+Quelques exercices ...
+
+
+
+# <i class="glow">Shiny</i> | Interface Dynamique {.flexbox .vcenter}
+
+
+## Mettre à jours des `input`
+
+
+## Affichage conditionnel
+
+
+## Générer des éléments `ui`
+
+
+## Mise en pratique
+
+Quelques exercices ...
 
 
 # <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" id = "picture"></img> {.flexbox .vcenter}

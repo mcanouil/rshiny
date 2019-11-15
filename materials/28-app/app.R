@@ -6,8 +6,8 @@ library("ggpubr")
 ui <- fluidPage(
   fluidRow(
     column(4, 
-     "Exemple 1",
-      textInput("species1", "Espèce: ", value = "setosa"),
+      "Exemple 1",
+      textInput("species1", "Espèce : ", value = "setosa"),
       textInput("col1x", "Axe x : ", value = "Petal.Length"),
       textInput("col1y", "Axe y : ", value = "Sepal.Length")
     ),
@@ -15,7 +15,7 @@ ui <- fluidPage(
   ),
   fluidRow(
     column(4, 
-     "Exemple 2",
+      "Exemple 2",
       textInput("species2", "Espèce : ", value = "versicolor"),
       textInput("col2x", "Axe x : ", value = "Petal.Length"),
       textInput("col2y", "Axe y : ", value = "Sepal.Length")
@@ -48,6 +48,7 @@ server <- function(input, output, session) {
       mapping = aes(x = !!sym(input$col2x), y = !!sym(input$col2y))
     ) + geom_point()
   })
+  
   output$point12 <- renderPlot({
     p1 <- ggplot(
       ###<b>
