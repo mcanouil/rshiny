@@ -219,9 +219,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">
@@ -312,9 +312,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/01-app"`</div>
@@ -403,9 +403,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/02-app"`</div>
@@ -446,9 +446,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/03-app"`</div>
@@ -467,9 +467,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/04-app"`</div>
@@ -488,9 +488,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/05-app"`</div>
@@ -509,9 +509,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/06-app"`</div>
@@ -530,9 +530,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/07-app"`</div>
@@ -551,9 +551,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fontawesome.com/)._
@@ -605,9 +605,9 @@ appshot(
   # vheight = 4.7 * dpi / 5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/09-app"`</div>
@@ -627,9 +627,9 @@ appshot(
   # vheight = 4.7 * dpi / 5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/10-app"`</div>
@@ -649,9 +649,9 @@ appshot(
   # vheight = 4.7 * dpi / 5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/11-app"`</div>
@@ -671,9 +671,9 @@ appshot(
   # vheight = 4.7 * dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/12-app"`</div>
@@ -693,9 +693,9 @@ appshot(
   # vheight = 4.7 * dpi / 2.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/13-app"`</div>
@@ -715,9 +715,9 @@ appshot(
   # vheight = 4.7 * dpi / 2.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/14-app"`</div>
@@ -737,9 +737,9 @@ appshot(
   # vheight = 4.7 * dpi / 2.5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/15-app"`</div>
@@ -775,9 +775,9 @@ appshot(
   vheight = 4 * dpi,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/16-app"`</div>
@@ -809,9 +809,9 @@ appshot(
   vheight = 4 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/17-app"`</div>
@@ -836,9 +836,9 @@ appshot(
   vheight = 4 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/18-app"`</div>
@@ -863,9 +863,9 @@ appshot(
   vheight = 4 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/19-app"`</div>
@@ -890,9 +890,9 @@ appshot(
   vheight = 4 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/20-app"`</div>
@@ -946,9 +946,9 @@ appshot(
   vheight = 4 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/21-app"`</div>
@@ -973,9 +973,9 @@ appshot(
   vheight = 3 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 </div>
 
@@ -999,9 +999,9 @@ appshot(
   vheight = 3 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 </div>
 
@@ -1025,9 +1025,9 @@ appshot(
   vheight = 3 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 </div>
 
@@ -1051,9 +1051,9 @@ appshot(
   vheight = 3 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 </div>
 
@@ -1086,9 +1086,9 @@ appshot(
   # vheight = 4 * dpi,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 </div>
 
@@ -1134,9 +1134,9 @@ appshot(
   vheight = 4 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/27-app"`</div>
@@ -1167,9 +1167,9 @@ appshot(
   vheight = 3 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 </div>
 
@@ -1191,9 +1191,9 @@ appshot(
   vheight = 3 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 </div>
 
@@ -1225,9 +1225,9 @@ appshot(
   vheight = 4 * dpi,
   # selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
-  file = paste0("images/", app_name, ".png"), 
+  file = paste0("webshot/", app_name, ".png"), 
 )
-include_graphics(paste0("images/", app_name, ".png"), dpi = dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = dpi)
 ```
 
 <div class="notes">App `"materials/30-app"`</div>
