@@ -11,4 +11,5 @@ Imports:
   fs,
   shiny,
   devtools,
-  webshot
+  webshot,
+  shinydashboard
