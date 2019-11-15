@@ -1305,7 +1305,7 @@ Quelques exercices ...
 # <i class="glow">Shiny</i> | Contrôle, Validation & Notifications {.flexbox .vcenter}
 
 
-## `input` : Contrôle & Validation
+## Contrôle & Validation
 
 ```{r}
 req()
@@ -1316,16 +1316,16 @@ validate()
 
 * `validate()`, fonctionne comme un `tryCatch`.
 
-
-## `input` : Contrôle & Validation
-
-```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")}
+```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[3:6]}
 ```
 
 <div class="notes">App `"materials/32-app"`</div>
 
 
-## `input` : Contrôle & Validation
+## Contrôle & Validation
+
+```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[8:15]}
+```
 
 ```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "32"
@@ -1344,15 +1344,10 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">App `"materials/32-app"`</div>
 
 
-## `input` : Contrôle & Validation
+## Contrôle & Validation
 
-```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")}
+```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")[8:18]}
 ```
-
-<div class="notes">App `"materials/33-app"`</div>
-
-
-## `input` : Contrôle & Validation
 
 ```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "33"
