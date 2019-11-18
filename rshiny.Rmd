@@ -22,13 +22,86 @@ output:
     fig_height: 3.30
     transition: 0.5
     incremental: false
-    code_download: true
+  html_document:
+    toc: false
+    number_sections: TRUE
+    fig_width: 5.94
+    fig_height: 3.30
+    self_contained: true
+    theme: simplex
 editor_options: 
   chunk_output_type: console
 ---
 
 <style>.title-slide hgroup h1 { font-size: 600%; }</style>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+<style>
+/* Clipboard --------------------------*/
+.hasCopyButton {
+  position: relative;
+}
+
+.btn-copy-ex {
+  position: absolute;
+  right: 0;
+  top: 0;
+  visibility: hidden;
+  font-size: 95%;
+}
+
+.hasCopyButton:hover button.btn-copy-ex {
+  visibility: visible;
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+  
+<script>
+  /* http://gregfranko.com/blog/jquery-best-practices/ */
+  (function($) {
+    /* Clipboard --------------------------*/
+  
+    function changeTooltipMessage(element, msg) {
+      var tooltipOriginalTitle=element.getAttribute('data-original-title');
+      element.setAttribute('data-original-title', msg);
+      $(element).tooltip('show');
+      element.setAttribute('data-original-title', tooltipOriginalTitle);
+    }
+  
+    if(ClipboardJS.isSupported()) {
+      $(document).ready(function() {
+        var copyButton = "<button type='button' class='btn btn-primary btn-copy-ex' type = 'submit' title='Copy to clipboard' aria-label='Copy to clipboard' data-toggle='tooltip' data-placement='left auto' data-trigger='hover' data-clipboard-copy><i class='fa fa-copy'></i></button>";
+  
+        $(".examples, pre.r").addClass("hasCopyButton");
+  
+        // Insert copy buttons:
+        $(copyButton).prependTo(".hasCopyButton");
+  
+        // Initialize tooltips:
+        $('.btn-copy-ex').tooltip({container: 'body'});
+  
+        // Initialize clipboard:
+        var clipboardBtnCopies = new ClipboardJS('[data-clipboard-copy]', {
+          text: function(trigger) {
+            return trigger.parentNode.textContent;
+          }
+        });
+  
+        clipboardBtnCopies.on('success', function(e) {
+          changeTooltipMessage(e.trigger, 'Copied!');
+          e.clearSelection();
+        });
+  
+        clipboardBtnCopies.on('error', function() {
+          changeTooltipMessage(e.trigger,'Press Ctrl+C or Command+C to copy');
+        });
+      });
+    }
+  })(window.jQuery || window.$)
+</script>
+
 
 ```{r setup, include = FALSE}
 options(stringsAsFactors = FALSE)
@@ -454,7 +527,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## `input` de type numérique
 
-```{r, code = readLines("materials/04-app/app.R", encoding = "UTF-8")[3:10]}
+```{r, code = readLines("materials/04-app/app.R", encoding = "UTF-8")[3:7]}
 ```
 ```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
 app_name <- "04"
@@ -643,7 +716,7 @@ app_name <- "11"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 4.1 * params$dpi,
+  vwidth = 4.5 * params$dpi,
   # vheight = 4.7 * params$dpi / 5,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
@@ -665,7 +738,7 @@ app_name <- "12"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
-  vwidth = 5.2 * params$dpi,
+  vwidth = 6 * params$dpi,
   # vheight = 4.7 * params$dpi / 2,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
@@ -1112,7 +1185,7 @@ Pourquoi utiliser des expressions `reactive` ?
 * Elles peuvent utiliser indifféremment les `input` et `output`.
 
 * Similaire à `input`.  
-    \(\Rightarrow\) Elles peuvent1 s'utiliser dans `output`.
+    \(\Rightarrow\) Elles peuvent s'utiliser dans `output`.
 
 * Similaire à `output`.  
     \(\Rightarrow\) Elles sont mises à jour au besoin selon `input`.
@@ -1354,7 +1427,7 @@ app_name <- "33"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 2,
-  vwidth = 3 * params$dpi,
+  vwidth = 4 * params$dpi,
   # vheight = 4 * params$dpi,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
@@ -1368,12 +1441,51 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Notifications
 
-* `showNotification()` / `removeNotification()`, .
+* `showNotification()` / `removeNotification()`, affiche un encart de texte.
+
+```{r, code = readLines("materials/34-app/app.R", encoding = "UTF-8")[7:19]}
+```
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "34"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 3 * params$dpi,
+  selector = "#shiny-notification-panel",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App `"materials/34-app"`</div>
 
 
 ## Progression
 
-* `withProgress()` / `setProgress()`, .
+* `withProgress()` / `setProgress()`, affiche une barre de progression.
+
+```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[7:19]}
+```
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "35"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 3 * params$dpi,
+  selector = "#shiny-notification-panel",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App `"materials/35-app"`</div>
+
 
 
 ## Mise en pratique

@@ -1,5 +1,5 @@
 #!/bin/sh
 
-Rscript -e "rmarkdown::render('rshiny.Rmd',  encoding = 'UTF-8')" \
-  && head -n -6 rshiny.md | tail -n +30 > README.md \
-  && rm rshiny.md
+Rscript -e "rmarkdown::render('rshiny.Rmd', output_file = 'page.html', output_format = 'html_document',  encoding = 'UTF-8')"
+
+Rscript -e "rmarkdown::render('rshiny.Rmd', output_format = 'html_document',  encoding = 'UTF-8')"
