@@ -1476,8 +1476,8 @@ appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 2,
   vwidth = 3 * params$dpi,
-  # vheight = 3 * params$dpi,
-  selector = "#shiny-notification-panel",
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
@@ -1497,18 +1497,235 @@ Quelques exercices ...
 # <i class="glow">Shiny</i> | Interface Dynamique {.flexbox .vcenter}
 
 
+## Générer des éléments `ui`
+
+```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[c(3:20)]}
+```
+
+<div class="notes">
+App `"materials/36-app"`
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "36"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## Affichage conditionnel des éléments `ui` {.smaller}
+
+```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[c(3:8, 10:29)]}
+```
+
+<div class="notes">
+App `"materials/37-app"`
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "37"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## Affichage conditionnel des éléments `ui` {.smaller}
+
+```{r, code = readLines("materials/38-app/app.R", encoding = "UTF-8")[c(3:8, 10:29)]}
+```
+
+<div class="notes">
+App `"materials/38-app"`
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "38"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
 ## Mettre à jours des `input`
 
 
-## Affichage conditionnel
+```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[c(3:8, 10:16)]}
+```
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "39"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App `"materials/39-app"`</div>
 
 
-## Générer des éléments `ui`
+## Mettre à jours des `input` {.smaller}
+
+```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[c(3:8, 10:21)]}
+```
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+app_name <- "40"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App `"materials/40-app"`</div>
+
+
+## Nombre d'éléments `ui` indéfini
+
+```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', out.width = "30%", fig.align = "center", fig.show = "hold"}
+for (iapp in c(41:43)) {
+  app_name <- as.character(iapp)
+  appshot(
+    app = paste0("materials/", app_name, "-app/app.R"), 
+    delay = 2,
+    vwidth = 7.5 * params$dpi,
+    vheight = 4 * params$dpi,
+    # selector = ".container-fluid",
+    cliprect = "viewport",
+    envvars = c(display.mode = "normal"),
+    file = paste0("webshot/", app_name, ".png"), 
+  )
+}
+
+include_graphics(paste0("webshot/", 41:43, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">
+App `"materials/41-app"`
+App `"materials/42-app"`
+App `"materials/43-app"`
+</div>
+
+
+## Nombre d'éléments `ui` indéfini {.smaller}
+
+```{r, include = FALSE, eval = TRUE}
+code_ellipsis <- c(
+  readLines("materials/41-app/app.R", encoding = "UTF-8")[c(1:9)],
+  "...",
+  readLines("materials/41-app/app.R", encoding = "UTF-8")[c(30:46)]
+)
+```
+
+```{r, code = code_ellipsis}
+```
+
+<div class="notes">App `"materials/41-app"`</div>
+
+
+## Nombre d'éléments `ui` indéfini {.smaller}
+
+```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[c(4:27)]}
+```
+
+<div class="notes">App `"materials/42-app"`</div>
+
+
+## Nombre d'éléments `ui` indéfini {.smaller}
+
+```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[c(1:2, 29:38, 40:50, 52)]}
+```
+
+<div class="notes">App `"materials/42-app"`</div>
+
+
+## Nombre d'éléments `ui` indéfini {.smaller}
+
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(5:28)]}
+```
+
+<div class="notes">App `"materials/43-app"`</div>
+
+
+## Nombre d'éléments `ui` indéfini
+
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(30:39)]}
+```
+
+<div class="notes">App `"materials/43-app"`</div>
+
+
+## Nombre d'éléments `ui` indéfini
+
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(1:4, 41:53)]}
+```
+
+<div class="notes">App `"materials/43-app"`</div>
 
 
 ## Mise en pratique
 
 Quelques exercices ...
+
+
+
+# <i class="glow">Shiny</i> & Rmarkdown | {.flexbox .vcenter}
+
+## <i class="glow">Shiny</i> & Rmarkdown
+
+
+
+# Ressources {.flexbox .vcenter}
+
+
+## Ressources
+
+* [shiny](https://shiny.rstudio.com/)
+
+* [shinytest](https://rstudio.github.io/shinytest/)
+
+* [Blog Rstudio](https://blog.rstudio.com/categories/shiny)
+
+* [Groupe des Utilisateurs de R](http://forums.cirad.fr/logiciel-R/)
+
+* [Stack Overflow](https://stackoverflow.com/questions/tagged/r)
+
+* [R Studio Community](https://community.rstudio.com/)
+
 
 
 # <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" id = "picture"></img> {.flexbox .vcenter}
