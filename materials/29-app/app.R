@@ -57,8 +57,8 @@ server <- function(input, output, session) {
   ###</b>
   
   ###<b>
-  output$point1 <- renderPlot(gg_species1())
-  output$point2 <- renderPlot(gg_species2())
+  output$point1 <- renderPlot({ gg_species1() })
+  output$point2 <- renderPlot({ gg_species2() })
   ###</b>
   output$point12 <- renderPlot({
     ###<b>

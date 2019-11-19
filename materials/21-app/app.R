@@ -11,11 +11,11 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  output$text <- renderText(
+  output$text <- renderText({
     ###<b>
     input$text
     ###</b>
-  )
+  })
 }
 
 shinyApp(ui, server)

@@ -9,16 +9,8 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   ###<b>
-  output$text <- renderText({ 
-  ###</b>
-    summary(rnorm(10))
-  ###<b>
-  })
-  output$code <- renderPrint({ 
-  ###</b>
-    summary(rnorm(10))
-  ###<b>
-  })
+  output$text <- renderText({ summary(rnorm(10)) })
+  output$code <- renderPrint({ summary(rnorm(10)) })
   ###</b>
 }
 

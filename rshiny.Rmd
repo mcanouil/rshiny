@@ -106,23 +106,21 @@ editor_options:
 ```{r setup, include = FALSE}
 options(stringsAsFactors = FALSE)
 options(width = 80)
-options(kableExtra.html.bsTable = TRUE)
-# options(tibble.print_max = 3, tibble.print_min = 3)
-# Sys.setlocale("LC_TIME", "english_united kingdom.1252")
 
 output_directory <- params[["output_directory"]]
 
+
 ### Load packages and functions
+library(remotes)
+library(webshot)
+library(fs)
 library(tidyverse)
-library(scales)
-library(grid)
 library(knitr)
 library(rmarkdown)
-library(kableExtra)
-library(fs)
 library(shiny)
-library(webshot)
-library(devtools)
+library(shinydashboard)
+library(ggpubr)
+
 
 ### Set knitr rmarkdown chunk options
 opts_chunk$set(
@@ -135,23 +133,19 @@ opts_chunk$set(
   crop = TRUE,
   autodep = TRUE,
   dpi = params$dpi,
-  # cache = FALSE,
-  # cache.path = NULL,
   width = getOption("width"),
   results = "asis",
   comment = "#>",
   fig.align = "center",
-  fig.path = "images/"
+  fig.path = "images/",
+  fig.show = "hold",
+  out.extra = 'class="shadow" style="margin: auto;"'
 )
-
-### Define theme
-# source_url("https://github.com/mcanouil/DEV/raw/master/R/theme_black.R")
-# theme_set(theme_black(base_size = 11))
 ```
 
-# Préparer sa session | <i class="fab fa-r-project" style="font-size: 250px;"></i> {.flexbox .vcenter}
 
-<!-- <img src="images/logo_Rbig.png" height="250" class="auto-fadein"></img> -->
+
+# Préparer sa session | <i class="fab fa-r-project" style="font-size: 250px;"></i> {.flexbox .vcenter}
 
 
 ## Trucs et astuces
@@ -162,19 +156,16 @@ opts_chunk$set(
 *  Ne pas utiliser `rm(list = ls())` pour "rafraichir".
 *  Ne pas utiliser la sauvegarde/restauration par défaut de <i class="fab fa-r-project"></i>.
 
-<div class="columns-2">
-```{r, eval = TRUE, echo = FALSE, out.width = 350, out.extra = 'width="350" class="shadow" style="margin: auto;"'}
-include_graphics("images/rstudio_setup.png")
-```
-</br>
-```{r, eval = TRUE, echo = FALSE, out.width = 350, out.extra = 'width="350" class="shadow" style="margin: auto;"'}
-include_graphics("images/rwindows_setup.png")
+<div class="centered">
+```{r, echo = FALSE, eval = TRUE, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
+include_graphics(c("images/rstudio_setup.png", "images/rwindows_setup.png"))
 ```
 </div>
 
+
 # Qu'est-ce que <i class="glow">Shiny</i> ? {.flexbox .vcenter}
 
-```{r, eval = TRUE, echo = FALSE, out.height = 250, out.width = 216, out.extra = 'class="auto-fadein" style="margin: 20px auto auto auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.height = 250, out.width = 216, out.extra = 'class="auto-fadein" style="margin: 20px auto auto auto;"'}
 include_graphics("images/shiny.png")
 ```
 
@@ -241,7 +232,7 @@ library("shiny")
     ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[7]}
     ```
 
-<div class="notes">App `"materials/00-app"`</div>
+<div class="notes">App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/00-app/app.R)</div>
 
 
 ## Composantes d'une application <i class="glow">Shiny</i>
@@ -251,7 +242,7 @@ L'application Shiny peut être démarrée par simple exécution.
 ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")}
 ```
 
-<div class="notes">App `"materials/00-app"`</div>
+<div class="notes">App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/00-app/app.R)</div>
 
 
 ## Composantes d'une application <i class="glow">Shiny</i>
@@ -269,7 +260,7 @@ dir_tree("materials/00-app")
 runApp("materials/00-app/app.R")
 ```
 
-<div class="notes">App `"materials/00-app"`</div>
+<div class="notes">App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/00-app/app.R)</div>
 
 
 ## Composantes d'une application <i class="glow">Shiny</i>
@@ -281,7 +272,7 @@ runApp("materials/00-app/app.R")
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "01"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -296,7 +287,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
-App `"materials/01-app"`
+App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)
 * URL par défaut (hôte)
 * Port défini au hasard
 * Console R "occupée"
@@ -316,7 +307,7 @@ Pour ajouter des contrôles (`*Input()`).
 ```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 7, 10)]}
 ```
 
-<div class="notes">App `"materials/01-app"`</div>
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
 
 
 ## L'interface (`ui`)
@@ -331,7 +322,7 @@ Pour ajouter des contrôles (`*Input()`).
 
 * `fluidPage()`, la fonction gérant la structure de la page internet ("responsive web design").
 
-<div class="notes">App `"materials/01-app"`</div>
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
 
 
 ## L'interface (`ui`)
@@ -346,14 +337,14 @@ Pour ajouter des contrôles (`*Input()`).
 
 * `textInput()`, la fonction gérant un champ de saisie de texte.
 
-<div class="notes">App `"materials/01-app"`</div>
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
 
 
 ## L'interface (`ui`)
 
 Les contrôles (`*Input()`) nativement disponibles :
 
-```{r, eval = TRUE, echo = FALSE, results = "asis"}
+```{r, echo = FALSE, eval = TRUE, results = "asis"}
 list_input <- grep("^[^uv].+Input$", ls("package:shiny"), value = TRUE)
 list_input <- setdiff(list_input, c("snapshotPreprocessInput", "restoreInput"))
 
@@ -374,7 +365,7 @@ runApp("materials/01-app/app.R")
 #> Listening on http://127.0.0.1:4550
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "01"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -388,7 +379,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/01-app"`</div>
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
 
 
 ## Le serveur (`server`)
@@ -398,7 +389,7 @@ Notre application ne contient aucune action serveur (`server`).
 ```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(1:2, 4, 7, 10, 12:15)]}
 ```
 
-<div class="notes">App `"materials/01-app"`</div>
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
 
 
 ## Le serveur (`server`)
@@ -422,14 +413,14 @@ output$id <- renderTYPE({
 
 * Partie _droite_ : fonction spécifique pour générer la sortie qui pourra être affichée dans l'interface (`ui`).
 
-<div class="notes">App `"materials/02-app"`</div>
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
 
 
 ## Le serveur (`server`)
 
 Les fonctions `render*()` nativement disponibles :
 
-```{r, eval = TRUE, echo = FALSE, results = "asis"}
+```{r, echo = FALSE, eval = TRUE, results = "asis"}
 cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), sep = "\n")
 ```
 
@@ -446,7 +437,7 @@ cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), s
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(4, 7, 9:11, 13)]}
 ```
 
-<div class="notes">App `"materials/02-app"`</div>
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
 
 
 ## Première application <i class="glow">Shiny</i>
@@ -454,7 +445,7 @@ cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), s
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(1:2, 4, 7, 10, 13, 15, 17, 20, 23, 25:26)]}
 ```
 
-<div class="notes">App `"materials/02-app"`</div>
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
 
 
 ## Première application <i class="glow">Shiny</i>
@@ -462,10 +453,12 @@ cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), s
 ```{r}
 runApp("materials/02-app/app.R")
 ```
+
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "02"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -479,12 +472,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/02-app"`</div>
-
-
-## Mise en pratique
-
-Quelques exercices ...
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
 
 
 
@@ -501,14 +489,15 @@ Contraintes sur les valeurs de `inputID` :
 * Doit être unique.
 * Chaîne de caractères alphanumériques et "underscores".
 
-<div class="notes">App `"materials/02-app"`</div>
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
 
 
 ## `input` de type texte
 
 ```{r, code = readLines("materials/03-app/app.R", encoding = "UTF-8")[3:7]}
 ```
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "03"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -522,14 +511,15 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/03-app"`</div>
+<div class="notes">App [`"materials/03-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/03-app/app.R)</div>
 
 
 ## `input` de type numérique
 
 ```{r, code = readLines("materials/04-app/app.R", encoding = "UTF-8")[3:7]}
 ```
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "04"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -543,14 +533,14 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/04-app"`</div>
+<div class="notes">App [`"materials/04-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/04-app/app.R)</div>
 
 
 ## `input` de type date
 
 ```{r, code = readLines("materials/05-app/app.R", encoding = "UTF-8")[3:7]}
 ```
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "05"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -564,14 +554,15 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/05-app"`</div>
+<div class="notes">App [`"materials/05-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/05-app/app.R)</div>
 
 
 ## `input` de sélection simple
 
 ```{r, code = readLines("materials/06-app/app.R", encoding = "UTF-8")[3:6]}
 ```
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "06"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -585,14 +576,15 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/06-app"`</div>
+<div class="notes">App [`"materials/06-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/06-app/app.R)</div>
 
 
 ## `input` de sélection multiple
 
 ```{r, code = readLines("materials/07-app/app.R", encoding = "UTF-8")[3:9]}
 ```
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "07"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -606,14 +598,14 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/07-app"`</div>
+<div class="notes">App [`"materials/07-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/07-app/app.R)</div>
 
 
 ## `input` d'action
 
 ```{r, code = readLines("materials/08-app/app.R", encoding = "UTF-8")[3:7]}
 ```
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "08"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -629,12 +621,17 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fontawesome.com/)._
 
-<div class="notes">App `"materials/08-app"`</div>
+<div class="notes">App [`"materials/08-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/08-app/app.R)</div>
 
 
 ## Mise en pratique
 
-Quelques exercices ...
+1. Créer un fomulaire : Nom, sexe, loisirs (avec les types adéquats).
+
+
+<div class="notes">
+1. App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/a-exapp/app.R)
+</div>
 
 
 
@@ -651,7 +648,7 @@ Contraintes sur les valeurs de `outputId` :
 * Doit être unique.
 * Chaîne de caractères alphanumériques et "underscores".
 
-<div class="notes">App `"materials/02-app"`</div>
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
 
 
 ## `output` de type texte
@@ -659,7 +656,7 @@ Contraintes sur les valeurs de `outputId` :
 ```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")}
 ```
 
-<div class="notes">App `"materials/09-app"`</div>
+<div class="notes">App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/09-app/app.R)</div>
 
 
 ## `output` de type texte
@@ -667,7 +664,7 @@ Contraintes sur les valeurs de `outputId` :
 ```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "09"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -681,7 +678,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/09-app"`</div>
+<div class="notes">App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/09-app/app.R)</div>
 
 
 ## `output` de type texte
@@ -689,7 +686,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "10"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -703,15 +700,15 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/10-app"`</div>
+<div class="notes">App [`"materials/10-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/10-app/app.R)</div>
 
 
 ## `output` de type texte
 
-```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
+```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[c(3:15)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "11"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -725,7 +722,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/11-app"`</div>
+<div class="notes">App [`"materials/11-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/11-app/app.R)</div>
 
 
 ## `output` de type tableau statique
@@ -733,7 +730,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/12-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "12"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -747,7 +744,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/12-app"`</div>
+<div class="notes">App [`"materials/12-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/12-app/app.R)</div>
 
 
 ## `output` de type tableau dynamique
@@ -755,7 +752,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")[-c(1:2, 16:18)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "13"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -769,7 +766,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/13-app"`</div>
+<div class="notes">App [`"materials/13-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/13-app/app.R)</div>
 
 
 ## `output` de type image (`base`)
@@ -777,7 +774,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/14-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "14"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -791,7 +788,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/14-app"`</div>
+<div class="notes">App [`"materials/14-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/14-app/app.R)</div>
 
 
 ## `output` de type image (`ggplot2`)
@@ -799,7 +796,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/15-app/app.R", encoding = "UTF-8")[-c(1, 3, 17:19)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "15"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -813,7 +810,17 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/15-app"`</div>
+<div class="notes">App [`"materials/15-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/15-app/app.R)</div>
+
+
+## Mise en pratique
+
+Quelques exercices ...
+
+
+<div class="notes">
+
+</div>
 
 
 
@@ -822,7 +829,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## La mise en page "sidebar"
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
+```{r, echo = FALSE, eval = TRUE, out.width = "100%"}
 include_graphics(paste0("images/sidebar.png"), dpi = params$dpi)
 ```
 
@@ -832,12 +839,12 @@ include_graphics(paste0("images/sidebar.png"), dpi = params$dpi)
 ```{r, code = readLines("materials/16-app/app.R", encoding = "UTF-8")[c(3:19)]}
 ```
 
-<div class="notes">App `"materials/16-app"`</div>
+<div class="notes">App [`"materials/16-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/16-app/app.R)</div>
 
 
 ## La mise en page "sidebar" en image
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "16"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -851,12 +858,12 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/16-app"`</div>
+<div class="notes">App [`"materials/16-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/16-app/app.R)</div>
 
 
 ## La mise en page "multirow"
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', out.width = "100%"}
+```{r, echo = FALSE, eval = TRUE, out.width = "100%"}
 include_graphics(paste0("images/multirow.png"), dpi = params$dpi)
 ```
 
@@ -866,12 +873,12 @@ include_graphics(paste0("images/multirow.png"), dpi = params$dpi)
 ```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[c(3:22)]}
 ```
 
-<div class="notes">App `"materials/17-app"`</div>
+<div class="notes">App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/17-app/app.R)</div>
 
 
 ## La mise en page "multirow" en image
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "17"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -885,7 +892,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/17-app"`</div>
+<div class="notes">App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/17-app/app.R)</div>
 
 
 ## La mise en page "tabset" en code
@@ -893,12 +900,12 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/18-app/app.R", encoding = "UTF-8")[c(3:13)]}
 ```
 
-<div class="notes">App `"materials/18-app"`</div>
+<div class="notes">App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/18-app/app.R)</div>
 
 
 ## La mise en page "tabset" en image
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "18"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -912,7 +919,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/18-app"`</div>
+<div class="notes">App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/18-app/app.R)</div>
 
 
 ## La mise en page "dashboard" en code
@@ -920,12 +927,12 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")[c(2:10)]}
 ```
 
-<div class="notes">App `"materials/19-app"`</div>
+<div class="notes">App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/19-app/app.R)</div>
 
 
 ## La mise en page "dashboard" en image
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "19"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -939,7 +946,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/19-app"`</div>
+<div class="notes">App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/19-app/app.R)</div>
 
 
 ## La mise en page "dashboard" en code
@@ -947,12 +954,12 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/20-app/app.R", encoding = "UTF-8")[c(4:21)]}
 ```
 
-<div class="notes">App `"materials/20-app"`</div>
+<div class="notes">App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/20-app/app.R)</div>
 
 
 ## La mise en page "dashboard" en image
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "20"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -966,12 +973,17 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/20-app"`</div>
+<div class="notes">App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/20-app/app.R)</div>
 
 
 ## Mise en pratique
 
 Quelques exercices ...
+
+
+<div class="notes">
+
+</div>
 
 
 
@@ -1008,12 +1020,12 @@ server <- function(
 ```{r, code = readLines("materials/21-app/app.R", encoding = "UTF-8")[c(13:19)]}
 ```
 
-<div class="notes">App `"materials/21-app"`</div>
+<div class="notes">App [`"materials/21-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/21-app/app.R)</div>
 
 
 ## La fonction `server`
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "21"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1027,7 +1039,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/21-app"`</div>
+<div class="notes">App [`"materials/21-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/21-app/app.R)</div>
 
 
 ## La liste d'entrées `input`
@@ -1038,9 +1050,9 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
-App `"materials/22-app"`
+App [`"materials/22-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/22-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "22"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1064,9 +1076,9 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
-App `"materials/23-app"`
+App [`"materials/23-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/23-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "23"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1090,9 +1102,9 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
-App `"materials/24-app"`
+App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/24-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "24"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1116,9 +1128,9 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
-App `"materials/25-app"`
+App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/25-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "25"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1151,9 +1163,9 @@ Les sorties (`output`) sont mises à jour à la volée par Shiny lorsque les ent
 ```
 
 <div class="notes">
-App `"materials/26-app"`
+App [`"materials/26-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/26-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "26"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1179,9 +1191,6 @@ Pourquoi utiliser des expressions `reactive` ?
 * Réduction de la redondance de code.  
     \(\Rightarrow\) __Réduction de la complexité__ de l'application.
 
-
-<!--## Les expressions `reactive`-->
-
 * Elles peuvent utiliser indifféremment les `input` et `output`.
 
 * Similaire à `input`.  
@@ -1196,12 +1205,12 @@ Pourquoi utiliser des expressions `reactive` ?
 ```{r, code = readLines("materials/27-app/app.R", encoding = "UTF-8")[6:28]}
 ```
 
-<div class="notes">App `"materials/27-app"`</div>
+<div class="notes">App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/27-app/app.R)</div>
 
 
 ## `reactive()` : Exemple 1
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "27"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1215,7 +1224,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/27-app"`</div>
+<div class="notes">App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/27-app/app.R)</div>
 
 
 ## `reactive()` : Exemple 1 {.smaller}
@@ -1223,18 +1232,18 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/27-app/app.R", encoding = "UTF-8")[30:55]}
 ```
 
-<div class="notes">App `"materials/27-app"`</div>
+<div class="notes">App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/27-app/app.R)</div>
 
 
 ## `reactive()` : Exemple 2 {.smaller}
 
-```{r, code = readLines("materials/28-app/app.R", encoding = "UTF-8")[30:66]}
+```{r, code = readLines("materials/28-app/app.R", encoding = "UTF-8")[30:58]}
 ```
 
 <div class="notes">
-App `"materials/28-app"`
+App [`"materials/28-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/28-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', include = FALSE}
+```{r, echo = FALSE, eval = TRUE, include = FALSE}
 app_name <- "28"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1256,9 +1265,9 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
-App `"materials/29-app"`
+App [`"materials/29-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/29-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', include = FALSE}
+```{r, echo = FALSE, eval = TRUE, include = FALSE}
 app_name <- "29"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1279,7 +1288,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/30-app/app.R", encoding = "UTF-8")[6:31]}
 ```
 
-<div class="notes">App `"materials/30-app"`</div>
+<div class="notes">App [`"materials/30-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/30-app/app.R)</div>
 
 
 ## `reactive()` : Exemple 4 {.smaller}
@@ -1287,12 +1296,12 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/30-app/app.R", encoding = "UTF-8")[33:70]}
 ```
 
-<div class="notes">App `"materials/30-app"`</div>
+<div class="notes">App [`"materials/30-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/30-app/app.R)</div>
 
 
-## `reactive()` : Exemple 4 {.smaller}
+## `reactive()` : Exemple 4
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "30"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1306,7 +1315,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/30-app"`</div>
+<div class="notes">App [`"materials/30-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/30-app/app.R)</div>
 
 
 ## `eventReactive()` & `observeEvent()`
@@ -1331,7 +1340,7 @@ observeEvent(eventExpr = ..., handlerExpr = ...)
 ```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(16, 18, 21, 23)]}
 ```
 
-<div class="notes">App `"materials/31-app"`</div>
+<div class="notes">App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/31-app/app.R)</div>
 
 
 ## Exemple : `eventReactive()` {.smaller}
@@ -1339,7 +1348,7 @@ observeEvent(eventExpr = ..., handlerExpr = ...)
 ```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(11, 13, 21, 23)]}
 ```
 
-<div class="notes">App `"materials/31-app"`</div>
+<div class="notes">App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/31-app/app.R)</div>
 
 
 ## Exemple : `observeEvent()` {.smaller}
@@ -1347,12 +1356,12 @@ observeEvent(eventExpr = ..., handlerExpr = ...)
 ```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(11, 13, 16, 18)]}
 ```
 
-<div class="notes">App `"materials/31-app"`</div>
+<div class="notes">App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/31-app/app.R)</div>
 
 
 ## Exemple : App
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "31"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1366,7 +1375,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/31-app"`</div>
+<div class="notes">App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/31-app/app.R)</div>
 
 
 ## Mise en pratique
@@ -1392,7 +1401,7 @@ validate()
 ```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[3:6]}
 ```
 
-<div class="notes">App `"materials/32-app"`</div>
+<div class="notes">App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/32-app/app.R)</div>
 
 
 ## Contrôle & Validation
@@ -1400,7 +1409,7 @@ validate()
 ```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[8:15]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "32"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1414,7 +1423,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/32-app"`</div>
+<div class="notes">App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/32-app/app.R)</div>
 
 
 ## Contrôle & Validation
@@ -1422,7 +1431,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")[8:18]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "33"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1436,7 +1445,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/33-app"`</div>
+<div class="notes">App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/33-app/app.R)</div>
 
 
 ## Notifications
@@ -1446,13 +1455,13 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/34-app/app.R", encoding = "UTF-8")[7:19]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "34"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 2,
   vwidth = 3 * params$dpi,
-  # vheight = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
   selector = "#shiny-notification-panel",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
@@ -1460,7 +1469,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/34-app"`</div>
+<div class="notes">App [`"materials/34-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/34-app/app.R)</div>
 
 
 ## Progression
@@ -1470,21 +1479,21 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[7:19]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "35"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 2,
   vwidth = 3 * params$dpi,
   # vheight = 4 * params$dpi,
-  selector = ".container-fluid",
+  selector = "#shiny-notification-panel",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
 )
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/35-app"`</div>
+<div class="notes">App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/35-app/app.R)</div>
 
 
 
@@ -1503,9 +1512,9 @@ Quelques exercices ...
 ```
 
 <div class="notes">
-App `"materials/36-app"`
+App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/36-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "36"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1521,15 +1530,15 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 </div>
 
 
-## Affichage conditionnel des éléments `ui` {.smaller}
+## Affichage conditionnel de `ui` {.smaller}
 
 ```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[c(3:8, 10:29)]}
 ```
 
 <div class="notes">
-App `"materials/37-app"`
+App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/37-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "37"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1545,15 +1554,15 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 </div>
 
 
-## Affichage conditionnel des éléments `ui` {.smaller}
+## Affichage conditionnel de `ui` {.smaller}
 
 ```{r, code = readLines("materials/38-app/app.R", encoding = "UTF-8")[c(3:8, 10:29)]}
 ```
 
 <div class="notes">
-App `"materials/38-app"`
+App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/38-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "38"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1569,13 +1578,12 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 </div>
 
 
-## Mettre à jours des `input`
-
+## Mettre à jours des `input` {.smaller}
 
 ```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[c(3:8, 10:16)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.height = "90%"}
 app_name <- "39"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1589,7 +1597,7 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/39-app"`</div>
+<div class="notes">App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/39-app/app.R)</div>
 
 
 ## Mettre à jours des `input` {.smaller}
@@ -1597,7 +1605,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[c(3:8, 10:21)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"'}
+```{r, echo = FALSE, eval = TRUE, out.height = "90%"}
 app_name <- "40"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1611,19 +1619,19 @@ appshot(
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
-<div class="notes">App `"materials/40-app"`</div>
+<div class="notes">App [`"materials/40-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/40-app/app.R)</div>
 
 
 ## Nombre d'éléments `ui` indéfini
 
-```{r, echo = FALSE, eval = TRUE, out.extra = 'class="shadow" style="margin: auto;"', out.width = "30%", fig.align = "center", fig.show = "hold"}
+```{r, echo = FALSE, eval = TRUE}
 for (iapp in c(41:43)) {
   app_name <- as.character(iapp)
   appshot(
     app = paste0("materials/", app_name, "-app/app.R"), 
     delay = 2,
     vwidth = 7.5 * params$dpi,
-    vheight = 4 * params$dpi,
+    vheight = 4.5 * params$dpi,
     # selector = ".container-fluid",
     cliprect = "viewport",
     envvars = c(display.mode = "normal"),
@@ -1631,30 +1639,47 @@ for (iapp in c(41:43)) {
   )
 }
 
-include_graphics(paste0("webshot/", 41:43, ".png"), dpi = params$dpi)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
-App `"materials/41-app"`
-App `"materials/42-app"`
-App `"materials/43-app"`
+App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/41-app/app.R)
+App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)
+App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)
+</div> 
+
+
+<!-- 
+## Nombre d'éléments `ui` indéfini
+
+<div class="centered vcenter">
+```{r, echo = FALSE, eval = TRUE, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
+include_graphics(paste0("webshot/", 41:43, ".png"), dpi = params$dpi)
+```
 </div>
+
+<div class="notes">
+App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/41-app/app.R)
+App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)
+App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)
+</div> 
+-->
 
 
 ## Nombre d'éléments `ui` indéfini {.smaller}
 
 ```{r, include = FALSE, eval = TRUE}
 code_ellipsis <- c(
-  readLines("materials/41-app/app.R", encoding = "UTF-8")[c(1:9)],
+  readLines("materials/41-app/app.R", encoding = "UTF-8")[c(1:2, 4:9)],
   "...",
-  readLines("materials/41-app/app.R", encoding = "UTF-8")[c(30:46)]
+  readLines("materials/41-app/app.R", encoding = "UTF-8")[c(30:32, 34:44, 46)]
 )
 ```
 
 ```{r, code = code_ellipsis}
 ```
 
-<div class="notes">App `"materials/41-app"`</div>
+<div class="notes">App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/41-app/app.R)</div>
 
 
 ## Nombre d'éléments `ui` indéfini {.smaller}
@@ -1662,7 +1687,7 @@ code_ellipsis <- c(
 ```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[c(4:27)]}
 ```
 
-<div class="notes">App `"materials/42-app"`</div>
+<div class="notes">App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)</div>
 
 
 ## Nombre d'éléments `ui` indéfini {.smaller}
@@ -1670,7 +1695,7 @@ code_ellipsis <- c(
 ```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[c(1:2, 29:38, 40:50, 52)]}
 ```
 
-<div class="notes">App `"materials/42-app"`</div>
+<div class="notes">App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)</div>
 
 
 ## Nombre d'éléments `ui` indéfini {.smaller}
@@ -1678,23 +1703,23 @@ code_ellipsis <- c(
 ```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(5:28)]}
 ```
 
-<div class="notes">App `"materials/43-app"`</div>
+<div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
 
 
 ## Nombre d'éléments `ui` indéfini
 
-```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(30:39)]}
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(30:40)]}
 ```
 
-<div class="notes">App `"materials/43-app"`</div>
+<div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
 
 
 ## Nombre d'éléments `ui` indéfini
 
-```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(1:4, 41:53)]}
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(1:4, 42:54)]}
 ```
 
-<div class="notes">App `"materials/43-app"`</div>
+<div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
 
 
 ## Mise en pratique
@@ -1703,13 +1728,29 @@ Quelques exercices ...
 
 
 
-# <i class="glow">Shiny</i> & Rmarkdown | {.flexbox .vcenter}
+# <i class="glow">Shiny</i> & Rmarkdown {.flexbox .vcenter}
+
+```{r, echo = FALSE, eval = TRUE, out.height = 250, out.width = 216, out.extra = 'class="auto-fadein" style="margin: 20px auto auto auto;"'}
+include_graphics("images/rmarkdown.png")
+```
+
 
 ## <i class="glow">Shiny</i> & Rmarkdown
 
+* `rmarkdown::html_document`  
+    \(\Rightarrow\) App [`"materials/44-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/44-app/app.R)
+
+* `rmarkdown::ioslides_presentation`  
+    \(\Rightarrow\) App [`"materials/45-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/45-app/app.R)
+
+* `flexdashboard::flex_dashboard`  
+    \(\Rightarrow\) App [`"materials/46-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/46-app/app.R)
+    
+* ...
 
 
-# Ressources {.flexbox .vcenter}
+
+# <i class="glow">Shiny</i> & Plus ... {.flexbox .vcenter}
 
 
 ## Ressources
@@ -1717,6 +1758,8 @@ Quelques exercices ...
 * [shiny](https://shiny.rstudio.com/)
 
 * [shinytest](https://rstudio.github.io/shinytest/)
+
+* [DT](https://rstudio.github.io/DT/)
 
 * [Blog Rstudio](https://blog.rstudio.com/categories/shiny)
 

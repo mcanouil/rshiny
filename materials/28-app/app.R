@@ -29,39 +29,30 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   ###<b>
-  iris1 <- reactive(filter(iris, Species == !!input$species1))
-  iris2 <- reactive(filter(iris, Species == !!input$species2))
+  iris1 <- reactive({ filter(iris, Species == !!input$species1) })
+  iris2 <- reactive({ filter(iris, Species == !!input$species2) })
   ###</b>
   output$point1 <- renderPlot({
-    ggplot(
-      ###<b>
-      data = iris1(), 
-      ###</b>
-      mapping = aes(x = !!sym(input$col1x), y = !!sym(input$col1y))
-    ) + geom_point()
+    ###<b>
+    ggplot(iris1(), aes(x = !!sym(input$col1x), y = !!sym(input$col1y))) + 
+    ###</b>
+      geom_point()
   })
   output$point2 <- renderPlot({
-    ggplot(
-      ###<b>
-      data = iris2(), 
-      ###</b>
-      mapping = aes(x = !!sym(input$col2x), y = !!sym(input$col2y))
-    ) + geom_point()
+    ###<b>
+    ggplot(iris2(), aes(x = !!sym(input$col2x), y = !!sym(input$col2y))) + 
+    ###</b>
+      geom_point()
   })
-  
   output$point12 <- renderPlot({
-    p1 <- ggplot(
-      ###<b>
-      data = iris1(), 
-      ###</b>
-      mapping = aes(x = !!sym(input$col1x), y = !!sym(input$col1y))
-    ) + geom_point()
-    p2 <- ggplot(
-      ###<b>
-      data = iris2(), 
-      ###</b>
-      mapping = aes(x = !!sym(input$col2x), y = !!sym(input$col2y))
-    ) + geom_point()
+    ###<b>
+    p1 <- ggplot(iris1(), aes(x = !!sym(input$col1x), y = !!sym(input$col1y))) + 
+    ###</b>
+      geom_point()
+    ###<b>
+    p2 <- ggplot(iris2(), aes(x = !!sym(input$col2x), y = !!sym(input$col2y))) + 
+    ###</b>
+      geom_point()
     ggarrange(p1, p2, ncol = 2, labels = LETTERS)
   })
 }
