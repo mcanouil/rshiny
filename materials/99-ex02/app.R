@@ -12,7 +12,7 @@ ui <- fluidPage(
     selected = "Ne se prononce pas"
   ),
   checkboxGroupInput("hobbies", "Loisirs", 
-    choices = c("Vélo", "Rando", "Natation", "Badminton", "Karaté", "Autres")
+    choices = c("Vélo", "Rando", "Natation", "Badminton", "Autres")
   )
 )
 
