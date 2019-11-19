@@ -20,7 +20,7 @@ output:
     mathjax: default
     fig_width: 5.94
     fig_height: 3.30
-    transition: 0.5
+    transition: 0.25
     incremental: false
   html_document:
     toc: false
@@ -1765,9 +1765,9 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
-App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/41-app/app.R)
-App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)
-App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)
+* App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/41-app/app.R)
+* App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)
+* App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)
 </div> 
 
 
@@ -1781,9 +1781,9 @@ include_graphics(paste0("webshot/", 41:43, ".png"), dpi = params$dpi)
 </div>
 
 <div class="notes">
-App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/41-app/app.R)
-App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)
-App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)
+* App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/41-app/app.R)
+* App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)
+* App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)
 </div> 
 -->
 
