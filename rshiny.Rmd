@@ -626,12 +626,23 @@ _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fonta
 
 ## Mise en pratique
 
-1. Créer un fomulaire : Nom, sexe, loisirs (avec les types adéquats).
+* Essayer les différents `input` en jouant sur les arguments.
+
+* Créer un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
+
+<div class="notes">App [`"materials/99-ex01"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex01/app.R)</div>
 
 
-<div class="notes">
-1. App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/a-exapp/app.R)
-</div>
+## Mise en pratique
+
+* Essayer les différents `input` en jouant sur les arguments.
+
+* Créer un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
+
+```{r, code = readLines("materials/99-ex01/app.R", encoding = "UTF-8")[3:14]}
+```
+
+<div class="notes">App [`"materials/99-ex01"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex01/app.R)</div>
 
 
 
@@ -815,13 +826,60 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mise en pratique
 
-Quelques exercices ...
+* Créer un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
+  (*Formulaire générer précedemment*)
+
+* Ajouter une phrase de bienvenue aléatoire depuis le `server`.
+
+* Créer une application affichant un graphique et son code.
 
 
 <div class="notes">
-
+* App [`"materials/99-ex01"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex01/app.R)
+* App [`"materials/99-ex02"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex02/app.R)
+* App [`"materials/99-ex03"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex03/app.R)
 </div>
 
+
+## Mise en pratique
+
+* Créer un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
+  (*Formulaire généré précedemment*)
+  
+```{r, code = readLines("materials/99-ex01/app.R", encoding = "UTF-8")[3:14]}
+```
+
+<div class="notes">App [`"materials/99-ex01"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex01/app.R)</div>
+
+
+## Mise en pratique
+
+* Ajouter une phrase de bienvenue aléatoire depuis le `server`.
+
+```{r, code = readLines("materials/99-ex02/app.R", encoding = "UTF-8")[3:17]}
+```
+
+<div class="notes">App [`"materials/99-ex02"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex02/app.R)</div>
+
+
+## Mise en pratique
+
+* Ajouter une phrase de bienvenue aléatoire depuis le `server`.
+
+```{r, code = readLines("materials/99-ex02/app.R", encoding = "UTF-8")[19:29]}
+```
+
+<div class="notes">App [`"materials/99-ex02"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex02/app.R)</div>
+
+
+## Mise en pratique
+
+* Créer une application affichant un graphique et son code.
+
+```{r, code = readLines("materials/99-ex03/app.R", encoding = "UTF-8")[3:17]}
+```
+
+<div class="notes">App [`"materials/99-ex03"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex03/app.R)</div>
 
 
 # <i class="glow">Shiny</i> | La mise en page {.flexbox .vcenter}
@@ -978,12 +1036,74 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mise en pratique
 
-Quelques exercices ...
+* Essayer la structure grille avec `fluidPage()`, `fluidRow()`, `fixedRow()` et `column()`.
 
+* Reproduire les interfaces suivantes.
 
-<div class="notes">
-
+<div class="centered">
+```{r, echo = FALSE, eval = TRUE, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
+for (iapp in c("99-ex04", "99-ex05")) {
+app_name <- iapp 
+appshot(
+  app = paste0("materials/", app_name, "/app.R"), 
+  delay = 2,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+}
+include_graphics(paste0("webshot/", c("99-ex04", "99-ex05"), ".png"), dpi = params$dpi)
+```
 </div>
+
+<div class="notes">App [`"materials/99-ex04"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex04/app.R)</div>
+<div class="notes">App [`"materials/99-ex05"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex05/app.R)</div>
+
+
+## Mise en pratique
+
+* Reproduire l'interface suivante.
+
+```{r, echo = FALSE, eval = TRUE}
+app_name <- "99-ex04"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/99-ex04"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex04/app.R)</div>
+
+
+## Mise en pratique
+
+* Reproduire l'interface suivante.
+
+```{r, code = readLines("materials/99-ex04/app.R", encoding = "UTF-8")[c(5:20)]}
+```
+
+<div class="notes">App [`"materials/99-ex04"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex04/app.R)</div>
+
+
+## Mise en pratique
+
+* Reproduire l'interface suivante.
+
+```{r, echo = FALSE, eval = TRUE}
+app_name <- "99-ex05"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/99-ex05"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex05/app.R)</div>
+
+
+## Mise en pratique
+
+* Reproduire l'interface suivante.
+
+```{r, code = readLines("materials/99-ex05/app.R", encoding = "UTF-8")[c(5:15)]}
+```
+
+<div class="notes">App [`"materials/99-ex05"`](https://github.com/mcanouil/rshiny/tree/master/materials/99-ex05/app.R)</div>
 
 
 
