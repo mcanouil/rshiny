@@ -29,10 +29,12 @@
 a {
   color: var(--url-color);
   text-decoration: none;
+  border-bottom: none;
 }
 
 a:hover {
-  color: #ffffff !important;
+  color: #1e90ff !important;
+  text-decoration: none;
 }
 
 .uk-icon-button {
