@@ -11,12 +11,12 @@ server <- function(input, output, session) {
   ###<b>
   text <- reactive({ paste("Bonjour", input$name, "!") })
   ###</b>
-  output$hello <- renderText(text())
+  output$hello <- renderText({ text() })
   
   ###<b>
   text_event <- eventReactive(input$update, { paste("Bonjour", input$name, "!") })
   ###</b>
-  output$hello_event <- renderText(text_event())
+  output$hello_event <- renderText({ text_event() })
   
   ###<b>
   observeEvent(input$update, { message("Mise à jour effectuée !") })

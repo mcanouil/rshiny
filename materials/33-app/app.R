@@ -10,7 +10,7 @@ server <- function(input, output, session) {
     ###<b>
     validate(need(
       expr = input$text == "texte", 
-      message = '[Message] Le texte saisie est différent de "texte"'
+      message = '[NOTE] Le texte saisie est différent de "texte".'
     ))
     ###</b>
     paste("Ceci est un texte saisie :", input$text)

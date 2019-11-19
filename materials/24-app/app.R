@@ -6,7 +6,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  output$text <- renderText(input$text)
+  output$text <- renderText({ input$text })
   ###<b>
   output$text <- "Du texte par défaut ..."
   ###</b>

@@ -28,11 +28,12 @@ make_ui <- function(data, var) {
 }
 
 filter_var <- function(data_var, input_var) {
-  x <- data_var
-  if (is.numeric(x)) {
-    !is.na(x) & x >= input_var[1] & x <= input_var[2] # dplyr::between
-  } else if (is.character(x) | is.factor(x)) {
-    x %in% input_var
+  if (is.numeric(data_var)) {
+    !is.na(data_var) & # dplyr::between
+      data_var >= input_var[1] & 
+      data_var <= input_var[2]
+  } else if (is.character(data_var) | is.factor(data_var)) {
+    data_var %in% input_var
   } else {
     TRUE # default
   }
