@@ -49,7 +49,6 @@ server <- function(input, output, session) {
       data = filter(iris, Species == !!input$species2), 
       mapping = aes(x = !!sym(input$col2x), y = !!sym(input$col2y))
     ) + geom_point()
-    
     ggarrange(p1, p2, ncol = 2, labels = LETTERS)
   })
 }

@@ -8,16 +8,10 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  observeEvent(input$min, {
-    ###<b>
-    updateNumericInput(session, "n", min = input$min)
-    ###</b>
-  })  
-  observeEvent(input$max, {
-    ###<b>
-    updateNumericInput(session, "n", max = input$max)
-    ###</b>
-  })
+  ###<b>
+  observeEvent(input$min, { updateNumericInput(session, "n", min = input$min) })  
+  observeEvent(input$max, { updateNumericInput(session, "n", max = input$max) })
+  ###</b>
 }
 
 shinyApp(ui, server)
