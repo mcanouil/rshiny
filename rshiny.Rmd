@@ -1229,7 +1229,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## `reactive()` : Exemple 1 {.smaller}
 
-```{r, code = readLines("materials/27-app/app.R", encoding = "UTF-8")[30:55]}
+```{r, code = readLines("materials/27-app/app.R", encoding = "UTF-8")[30:54]}
 ```
 
 <div class="notes">App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/27-app/app.R)</div>
@@ -1602,7 +1602,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mettre à jours des `input` {.smaller}
 
-```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[c(3:8, 10:21)]}
+```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[c(3:8, 10:15)]}
 ```
 
 ```{r, echo = FALSE, eval = TRUE, out.height = "90%"}
@@ -1622,7 +1622,9 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">App [`"materials/40-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/40-app/app.R)</div>
 
 
-## Nombre d'éléments `ui` indéfini
+## Mise en pratique
+
+* Générer l'application suivante.
 
 ```{r, echo = FALSE, eval = TRUE}
 for (iapp in c(41:43)) {
@@ -1631,7 +1633,7 @@ for (iapp in c(41:43)) {
     app = paste0("materials/", app_name, "-app/app.R"), 
     delay = 2,
     vwidth = 7.5 * params$dpi,
-    vheight = 4.5 * params$dpi,
+    vheight = 4.2 * params$dpi,
     # selector = ".container-fluid",
     cliprect = "viewport",
     envvars = c(display.mode = "normal"),
@@ -1650,7 +1652,7 @@ App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materi
 
 
 <!-- 
-## Nombre d'éléments `ui` indéfini
+## Mise en pratique
 
 <div class="centered vcenter">
 ```{r, echo = FALSE, eval = TRUE, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
@@ -1666,7 +1668,7 @@ App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materi
 -->
 
 
-## Nombre d'éléments `ui` indéfini {.smaller}
+## Mise en pratique {.smaller}
 
 ```{r, include = FALSE, eval = TRUE}
 code_ellipsis <- c(
@@ -1682,7 +1684,7 @@ code_ellipsis <- c(
 <div class="notes">App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/41-app/app.R)</div>
 
 
-## Nombre d'éléments `ui` indéfini {.smaller}
+## Mise en pratique {.smaller}
 
 ```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[c(4:27)]}
 ```
@@ -1690,7 +1692,7 @@ code_ellipsis <- c(
 <div class="notes">App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)</div>
 
 
-## Nombre d'éléments `ui` indéfini {.smaller}
+## Mise en pratique {.smaller}
 
 ```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[c(1:2, 29:38, 40:50, 52)]}
 ```
@@ -1698,7 +1700,7 @@ code_ellipsis <- c(
 <div class="notes">App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)</div>
 
 
-## Nombre d'éléments `ui` indéfini {.smaller}
+## Mise en pratique {.smaller}
 
 ```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(5:28)]}
 ```
@@ -1706,7 +1708,7 @@ code_ellipsis <- c(
 <div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
 
 
-## Nombre d'éléments `ui` indéfini
+## Mise en pratique
 
 ```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(30:40)]}
 ```
@@ -1714,17 +1716,12 @@ code_ellipsis <- c(
 <div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
 
 
-## Nombre d'éléments `ui` indéfini
+## Mise en pratique
 
 ```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[c(1:4, 42:54)]}
 ```
 
 <div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
-
-
-## Mise en pratique
-
-Quelques exercices ...
 
 
 
