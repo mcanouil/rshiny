@@ -1,21 +1,19 @@
 library("shiny")
 
-###<b>
-ui <- navbarPage("App Title",
-  tabPanel("Figures", 
-    tabsetPanel(
-      tabPanel("point", plotOutput("plot")),
-      tabPanel("Densité", plotOutput("plot2"))
-    )
-  ),
-  tabPanel("Table", tableOutput("desc"))
-)
-###</b>
+code_for_plot <- "plot(1:10)"
 
-server <- function(input, output) {
-  output$plot <- renderPlot(plot(1:10))
-  output$plot2 <- renderPlot(plot(density(rnorm(n = 25))))
-  output$desc <- renderTable(head(iris))
+ui <- fluidPage(
+  verbatimTextOutput("code"),
+  plotOutput("plot")
+)
+
+server <- function(input, output, session) { 
+  output$code <- renderText({ 
+    code_for_plot
+  })
+  output$plot <- renderPlot({ 
+    eval(parse(text = code_for_plot))
+  })
 }
 
 shinyApp(ui, server)

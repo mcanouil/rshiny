@@ -1,17 +1,16 @@
 library("shiny")
 
 ui <- fluidPage(
-  numericInput("min", "Minimum", 0), numericInput("max", "Maximum", 3),
-  ###<b>
-  uiOutput("n")
-  ###</b>
+  textInput("text", "texte : "),
+  textOutput("text")
 )
 
 server <- function(input, output, session) {
-  output$n <- renderUI({
+  output$text <- renderText({
     ###<b>
-    sliderInput("n", "n", min = input$min, max = input$max, value = 1)
+    req(input$text)
     ###</b>
+    paste("Ceci est un texte saisie :", input$text)
   })
 }
 

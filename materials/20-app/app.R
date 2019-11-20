@@ -1,21 +1,22 @@
 library("shiny")
-library("shinydashboard")
 
 ###<b>
-ui <- dashboardPage(
-  dashboardHeader(title = "Shiny App"),
-  dashboardSidebar(
+ui <- fluidPage(
+  fluidRow(
+    column(width = 4, 
 ###</b>
-    textInput("title", "Titre :", value = "Titre"),
-    sliderInput("point", "Point :", min = 0, max = 20, value = 5),
-    sliderInput("mean", "Moyenne :", min = 0, max = 2, value = 1)
+      sliderInput("point", "Point :", min = 0, max = 20, value = 5)
 ###<b>
+    ),
+    column(width = 8, plotOutput("plot"))
   ),
-  dashboardBody(
-    fluidRow(
-      box(plotOutput("plot"), width = 6),
-      box(title = "Density", plotOutput("plot2"), width = 6)
-    )
+  fluidRow(
+    column(width = 6, 
+###</b>
+      sliderInput("mean", "Moyenne :", min = 0, max = 2, value = 1)
+###<b>
+    ),
+    column(width = 6, plotOutput("plot2"))
   )
 )
 ###</b>

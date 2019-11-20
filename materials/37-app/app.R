@@ -1,30 +1,25 @@
 library("shiny")
 
 ui <- fluidPage(
-  fluidRow(
-    column(6, textInput("lastname", "Nom :"), uiOutput("firstname")),
-    column(6, uiOutput("input_age"), uiOutput("age"))
-  )
+  actionButton("update", "Actualiser"),
+  textInput("name", "Prénom : ", value = "Mickaël"),
+  p("Résultat `reactive` : ", textOutput("hello", inline = TRUE)),
+  p("Résultat `eventReactive` : ", textOutput("hello_event", inline = TRUE))
 )
 
 server <- function(input, output, session) {
   ###<b>
-  output$firstname <- renderUI({
-    req(input$lastname)
-    textInput("firstname", "Prénom :")
-  })
-  output$input_age <- renderUI({
-    req(input$firstname)
-    selectInput("type", "type", c("slider", "numeric"))
-  })
-  output$age <- renderUI({
-    req(input$type, input$firstname)
-    if (input$type == "slider") {
-      sliderInput("dynamic", "Age :", value = 0, min = 0, max = 99)
-    } else {
-      numericInput("age", "Age :", value = 0)  
-    }
-  })
+  text <- reactive({ paste("Bonjour", input$name, "!") })
+  ###</b>
+  output$hello <- renderText({ text() })
+  
+  ###<b>
+  text_event <- eventReactive(input$update, { paste("Bonjour", input$name, "!") })
+  ###</b>
+  output$hello_event <- renderText({ text_event() })
+  
+  ###<b>
+  observeEvent(input$update, { message("Mise à jour effectuée !") })
   ###</b>
 }
 
