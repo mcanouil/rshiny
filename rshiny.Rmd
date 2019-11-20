@@ -144,7 +144,7 @@ opts_chunk$set(
 ```
 
 
-# Diapositives et matériel | <i class="fab fa-github" style="font-size: 250px;">mcanouil/rshiny)</i> {.flexbox .vcenter}
+# Diapositives et matériel | <i class="fab fa-github" style="font-size: 250px;"></i><br>mcanouil/rshiny {.flexbox .vcenter}
 
 
 
