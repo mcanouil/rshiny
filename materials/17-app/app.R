@@ -9,7 +9,7 @@ ui <- fluidPage(
   numericInput("age", "Age", value = 0),
   radioButtons("sex", "Sexe", 
     choices = c("Femme", "Homme", "Ne sait pas"), 
-    selected = "Ne se prononce pas"
+    selected = "Ne sait pas"
   ),
   checkboxGroupInput("hobbies", "Loisirs", 
     choices = c("Vélo", "Rando", "Natation", "Badminton", "Autres")
