@@ -144,11 +144,7 @@ opts_chunk$set(
 ```
 
 
-# Diapositives et matériel | <i class="fab fa-github" style="font-size: 250px;"></i> {.flexbox .vcenter}
-
-* [mcanouil.github.io/rshiny](https://mcanouil.github.io/rshiny/)
-
-* [github.com/mcanouil/rshiny](github.com/mcanouil/rshiny)
+# Diapositives et matériel | <i class="fab fa-github" style="font-size: 250px;">mcanouil/rshiny)</i> {.flexbox .vcenter}
 
 
 
@@ -1948,7 +1944,7 @@ code_ellipsis <- c(
 <div class="notes">App [`"materials/49-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/49-app/app.R)</div>
 
 
-## Mise en pratique : Essai 
+## Mise en pratique : Essai 1
 
 ```{r, echo = FALSE, eval = TRUE}
 app_name <- "49"
