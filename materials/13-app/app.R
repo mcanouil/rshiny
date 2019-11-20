@@ -2,15 +2,13 @@ library("shiny")
 
 ui <- fluidPage(
   ###<b>
-  dataTableOutput("dynamic")
+  tableOutput("static")
   ###</b>
 )
 
 server <- function(input, output, session) {
   ###<b>
-  output$dynamic <- renderDataTable(
-    expr = swiss, options = list(pageLength = 2)
-  )
+  output$static <- renderTable(expr = head(swiss, 5))
   ###</b>
 }
 

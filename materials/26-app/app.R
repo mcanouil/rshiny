@@ -1,19 +1,20 @@
 library("shiny")
 
 ui <- fluidPage(
-  textInput("text", "Texte : ", value = "vide"),
-  p("Texte 1 : ", textOutput("text", inline = TRUE)),
-  p("Texte 2 : ", textOutput("text2", inline = TRUE))
+  textInput(
+    ###<b>
+    inputId = "text",
+    ###</b>
+    label =  "Texte : ", value = "Du texte par défaut ..."
+  ),
+  textOutput("text")
 )
 
 server <- function(input, output, session) {
   output$text <- renderText({
-    message('Calcul de "text" ...')
+    ###<b>
     input$text
-  })
-  output$text1 <- renderText({
-    message('Calcul de "text1" ...')
-    input$text
+    ###</b>
   })
 }
 

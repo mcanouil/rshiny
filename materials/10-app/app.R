@@ -3,7 +3,7 @@ library("shiny")
 ui <- fluidPage(
   ###<b>
   textOutput("text"),
-  textOutput("code")
+  verbatimTextOutput("code")
   ###</b>
 )
 
@@ -11,12 +11,12 @@ server <- function(input, output, session) {
   ###<b>
   output$text <- renderText({ 
   ###</b>
-    "Du texte"
+    "Bonjour, vous êtes sur une application Shiny !"
   ###<b>
   })
   output$code <- renderPrint({ 
   ###</b>
-    "Du code"
+    summary(rnorm(10))
   ###<b>
   })
   ###</b>

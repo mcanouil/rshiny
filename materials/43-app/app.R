@@ -1,53 +1,61 @@
 library("shiny")
 library("dplyr")
-library("purrr")
 
-make_ui <- function(data, var) {
-  x <- data[, var]
-  if (is.numeric(x)) {
-    min_max <- range(x, na.rm = TRUE)
-    sliderInput(
-      inputId = var,
-      label = var, 
-      min = min_max[1], 
-      max = min_max[2], 
-      value = min_max
+ui <- fluidPage(theme = "bootstrap.min.css",
+  fluidRow(
+    column(4, offset = 5,
+      selectInput("dataset", label = h3("Datasets"), 
+        choices = ls("package:datasets"), 
+        selected = "iris"
+      )
     )
-  } else if (is.character(x) | is.factor(x)) {
-    unique_x <- unique(x)
-    selectInput(
-      inputId = var,
-      label = var, 
-      choices = unique_x, 
-      selected = unique_x, 
-      multiple = TRUE
+  ),
+  fluidRow(
+    column(6,
+      h3("Summary"), 
+      verbatimTextOutput("summary"),
+      h3("Structure"), 
+      verbatimTextOutput("structure")
+    ),
+    column(6,
+      h3("Plot"), 
+      numericInput("x", label = h4("X-axis column index"), value = 1),
+      numericInput("y", label = h4("Y-axis column index"), value = 2),
+      plotOutput("plot")
     )
-  } else {
-    NULL # default
-  }
-}
-
-filter_var <- function(data_var, input_var) {
-  if (is.numeric(data_var)) {
-    !is.na(data_var) & # dplyr::between
-      data_var >= input_var[1] & 
-      data_var <= input_var[2]
-  } else if (is.character(data_var) | is.factor(data_var)) {
-    data_var %in% input_var
-  } else {
-    TRUE # default
-  }
-}
-
-ui <- fluidPage(
-  column(4, map(colnames(iris), ~ make_ui(iris, .x))),
-  column(8, tableOutput("iris"))
+  )
 )
 
-server <- function(input, output, session) {
-  output$iris <- renderTable({
-    vals <- map(colnames(iris), ~ filter_var(iris[[.x]], input[[.x]]))
-    iris[reduce(vals, `&`), ]
+need_numeric <- function(data, input) {
+  need(
+    expr = is.numeric(data[, input]), 
+    message = paste("Column", input, "is not a numeric!")
+  )
+}
+
+need_in <- function(data, input) {
+  need(
+    expr = input %in% 1:ncol(data), 
+    message = paste("Column", input, "is not available!")
+  )
+}
+
+server <- function(input, output, session) { 
+  dataset <- reactive({ get(input$dataset, "package:datasets") })
+  output$summary <- renderPrint({ summary(dataset()) })
+  output$structure <- renderPrint({ str(dataset()) })
+  output$plot <- renderPlot({
+    ###<b>
+    validate(
+      need_in(dataset(), input$x),
+      need_in(dataset(), input$y)
+    )
+    validate(
+      need_numeric(dataset(), input$x),
+      need_numeric(dataset(), input$y)
+    )
+    ###</b>
+    plot(dataset()[, input$x], dataset()[, input$y]) 
   })
 }
 

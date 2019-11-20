@@ -1,30 +1,43 @@
 library("shiny")
+library("dplyr")
 
-ui <- fluidPage(
+ui <- fluidPage(theme = "bootstrap.min.css",
   fluidRow(
-    column(6, textInput("lastname", "Nom :"), uiOutput("firstname")),
-    column(6, uiOutput("input_age"), uiOutput("age"))
+    column(4, offset = 5,
+      selectInput("dataset", label = h3("Datasets"), 
+        choices = ls("package:datasets"), 
+        selected = "iris"
+      )
+    )
+  ),
+  fluidRow(
+    column(6,
+      h3("Summary"), 
+      verbatimTextOutput("summary"),
+      h3("Structure"), 
+      verbatimTextOutput("structure")
+    ),
+    column(6,
+      h3("Plot"), 
+      numericInput("x", label = h4("X-axis column index"), value = 1),
+      numericInput("y", label = h4("Y-axis column index"), value = 2),
+      plotOutput("plot")
+    )
   )
 )
 
-server <- function(input, output, session) {
-  output$firstname <- renderUI({
-    req(input$lastname)
-    textInput("firstname", "Prénom :")
+server <- function(input, output, session) { 
+  dataset <- reactive({ 
+    get(input$dataset, "package:datasets") 
   })
-  output$input_age <- renderUI({
-    req(input$firstname)
-    selectInput("type", "type", c("slider", "numeric"))
+  output$summary <- renderPrint({
+    summary(dataset()) 
   })
-  output$age <- renderUI({
-    req(input$type, input$firstname)
-    ###<b>
-    if (input$type == "slider") {
-      sliderInput("age", "Age :", value = isolate(input$age), min = 0, max = 99)
-    } else {
-      numericInput("age", "Age :", value = isolate(input$age))  
-    }
-    ###</b>
+  output$structure <- renderPrint({ 
+    str(dataset()) 
+  })
+  output$plot <- renderPlot({ 
+    plot(dataset()[, input$x], dataset()[, input$y]) 
   })
 }
 

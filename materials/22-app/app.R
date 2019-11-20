@@ -1,15 +1,14 @@
 library("shiny")
+library("shinydashboard")
 
-ui <- fluidPage(
-  textInput("text", "Texte : "),
-  textOutput("text")
+###<b>
+ui <- dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(),
+  dashboardBody()
 )
+###</b>
 
-server <- function(input, output, session) {
-  ###<b>
-  input$text <- "Du texte par défaut ..."
-  ###</b>
-  output$text <- renderText({ input$text })
-}
+server <- function(input, output) { }
 
 shinyApp(ui, server)

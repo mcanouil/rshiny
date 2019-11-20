@@ -1,21 +1,21 @@
 library("shiny")
 
-ui <- fluidPage(
-  textInput(
-    ###<b>
-    inputId = "text",
-    ###</b>
-    label =  "Texte : ", value = "Du texte par défaut ..."
+###<b>
+ui <- navbarPage("App Title",
+  tabPanel("Figures", 
+    tabsetPanel(
+      tabPanel("point", plotOutput("plot")),
+      tabPanel("Densité", plotOutput("plot2"))
+    )
   ),
-  textOutput("text")
+  tabPanel("Table", tableOutput("desc"))
 )
+###</b>
 
-server <- function(input, output, session) {
-  output$text <- renderText({
-    ###<b>
-    input$text
-    ###</b>
-  })
+server <- function(input, output) {
+  output$plot <- renderPlot(plot(1:10))
+  output$plot2 <- renderPlot(plot(density(rnorm(n = 25))))
+  output$desc <- renderTable(head(iris))
 }
 
 shinyApp(ui, server)

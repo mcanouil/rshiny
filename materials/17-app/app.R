@@ -1,29 +1,31 @@
 library("shiny")
 
-###<b>
 ui <- fluidPage(
-  fluidRow(
-    column(width = 4, 
-###</b>
-      sliderInput("point", "Point :", min = 0, max = 20, value = 5)
-###<b>
-    ),
-    column(width = 8, plotOutput("plot"))
+  textInput("lastname", "Nom", value = "Nom"),
+  textInput("firstname", "Prénom", value = "Prénom"),
+  ###<b>
+  textOutput("greetings"),
+  ###</b>
+  numericInput("age", "Age", value = 0),
+  radioButtons("sex", "Sexe", 
+    choices = c("Femme", "Homme", "Ne sait pas"), 
+    selected = "Ne se prononce pas"
   ),
-  fluidRow(
-    column(width = 6, 
-###</b>
-      sliderInput("mean", "Moyenne :", min = 0, max = 2, value = 1)
-###<b>
-    ),
-    column(width = 6, plotOutput("plot2"))
+  checkboxGroupInput("hobbies", "Loisirs", 
+    choices = c("Vélo", "Rando", "Natation", "Badminton", "Autres")
   )
 )
-###</b>
 
-server <- function(input, output) {
-  output$plot <- renderPlot(plot(1:10))
-  output$plot2 <- renderPlot(plot(density(rnorm(n = 25))))
+server <- function(input, output, session) { 
+  ###<b>
+  output$greetings <- renderText({ 
+    sample(c(
+    "Bonjour !", "Bienvenue !", "Hello !", 
+    "Salutations !", "Comment allez-vous ?",
+    "Heu, vous êtes qui ?"
+    ), 1)
+  })
+  ###</b>
 }
 
 shinyApp(ui, server)
