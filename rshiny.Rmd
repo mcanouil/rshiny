@@ -144,6 +144,7 @@ opts_chunk$set(
 ```
 
 
+
 # Diapositives et matériel | <i class="fab fa-github" style="font-size: 250px;"></i><br>mcanouil/rshiny {.flexbox .vcenter}
 
 
@@ -272,9 +273,11 @@ Une fois l'application démarrée, vous devriez voir une fenêtre s'ouvrir.
 ```{r}
 runApp("materials/00-app/app.R")
 ```
+
 ```{r}
 #> Listening on http://127.0.0.1:4550
 ```
+
 ```{r, echo = FALSE, eval = TRUE}
 app_name <- "01"
 appshot(
@@ -543,6 +546,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ```{r, code = readLines("materials/05-app/app.R", encoding = "UTF-8")[3:7]}
 ```
+
 ```{r, echo = FALSE, eval = TRUE}
 app_name <- "05"
 appshot(
@@ -856,7 +860,6 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 * Créez une application affichant un graphique et son code.
 
-
 <div class="notes">
 * App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/09-app/app.R)
 * App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/17-app/app.R)
@@ -945,6 +948,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/18-app/app.R)</div>
+
 
 
 # <i class="glow">Shiny</i> | La mise en page {.flexbox .vcenter}
