@@ -46,6 +46,7 @@ server <- function(input, output, session) {
   output$structure <- renderPrint({ str(dataset()) })
   output$plot <- renderPlot({
     ###<b>
+    validate(need(inherits(dataset(), "data.frame"), "Not a data.frame"))
     validate(
       need_in(dataset(), input$x),
       need_in(dataset(), input$y)
