@@ -35,7 +35,7 @@ need_numeric <- function(data, input) {
 
 need_in <- function(data, input) {
   need(
-    expr = input %in% 1:ncol(data), 
+    expr = all(input %in% 1:ncol(data)), 
     message = paste("Column", input, "is not available!")
   )
 }
@@ -46,11 +46,11 @@ server <- function(input, output, session) {
   output$structure <- renderPrint({ str(dataset()) })
   output$plot <- renderPlot({
     ###<b>
-    validate(need(inherits(dataset(), "data.frame"), "Not a data.frame"))
-    validate(
-      need_in(dataset(), input$x),
-      need_in(dataset(), input$y)
-    )
+    validate(need(
+      expr = inherits(dataset(), "data.frame"), 
+      message = "Not a data.frame!"
+    ))
+    validate(need_in(dataset(), c(input$x, input$y)))
     validate(
       need_numeric(dataset(), input$x),
       need_numeric(dataset(), input$y)
