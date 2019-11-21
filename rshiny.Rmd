@@ -279,7 +279,7 @@ runApp("materials/00-app/app.R")
 ```
 
 ```{r, echo = FALSE, eval = TRUE}
-app_name <- "01"
+app_name <- "00"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
@@ -293,7 +293,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 
 <div class="notes">
-App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)
+App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/00-app/app.R)
 * URL par défaut (hôte)
 * Port défini au hasard
 * Console R "occupée"
@@ -634,7 +634,7 @@ _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fonta
 
 ## Mise en pratique 
 
-* Essayez les différents `input` en jouant sur les arguments (*p. ex.*, `renderDataTable()`).
+* Essayez les différents `input` en jouant sur les arguments.
 
 * Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
 
@@ -1471,7 +1471,11 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
 </div>
 
+<!--  
+move to next section 
 
+###### START #######
+-->
 ## `reactive()` : Exemple 4 {.smaller}
 
 ```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[6:31]}
@@ -1506,13 +1510,19 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 <div class="notes">App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/36-app/app.R)</div>
 
+<!--  
+move to next section 
+
+###### END #######
+-->
+
 
 ## `eventReactive()` & `observeEvent()`
 
 Execution selon un événement, *p. ex.*, un changement de valeur d'un `input`.
 
 ```{r}
-output$something <- eventReactive(eventExpr = ..., valueExpr = ...)
+something <- eventReactive(eventExpr = ..., valueExpr = ...)
 
 observeEvent(eventExpr = ..., handlerExpr = ...)
 ```
@@ -1758,7 +1768,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mise en pratique 
 
-```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[43:60]}
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[43:61]}
 ```
 
 <div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
