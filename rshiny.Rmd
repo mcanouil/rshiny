@@ -2096,7 +2096,7 @@ rmarkdown::run("materials/55-app/app.Rmd") # "app.Rmd" est obligatoire ici !
 
 * [shiny](https://shiny.rstudio.com/)
 
-* ["Mastering Shiny" (en cours)](https://mastering-shiny.org/)
+* ["Mastering Shiny" (en cours d'écriture)](https://mastering-shiny.org/)
 
 * [shinytest](https://rstudio.github.io/shinytest/)
 
