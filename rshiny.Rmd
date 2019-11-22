@@ -11,6 +11,7 @@ params:
   output_directory: "./"
   eval: FALSE
   dpi: 120
+  webshot: TRUE
 output:
   ioslides_presentation:
     css: [ "template/mc_theme.css", "template/r_colour.css", "template/shine.css"]
@@ -371,7 +372,7 @@ runApp("materials/01-app")
 #> Listening on http://127.0.0.1:4550
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "01"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -464,7 +465,7 @@ runApp("materials/02-app")
 #> Listening on http://127.0.0.1:4550
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "02"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -503,7 +504,7 @@ Contraintes sur les valeurs de `inputID` :
 ```{r, code = readLines("materials/03-app/app.R", encoding = "UTF-8")[3:7]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "03"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -525,7 +526,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/04-app/app.R", encoding = "UTF-8")[3:7]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "04"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -547,7 +548,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/05-app/app.R", encoding = "UTF-8")[3:7]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "05"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -569,7 +570,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/06-app/app.R", encoding = "UTF-8")[3:6]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "06"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -591,7 +592,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/07-app/app.R", encoding = "UTF-8")[3:9]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "07"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -613,7 +614,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/08-app/app.R", encoding = "UTF-8")[3:7]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "08"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -655,7 +656,7 @@ _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fonta
 
 * Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "09"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -702,7 +703,7 @@ Contraintes sur les valeurs de `outputId` :
 ```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "10"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -724,7 +725,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "11"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -746,7 +747,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/12-app/app.R", encoding = "UTF-8")[c(3:15)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "12"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -768,7 +769,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")[c(3:7, 9:13)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "13"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -790,7 +791,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/14-app/app.R", encoding = "UTF-8")[-c(1:2, 16:18)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "14"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -812,7 +813,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/15-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "15"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -834,7 +835,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/16-app/app.R", encoding = "UTF-8")[-c(1, 3, 17:19)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "16"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -902,7 +903,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 * Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
   
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "17"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -933,7 +934,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 * Créez une application affichant un graphique et son code.
   
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "18"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -971,7 +972,7 @@ include_graphics(paste0("images/sidebar.png"), dpi = params$dpi)
 
 ## La mise en page "sidebar" en image
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "19"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1005,7 +1006,7 @@ include_graphics(paste0("images/multirow.png"), dpi = params$dpi)
 
 ## La mise en page "multirow" en image
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "20"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1032,7 +1033,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## La mise en page "tabset" en image
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "21"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1059,7 +1060,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## La mise en page "dashboard" en image
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "22"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1086,7 +1087,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## La mise en page "dashboard" en image
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "23"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1110,18 +1111,18 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 * Reproduisez les interfaces suivantes.
 
 <div class="centered">
-```{r, echo = FALSE, eval = TRUE, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
+```{r, echo = FALSE, eval = params$webshot, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
 for (iapp in 24:25) {
-app_name <- iapp 
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 7.5 * params$dpi,
-  vheight = 4 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
+  app_name <- iapp 
+  appshot(
+    app = paste0("materials/", app_name, "-app/app.R"), 
+    delay = 2,
+    vwidth = 7.5 * params$dpi,
+    vheight = 4 * params$dpi,
+    # selector = ".container-fluid",
+    envvars = c(display.mode = "normal"),
+    file = paste0("webshot/", app_name, ".png"), 
+  )
 }
 include_graphics(paste0("webshot/", 24:25, ".png"), dpi = params$dpi)
 ```
@@ -1135,7 +1136,7 @@ include_graphics(paste0("webshot/", 24:25, ".png"), dpi = params$dpi)
 
 * Reproduisez l'interface suivante.
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "24"
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
@@ -1157,7 +1158,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 * Reproduisez l'interface suivante.
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "25"
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
@@ -1214,7 +1215,7 @@ server <- function(
 
 ## La fonction `server`
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "26"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1241,7 +1242,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">
 App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/27-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "27"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1267,7 +1268,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">
 App [`"materials/29-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/29-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "29"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1293,7 +1294,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">
 App [`"materials/30-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/30-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "30"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1319,7 +1320,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">
 App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/31-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "31"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1354,7 +1355,7 @@ Les sorties (`output`) sont mises à jour à la volée par Shiny lorsque les ent
 <div class="notes">
 App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/32-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "32"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1399,7 +1400,7 @@ Pourquoi utiliser des expressions `reactive` ?
 
 ## `reactive()` : Exemple 1
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "33"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1432,7 +1433,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">
 App [`"materials/34-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/34-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, include = FALSE}
+```{r, echo = FALSE, eval = params$webshot, include = FALSE}
 app_name <- "34"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1456,7 +1457,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">
 App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/35-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, include = FALSE}
+```{r, echo = FALSE, eval = params$webshot, include = FALSE}
 app_name <- "35"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1515,7 +1516,7 @@ observeEvent(eventExpr = ..., handlerExpr = ...)
 
 ## Exemple : App
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "36"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1550,7 +1551,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## `eventReactive()` : [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/35-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "37"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1600,7 +1601,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mise en pratique 
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "38"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1643,7 +1644,7 @@ validate()
 ```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[8:15]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "39"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1665,7 +1666,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[8:18]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "40"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1689,7 +1690,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/41-app/app.R", encoding = "UTF-8")[7:19]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "41"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1713,7 +1714,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[7:19]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "42"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1766,7 +1767,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mise en pratique 
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "43"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1795,7 +1796,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">
 App [`"materials/44-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/44-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "44"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1819,7 +1820,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">
 App [`"materials/45-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/45-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "45"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1843,7 +1844,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">
 App [`"materials/46-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/46-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "46"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1864,7 +1865,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/47-app/app.R", encoding = "UTF-8")[c(3:8, 10:16)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.height = "90%"}
+```{r, echo = FALSE, eval = params$webshot, out.height = "90%"}
 app_name <- "47"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1886,7 +1887,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```{r, code = readLines("materials/48-app/app.R", encoding = "UTF-8")[c(3:8, 10:15)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE, out.height = "90%"}
+```{r, echo = FALSE, eval = params$webshot, out.height = "90%"}
 app_name <- "48"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
@@ -1907,7 +1908,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 * Générez l'application suivante.
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 for (iapp in c(49:52)) {
   app_name <- as.character(iapp)
   appshot(
@@ -1951,7 +1952,7 @@ code_ellipsis <- c(
 
 ## Mise en pratique : Essai app 1
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "49"
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
@@ -1977,7 +1978,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mise en pratique : Essai app 2
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "50"
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
@@ -2011,7 +2012,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mise en pratique : Essai app 3
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "51"
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
@@ -2045,7 +2046,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mise en pratique : Essai app 4
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "52"
 include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 ```
