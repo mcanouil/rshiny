@@ -40,17 +40,15 @@ filter_var <- function(data_var, input_var) {
 }
 
 ui <- fluidPage(
-  fluidRow(
-    column(4, offset = 5,
-      selectInput("dataset", label = h3("Datasets"), 
-        choices = ls("package:datasets"), 
-        selected = "iris"
-      )
+  fluidRow(column(4, offset = 5,
+    selectInput("dataset", label = h3("Datasets"), 
+      choices = ls("package:datasets"), 
+      selected = "iris"
     )
-  ),
+  )),
   fluidRow(
-  column(4, uiOutput("ui")),
-  column(8, tableOutput("iris"))
+    column(4, uiOutput("ui")),
+    column(8, tableOutput("iris"))
   )
 )
 
