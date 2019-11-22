@@ -1533,7 +1533,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/36-app/app.R)</div>
 
 
-## `eventReactive()` : [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/35-app/app.R) {.smaller}
+## Exemple : "App 35 v2" {.smaller}
 
 ```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[6:31]}
 ```
@@ -1541,7 +1541,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/37-app/app.R)</div>
 
 
-## `eventReactive()` : [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/35-app/app.R) {.smaller}
+## Exemple : "App 35 v2" {.smaller}
 
 ```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[33:73]}
 ```
@@ -1549,7 +1549,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 <div class="notes">App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/37-app/app.R)</div>
 
 
-## `eventReactive()` : [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/35-app/app.R)
+## Exemple : "App 35 v2"
 
 ```{r, echo = FALSE, eval = params$webshot}
 app_name <- "37"
