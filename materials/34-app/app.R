@@ -34,23 +34,23 @@ server <- function(input, output, session) {
   ###</b>
   output$point1 <- renderPlot({
     ###<b>
-    ggplot(iris1(), aes(x = !!sym(input$col1x), y = !!sym(input$col1y))) + 
+    ggplot(iris1(), aes(x = .data[[input$col1x]], y = .data[[input$col1y]])) + 
     ###</b>
       geom_point()
   })
   output$point2 <- renderPlot({
     ###<b>
-    ggplot(iris2(), aes(x = !!sym(input$col2x), y = !!sym(input$col2y))) + 
+    ggplot(iris2(), aes(x = .data[[input$col2x]], y = .data[[input$col2y]])) + 
     ###</b>
       geom_point()
   })
   output$point12 <- renderPlot({
     ###<b>
-    p1 <- ggplot(iris1(), aes(x = !!sym(input$col1x), y = !!sym(input$col1y))) + 
+    p1 <- ggplot(iris1(), aes(x = .data[[input$col1x]], y = .data[[input$col1y]])) + 
     ###</b>
       geom_point()
     ###<b>
-    p2 <- ggplot(iris2(), aes(x = !!sym(input$col2x), y = !!sym(input$col2y))) + 
+    p2 <- ggplot(iris2(), aes(x = .data[[input$col2x]], y = .data[[input$col2y]])) + 
     ###</b>
       geom_point()
     ggarrange(p1, p2, ncol = 2, labels = LETTERS)

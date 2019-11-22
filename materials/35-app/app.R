@@ -39,7 +39,7 @@ server <- function(input, output, session) {
     ggplot(
       ###<b>
       data = iris_species1(), 
-      mapping = aes(x = !!sym(input$col1x), y = !!sym(input$col1y))
+      mapping = aes(x = .data[[input$col1x]], y = .data[[input$col1y]])
       ###</b>
     ) + geom_point()
   ###<b>
@@ -49,7 +49,7 @@ server <- function(input, output, session) {
     ggplot(
       ###<b>
       data = iris_species2(), 
-      mapping = aes(x = !!sym(input$col2x), y = !!sym(input$col2y))
+      mapping = aes(x = .data[[input$col2x]], y = .data[[input$col2y]])
       ###</b>
     ) + geom_point()
   ###<b>
