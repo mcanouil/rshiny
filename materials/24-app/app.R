@@ -2,8 +2,7 @@ library("shiny")
 
 code_for_plot <- "plot(1:10)"
 
-ui <- fluidPage(
-  titlePanel("Bienvenue"),
+ui <- fluidPage(titlePanel("Bienvenue"),
   sidebarLayout(
     sidebarPanel(
       textInput("lastname", "Nom", value = ""),
