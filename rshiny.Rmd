@@ -663,7 +663,7 @@ appshot(
   delay = 1,
   vwidth = 3 * params$dpi,
   # vheight = 4.7 * params$dpi / 2,
-  zoom = 0.90,
+  zoom = 0.80,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
