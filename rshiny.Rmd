@@ -2066,23 +2066,20 @@ include_graphics("images/rmarkdown.png")
 
 _Note : La spécification de `app.Rmd` est obligatoire ici avec `rmarkdown::run()`._
 
-* `rmarkdown::html_document`  
-    \(\Rightarrow\) App [`"materials/53-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/53-app/app.R)
+* `rmarkdown::html_document`
     
 ```{r}
-rmarkdown::run("materials/53-app/app.Rmd") # "app.Rmd" est obligatoire ici !
+rmarkdown::run("materials/53-app/app.Rmd")
 ```
 
-* `flexdashboard::flex_dashboard`  
-    \(\Rightarrow\) App [`"materials/54-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/54-app/app.R)
+* `flexdashboard::flex_dashboard`
     
 ```{r}
 rmarkdown::run("materials/54-app/app.Rmd") # "app.Rmd" est obligatoire ici !
 ```
 
 
-* `rmarkdown::ioslides_presentation`  
-    \(\Rightarrow\) App [`"materials/54-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/55-app/app.R)
+* `rmarkdown::ioslides_presentation`
 
 ```{r}
 rmarkdown::run("materials/55-app/app.Rmd") # "app.Rmd" est obligatoire ici !
