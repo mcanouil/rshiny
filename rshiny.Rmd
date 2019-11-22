@@ -656,13 +656,14 @@ _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fonta
 
 * Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
 
-```{r, echo = FALSE, eval = params$webshot, out.height = "80%"}
+```{r, echo = FALSE, eval = params$webshot}
 app_name <- "09"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
   delay = 1,
   vwidth = 3 * params$dpi,
   # vheight = 4.7 * params$dpi / 2,
+  zoom = 0.90,
   selector = ".container-fluid",
   envvars = c(display.mode = "normal"),
   file = paste0("webshot/", app_name, ".png"), 
@@ -2075,14 +2076,14 @@ rmarkdown::run("materials/53-app/app.Rmd")
 * `flexdashboard::flex_dashboard`
     
 ```{r}
-rmarkdown::run("materials/54-app/app.Rmd") # "app.Rmd" est obligatoire ici !
+rmarkdown::run("materials/54-app/app.Rmd")
 ```
 
 
 * `rmarkdown::ioslides_presentation`
 
 ```{r}
-rmarkdown::run("materials/55-app/app.Rmd") # "app.Rmd" est obligatoire ici !
+rmarkdown::run("materials/55-app/app.Rmd")
 ```
 
 * ...
