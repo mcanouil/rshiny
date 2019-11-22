@@ -113,7 +113,7 @@ output_directory <- params[["output_directory"]]
 
 ### Load packages and functions
 library(remotes)
-library(webshot)
+if (params[["webshot"]]) library(webshot)
 library(fs)
 library(tidyverse)
 library(knitr)
