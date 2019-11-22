@@ -32,18 +32,21 @@ server <- function(input, output, session) {
   iris1 <- reactive({ filter(iris, Species == input$species1) })
   iris2 <- reactive({ filter(iris, Species == input$species2) })
   ###</b>
+  
   output$point1 <- renderPlot({
     ###<b>
     ggplot(iris1(), aes(x = .data[[input$col1x]], y = .data[[input$col1y]])) + 
     ###</b>
       geom_point()
   })
+  
   output$point2 <- renderPlot({
     ###<b>
     ggplot(iris2(), aes(x = .data[[input$col2x]], y = .data[[input$col2y]])) + 
     ###</b>
       geom_point()
   })
+  
   output$point12 <- renderPlot({
     ###<b>
     p1 <- ggplot(iris1(), aes(x = .data[[input$col1x]], y = .data[[input$col1y]])) + 

@@ -1426,7 +1426,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## `reactive()` : Exemple 2 {.smaller}
 
-```{r, code = readLines("materials/34-app/app.R", encoding = "UTF-8")[30:58]}
+```{r, code = readLines("materials/34-app/app.R", encoding = "UTF-8")[30:61]}
 ```
 
 <div class="notes">
