@@ -1,7 +1,7 @@
 library("shiny")
 library("dplyr")
 
-ui <- fluidPage(theme = "bootstrap.min.css",
+ui <- fluidPage(theme = "bootstrap.min.css", # or "shinythemes"
   fluidRow(
     column(4, offset = 5,
       selectInput("dataset", label = h3("Datasets"), 
