@@ -656,7 +656,7 @@ _Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fonta
 
 * Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = params$webshot, out.height = "90%"}
 app_name <- "09"
 appshot(
   app = paste0("materials/", app_name, "-app/app.R"), 
