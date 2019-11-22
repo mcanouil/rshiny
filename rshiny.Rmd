@@ -765,7 +765,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## `output` de type tableau statique
 
-```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")[c(3:7, 9:16)]}
+```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")[c(3:7, 9:13)]}
 ```
 
 ```{r, echo = FALSE, eval = TRUE}
