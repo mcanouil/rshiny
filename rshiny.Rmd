@@ -2,7 +2,7 @@
 title: '<i class="glow">Shiny</i>'
 subtitle: "Mes Premiers Pas"
 author: "Mickaël CANOUIL, *Ph.D.*"
-date: "21 Novembre 2019"
+date: "9 Décembre 2019"
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
 csl: template/csl/apa.csl
