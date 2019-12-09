@@ -2039,7 +2039,7 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ## Mise en pratique : Code 4 {.smaller}
 
-```{r, code = readLines("materials/52-app/app.R", encoding = "UTF-8")[c(42:53, 55:65)]}
+```{r, code = readLines("materials/52-app/app.R", encoding = "UTF-8")[c(42:53, 55:66)]}
 ```
 
 <div class="notes">App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/52-app/app.R)</div>

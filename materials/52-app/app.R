@@ -60,6 +60,7 @@ server <- function(input, output, session) {
     datasets()[reduce(vals, `&`), ]
   })
   output$ui <- renderUI({
+    validate(need(inherits(datasets(), "data.frame"), 'Not a "data.frame"'))
     map(colnames(datasets()), ~ make_ui(datasets(), .x))
   })
 }
