@@ -6,11 +6,11 @@ ui <- fluidPage(
   titlePanel("Bienvenue"),
   navlistPanel(
     "Partie A",
-    tabPanel("Code 1", plotOutput("plot1")),
-    tabPanel("Plot 1", verbatimTextOutput("code1")),
+    tabPanel("Plot 1", plotOutput("plot1")),
+    tabPanel("Code 1", verbatimTextOutput("code1")),
     "Partie B",
-    tabPanel("Code 2", plotOutput("plot2")),
-    tabPanel("Plot 2", verbatimTextOutput("code2"))
+    tabPanel("Plot 2", plotOutput("plot2")),
+    tabPanel("Code 2", verbatimTextOutput("code2"))
   )
 )
 
