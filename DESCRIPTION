@@ -11,3 +11,4 @@ Imports:
   shiny,
   shinydashboard,
   ggpubr
+License: MIT + file LICENSE
