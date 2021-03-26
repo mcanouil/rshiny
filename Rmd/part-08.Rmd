@@ -30,18 +30,9 @@ App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[8:15]}
 ```
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "39"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 3 * params$dpi,
-  # vheight = 4 * params$dpi,
-  selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
@@ -55,18 +46,9 @@ App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[8:18]}
 ```
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "40"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 4 * params$dpi,
-  # vheight = 4 * params$dpi,
-  selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
@@ -82,18 +64,10 @@ App [`"materials/40-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/41-app/app.R", encoding = "UTF-8")[7:19]}
 ```
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "41"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 3 * params$dpi,
-  # vheight = 4 * params$dpi,
-  selector = "#shiny-notification-panel",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
+
 ```
 
 ???
@@ -109,18 +83,9 @@ App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[7:19]}
 ```
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "42"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 3 * params$dpi,
-  # vheight = 4 * params$dpi,
-  selector = "#shiny-notification-panel",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
@@ -176,18 +141,10 @@ App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Mise en pratique 
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "43"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 7.5 * params$dpi,
-  vheight = 4 * params$dpi,
-  selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
+
 ```
 
 ???

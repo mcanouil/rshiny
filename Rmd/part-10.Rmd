@@ -1,11 +1,7 @@
 ---
 class: part-slide
 
-# <i class="glow">Shiny</i> & Rmarkdown
-
-```{r, echo = FALSE, eval = TRUE, out.height = 250, out.width = 216, out.extra = 'class="auto-fadein" style="margin: 20px auto auto auto;"'}
-include_graphics("images/rmarkdown.png")
-```
+# <i class="glow">Shiny</i> & Rmarkdown<br><img src = "images/rmarkdown.png", width = "216px" />
 
 ---
 
@@ -33,4 +29,3 @@ rmarkdown::run("materials/55-app/app.Rmd")
 ```
 
 * ...
-

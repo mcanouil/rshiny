@@ -134,18 +134,7 @@ runApp("materials/00-app")
 
 ```{r, echo = FALSE, eval = TRUE}
 app_name <- "00"
-include_graphics(
-  path = appshot(
-    app = here("materials", paste0(app_name, "-app/app.R")), 
-    delay = 1,
-    vwidth = 7.5 * params$dpi,
-    # vheight = 4.7 * params$params$dpi / 2,
-    selector = ".container-fluid",
-    envvars = c(display.mode = "normal"),
-    file = here("images", paste0(app_name, ".png")), 
-  ), 
-  dpi = params$dpi
-)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
@@ -166,7 +155,7 @@ App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ---
 
-# L'interface (`ui`)
+# L'interface `ui`
 
 * `fluidPage()`, la fonction gérant la structure de la page internet ("responsive web design").
 
@@ -195,7 +184,7 @@ App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ---
 
-# L'interface (`ui`)
+# L'interface `ui`
 
 Les contrôles (`*Input()`) nativement disponibles :
 
@@ -222,7 +211,7 @@ cat(paste0("* `", list_input[(floor(length(list_input) / 2) + 1): length(list_in
 
 ---
 
-# L'interface (`ui`)
+# L'interface `ui`
 
 ```{r}
 runApp("materials/01-app")
@@ -234,18 +223,7 @@ runApp("materials/01-app")
 
 ```{r, echo = FALSE, eval = TRUE}
 app_name <- "01"
-include_graphics(
-  path = appshot(
-    app = here("materials", paste0(app_name, "-app/app.R")), 
-    delay = 1,
-    vwidth = 7.5 * params$dpi,
-    # vheight = 4.7 * params$params$dpi / 2,
-    selector = ".container-fluid",
-    envvars = c(display.mode = "normal"),
-    file = here("images", paste0(app_name, ".png")), 
-  ), 
-  dpi = params$dpi
-)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
@@ -254,7 +232,7 @@ App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ---
 
-# Le serveur (`server`)
+# Le serveur `server`
 
 Notre application ne contient aucune action serveur (`server`).
 
@@ -267,7 +245,7 @@ App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ---
 
-# Le serveur (`server`)
+# Le serveur `server`
 
 * Du `server` à `ui` \(\rightarrow\) `output`.
 
@@ -290,7 +268,7 @@ App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ---
 
-# Le serveur (`server`)
+# Le serveur `server`
 
 Les fonctions `render*()` nativement disponibles :
 
@@ -300,7 +278,7 @@ cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), s
 
 ---
 
-# Le serveur (`server`)
+# Le serveur `server`
 
 * Du `server` à `ui` \(\rightarrow\) `output`.
 
@@ -341,18 +319,7 @@ runApp("materials/02-app")
 
 ```{r, echo = FALSE, eval = TRUE}
 app_name <- "02"
-include_graphics(
-  path = appshot(
-    app = here("materials", paste0(app_name, "-app/app.R")), 
-    delay = 1,
-    vwidth = 7.5 * params$dpi,
-    # vheight = 4.7 * params$params$dpi / 2,
-    selector = ".container-fluid",
-    envvars = c(display.mode = "normal"),
-    file = here("images", paste0(app_name, ".png")), 
-  ), 
-  dpi = params$dpi
-)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
