@@ -1,0 +1,328 @@
+---
+class: part-slide
+
+# <i class="glow">Shiny</i><br>Interface Dynamique
+
+---
+
+# Générer des éléments `ui`
+
+```{r, code = readLines("materials/44-app/app.R", encoding = "UTF-8")[c(3:20)]}
+```
+
+???
+
+
+App [`"materials/44-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/44-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "44"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+
+---
+
+# Affichage conditionnel de `ui`
+
+```{r, code = readLines("materials/45-app/app.R", encoding = "UTF-8")[c(3:8, 10:29)]}
+```
+
+???
+
+
+App [`"materials/45-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/45-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "45"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+
+---
+
+# Affichage conditionnel de `ui`
+
+```{r, code = readLines("materials/46-app/app.R", encoding = "UTF-8")[c(3:8, 10:29)]}
+```
+
+???
+
+
+App [`"materials/46-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/46-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "46"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+
+---
+
+# Mettre à jour des `input`
+
+```{r, code = readLines("materials/47-app/app.R", encoding = "UTF-8")[c(3:8, 10:16)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot, out.height = "90%"}
+app_name <- "47"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/47-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/47-app/app.R)
+
+---
+
+# Mettre à jour des `input`
+
+```{r, code = readLines("materials/48-app/app.R", encoding = "UTF-8")[c(3:8, 10:15)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot, out.height = "90%"}
+app_name <- "48"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/48-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/48-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Générez l'application suivante.
+
+```{r, echo = FALSE, eval = params$webshot}
+for (iapp in c(49:52)) {
+  app_name <- as.character(iapp)
+  appshot(
+    app = paste0("materials/", app_name, "-app/app.R"), 
+    delay = 2,
+    vwidth = 7.5 * params$dpi,
+    vheight = 4.2 * params$dpi,
+    # selector = ".container-fluid",
+    cliprect = "viewport",
+    envvars = c(display.mode = "normal"),
+    file = paste0("webshot/", app_name, ".png"), 
+  )
+}
+
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+
+* App [`"materials/49-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/49-app/app.R)
+* App [`"materials/50-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/50-app/app.R)
+* App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/51-app/app.R)
+* App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/51-app/app.R)
+
+
+---
+
+# Mise en pratique : Code 1
+
+```{r, include = FALSE, eval = TRUE}
+code_ellipsis <- c(
+  readLines("materials/49-app/app.R", encoding = "UTF-8")[c(1:2, 4:9)],
+  "...",
+  readLines("materials/49-app/app.R", encoding = "UTF-8")[c(30:32, 34:44, 46)]
+)
+```
+
+```{r, code = code_ellipsis}
+```
+
+???
+
+App [`"materials/49-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/49-app/app.R)
+
+---
+
+# Mise en pratique : Essai app 1
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "49"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/49-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/49-app/app.R)
+
+---
+
+# Mise en pratique : Code 2
+
+```{r, code = readLines("materials/50-app/app.R", encoding = "UTF-8")[c(4:27)]}
+```
+
+???
+
+App [`"materials/50-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/50-app/app.R)
+
+---
+
+# Mise en pratique : Code 2
+
+```{r, code = readLines("materials/50-app/app.R", encoding = "UTF-8")[c(1:2, 29:38, 40:50, 52)]}
+```
+
+???
+
+App [`"materials/50-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/50-app/app.R)
+
+---
+
+# Mise en pratique : Essai app 2
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "50"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/50-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/50-app/app.R)
+
+---
+
+# Mise en pratique : Code 3
+
+```{r, code = readLines("materials/51-app/app.R", encoding = "UTF-8")[c(5:28)]}
+```
+
+???
+
+App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/51-app/app.R)
+
+---
+
+# Mise en pratique : Code 3
+
+```{r, code = readLines("materials/51-app/app.R", encoding = "UTF-8")[c(30:40)]}
+```
+
+???
+
+App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/51-app/app.R)
+
+---
+
+# Mise en pratique : Code 3
+
+```{r, code = readLines("materials/51-app/app.R", encoding = "UTF-8")[c(1:4, 42:54)]}
+```
+
+???
+
+App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/51-app/app.R)
+
+---
+
+# Mise en pratique : Essai app 3
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "51"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/51-app/app.R)
+
+---
+
+# Mise en pratique : Code 4
+
+```{r, code = readLines("materials/52-app/app.R", encoding = "UTF-8")[c(5:28)]}
+```
+
+???
+
+App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/52-app/app.R)
+
+---
+
+# Mise en pratique : Code 4
+
+```{r, code = readLines("materials/52-app/app.R", encoding = "UTF-8")[c(30:40)]}
+```
+
+???
+
+App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/52-app/app.R)
+
+---
+
+# Mise en pratique : Code 4
+
+```{r, code = readLines("materials/52-app/app.R", encoding = "UTF-8")[c(42:53, 55:66)]}
+```
+
+???
+
+App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/52-app/app.R)
+
+---
+
+# Mise en pratique : Essai app 4
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "52"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/52-app/app.R)
+

@@ -1,0 +1,24 @@
+---
+class: part-slide
+
+# <i class="glow">Shiny</i> & Plus ...
+
+---
+
+# Ressources
+
+* [shiny](https://shiny.rstudio.com/)
+
+* ["maining Shiny" (en cours d'écriture)](https://maining-shiny.org/)
+
+* [shinytest](https://rstudio.github.io/shinytest/)
+
+* [DT](https://rstudio.github.io/DT/)
+
+* [Blog Rstudio](https://blog.rstudio.com/categories/shiny)
+
+* [Groupe des Utilisateurs de R](http://forums.cirad.fr/logiciel-R/)
+
+* [Stack Overflow](https://stackoverflow.com/questions/tagged/r)
+
+* [R Studio Community](https://community.rstudio.com/)

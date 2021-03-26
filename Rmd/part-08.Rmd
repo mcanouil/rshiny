@@ -1,0 +1,196 @@
+---
+class: part-slide
+
+# <i class="glow">Shiny</i><br>Contrôle, Validation & Notifications
+
+---
+
+# Contrôle & Validation
+
+```{r}
+req()
+validate()
+```
+
+* `req()`, contrôle si un `input` a été défini.
+
+* `validate()`, fonctionne comme un `tryCatch`.
+
+```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[3:6]}
+```
+
+???
+
+App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/39-app/app.R)
+
+---
+
+# Contrôle & Validation
+
+```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[8:15]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "39"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/39-app/app.R)
+
+---
+
+# Contrôle & Validation
+
+```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[8:18]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "40"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 4 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/40-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/40-app/app.R)
+
+---
+
+# Notifications
+
+* `showNotification()` / `removeNotification()`, affiche un encart de texte.
+
+```{r, code = readLines("materials/41-app/app.R", encoding = "UTF-8")[7:19]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "41"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = "#shiny-notification-panel",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/41-app/app.R)
+
+---
+
+# Progression
+
+* `withProgress()` / `setProgress()`, affiche une barre de progression.
+
+```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[7:19]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "42"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = "#shiny-notification-panel",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/42-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Reprenez l'application développé précédemment ([`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/38-app/app.R)).
+
+* Ajoutez les contrôles nécessaires pour éviter les erreurs observées
+
+???
+
+App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
+
+---
+
+# Mise en pratique
+
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[4:27]}
+```
+
+???
+
+App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
+
+---
+
+# Mise en pratique
+
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[29:41]}
+```
+
+???
+
+App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
+
+---
+
+# Mise en pratique
+
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[43:61]}
+```
+
+???
+
+App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
+
+---
+
+# Mise en pratique 
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "43"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
+

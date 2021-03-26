@@ -1,0 +1,2130 @@
+---
+title: '<i class="glow">Shiny</i>'
+subtitle: "Mes Premiers Pas"
+author: "Mickaël CANOUIL, *Ph.D.*"
+date: "9 Décembre 2019"
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
+csl: template/csl/apa.csl
+mang: "fr-FR"
+params:
+  output_directory: "./"
+  eval: FALSE
+  dpi: 120
+  webshot: TRUE
+output:
+  ioslides_presentation:
+    css: [ "template/mc_theme.css", "template/r_colour.css", "template/shine.css"]
+    logo: "template/logo_UMR.png"
+    smaller: false
+    self_contained: true
+    mathjax: default
+    fig_width: 5.94
+    fig_height: 3.30
+    transition: 0.25
+    incremental: false
+  html_document:
+    toc: false
+    number_sections: TRUE
+    fig_width: 5.94
+    fig_height: 3.30
+    self_contained: true
+    theme: simplex
+editor_options: 
+  chunk_output_type: console
+---
+
+<style>.title-slide hgroup h1 { font-size: 600%; }</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+<style>
+/* Clipboard --------------------------*/
+.hasCopyButton {
+  position: relative;
+}
+
+.btn-copy-ex {
+  position: absolute;
+  right: 0;
+  top: 0;
+  visibility: hidden;
+  font-size: 95%;
+}
+
+.hasCopyButton:hover button.btn-copy-ex {
+  visibility: visible;
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+  
+<script>
+  /* http://gregfranko.com/blog/jquery-best-practices/ */
+  (function($) {
+    /* Clipboard --------------------------*/
+  
+    function changeTooltipMessage(element, msg) {
+      var tooltipOriginalTitle=element.getAttribute('data-original-title');
+      element.setAttribute('data-original-title', msg);
+      $(element).tooltip('show');
+      element.setAttribute('data-original-title', tooltipOriginalTitle);
+    }
+  
+    if(ClipboardJS.isSupported()) {
+      $(document).ready(function() {
+        var copyButton = "<button type='button' class='btn btn-primary btn-copy-ex' type = 'submit' title='Copy to clipboard' aria-label='Copy to clipboard' data-toggle='tooltip' data-placement='left auto' data-trigger='hover' data-clipboard-copy><i class='fa fa-copy'></i></button>";
+  
+        $(".examples, pre.r").addClass("hasCopyButton");
+  
+        // Insert copy buttons:
+        $(copyButton).prependTo(".hasCopyButton");
+  
+        // Initialize tooltips:
+        $('.btn-copy-ex').tooltip({container: 'body'});
+  
+        // Initialize clipboard:
+        var clipboardBtnCopies = new ClipboardJS('[data-clipboard-copy]', {
+          text: function(trigger) {
+            return trigger.parentNode.textContent;
+          }
+        });
+  
+        clipboardBtnCopies.on('success', function(e) {
+          changeTooltipMessage(e.trigger, 'Copied!');
+          e.clearSelection();
+        });
+  
+        clipboardBtnCopies.on('error', function() {
+          changeTooltipMessage(e.trigger,'Press Ctrl+C or Command+C to copy');
+        });
+      });
+    }
+  })(window.jQuery || window.$)
+</script>
+
+
+```{r setup, include = FALSE}
+options(stringsAsFactors = FALSE)
+options(width = 80)
+
+output_directory <- params[["output_directory"]]
+
+
+### Load packages and functions
+library(remotes)
+if (params[["webshot"]]) library(webshot)
+library(fs)
+library(tidyverse)
+library(knitr)
+library(rmarkdown)
+library(shiny)
+library(shinydashboard)
+library(ggpubr)
+
+
+### Set knitr rmarkdown chunk options
+opts_chunk$set(
+  include = TRUE,
+  echo = TRUE,
+  warning = TRUE,
+  message = TRUE,
+  eval = params[["eval"]],
+  tidy = FALSE,
+  crop = TRUE,
+  autodep = TRUE,
+  dpi = params$dpi,
+  width = getOption("width"),
+  results = "asis",
+  comment = "#>",
+  fig.align = "center",
+  fig.path = "images/",
+  fig.show = "hold",
+  out.extra = 'class="shadow" style="margin: auto;"'
+)
+```
+
+
+
+# Diapositives et matériel | <i class="fab fa-github" style="font-size: 250px;"></i><br>mcanouil/rshiny {.flexbox .vcenter}
+
+
+
+# Préparer sa session | <i class="fab fa-r-project" style="font-size: 250px;"></i> {.flexbox .vcenter}
+
+
+## Trucs et astuces
+
+*  Eviter de changer votre répertoire de travail avec `setwd()`.
+*  Ne pas utiliser de `.Rprofile` modifiant <i class="fab fa-r-project"></i>.
+*  Désactiver la conversion automatique en facteurs `options(stringsAsFactors = FALSE)`.
+*  Ne pas utiliser `rm(list = ls())` pour "rafraichir".
+*  Ne pas utiliser la sauvegarde/restauration par défaut de <i class="fab fa-r-project"></i>.
+
+<div class="centered">
+```{r, echo = FALSE, eval = TRUE, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
+include_graphics(c("images/rstudio_setup.png", "images/rwindows_setup.png"))
+```
+</div>
+
+
+# Qu'est-ce que <i class="glow">Shiny</i> ? {.flexbox .vcenter}
+
+```{r, echo = FALSE, eval = TRUE, out.height = 250, out.width = 216, out.extra = 'class="auto-fadein" style="margin: 20px auto auto auto;"'}
+include_graphics("images/shiny.png")
+```
+
+
+## Avant <i class="glow">Shiny</i> ...
+
+Il était nécessaire de connaître/maîtriser :
+
+* **HTML**, pour concevoir des pages (statique) web.
+
+* **CSS**, pour ajouter du _style_ à une page HTML.
+
+* **JavaScript**, pour effectuer des "calculs" au sein d'une page HTML (via un navigateur).
+
+
+## <i class="glow">Shiny</i>
+
+Shiny est une extension <i class="fab fa-r-project"></i> permettant la création d'application web interactive directement depuis <i class="fab fa-r-project"></i>. 
+
+* Page internet.
+* Documents (R Markdown) interactifs.
+* Tableaux de bords.
+
+Les applications Shiny sont compatibles avec :
+
+* CSS.
+* "html widgets".
+* JavaScript.
+
+## Installation & Chargement
+
+La version stable de Shiny peut se télécharger sur le CRAN.
+```{r}
+install.packages("shiny")
+```
+
+La version en développement est disponible sur GitHub <i class="fab fa-github"></i>.
+```{r}
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("rstudio/shiny")
+```
+
+Charger Shiny dans sa session <i class="fab fa-r-project"></i>.
+```{r}
+library("shiny")
+```
+
+
+## Composantes d'une application <i class="glow">Shiny</i>
+
++ L'extension Shiny.
+    ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[1]}
+    ```
+
++ Une interface (`ui`, *i.e.*, "user interface").
+    ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
+    ```
+
++ Une fonction serveur (`server`).
+    ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[5]}
+    ```
+
++ La construction d'un objet "Shiny app".
+    ```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[7]}
+    ```
+
+<div class="notes">App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/00-app/app.R)</div>
+
+
+## Composantes d'une application <i class="glow">Shiny</i>
+
+L'application Shiny peut être démarrée par simple exécution.
+
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")}
+```
+
+<div class="notes">App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/00-app/app.R)</div>
+
+
+## Composantes d'une application <i class="glow">Shiny</i>
+
+Ou via un script `app.R`, placé dans un répertoire portant généralement le nom de l'application.
+
+```{r, echo = FALSE, eval = TRUE, results = "markup", comment = ""}
+dir_tree("materials/00-app")
+```
+
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")}
+```
+
+```{r}
+runApp("materials/00-app")
+```
+
+<div class="notes">App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/00-app/app.R)</div>
+
+
+## Composantes d'une application <i class="glow">Shiny</i>
+
+Une fois l'application démarrée, vous devriez voir une fenêtre s'ouvrir.
+```{r}
+runApp("materials/00-app")
+```
+
+```{r}
+#> Listening on http://127.0.0.1:4550
+```
+
+```{r, echo = FALSE, eval = TRUE}
+app_name <- "00"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">
+App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/00-app/app.R)
+* URL par défaut (hôte)
+* Port défini au hasard
+* Console R "occupée"
+    * Bouton "stop"
+    * `Ctrl`+ `c`
+    * Fermer la fenêtre de l'application
+</div>
+
+
+## L'interface (`ui`)
+
+Pour ajouter des contrôles (`*Input()`).
+
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
+```
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 7, 10)]}
+```
+
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
+
+
+## L'interface (`ui`)
+
+Pour ajouter des contrôles (`*Input()`).
+
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
+```
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(3:5, 7, 9:11)]}
+```
+
+* `fluidPage()`, la fonction gérant la structure de la page internet ("responsive web design").
+
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
+
+
+## L'interface (`ui`)
+
+Pour ajouter des contrôles (`*Input()`).
+
+```{r, code = readLines("materials/00-app/app.R", encoding = "UTF-8")[3]}
+```
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(4, 6:8, 10)]}
+```
+
+* `textInput()`, la fonction gérant un champ de saisie de texte.
+
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
+
+
+## L'interface (`ui`)
+
+Les contrôles (`*Input()`) nativement disponibles :
+
+```{r, echo = FALSE, eval = TRUE, results = "asis"}
+list_input <- grep("^[^uv].+Input$", ls("package:shiny"), value = TRUE)
+list_input <- setdiff(list_input, c("snapshotPreprocessInput", "restoreInput"))
+
+cat('<div style="font-size: 75%;">')
+cat(paste0("* `", list_input[1:floor(length(list_input) / 2)], "()`"), sep = "\n")
+cat(paste0("* `", list_input[(floor(length(list_input) / 2) + 1): length(list_input)], "()`"), sep = "\n")
+cat("</div>")
+```
+
+
+## L'interface (`ui`)
+
+```{r}
+runApp("materials/01-app")
+```
+
+```{r}
+#> Listening on http://127.0.0.1:4550
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "01"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
+
+
+## Le serveur (`server`)
+
+Notre application ne contient aucune action serveur (`server`).
+
+```{r, code = readLines("materials/01-app/app.R", encoding = "UTF-8")[c(1:2, 4, 7, 10, 12:15)]}
+```
+
+<div class="notes">App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/01-app/app.R)</div>
+
+
+## Le serveur (`server`)
+
+* Du `server` à `ui` \(\rightarrow\) `output`.
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(17, 19:21, 23)]}
+```
+
+```{r}
+###<b>
+output$id <- renderTYPE({
+###</b>
+  # Une expression générant la sortie de type "TYPE"
+###<b>
+})
+###</b>
+```
+
+* Partie _gauche_ : objet (`output`) renvoyé vers l'interface (`ui`) avec un identifiant unique (`id`).
+
+* Partie _droite_ : fonction spécifique pour générer la sortie qui pourra être affichée dans l'interface (`ui`).
+
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
+
+
+## Le serveur (`server`)
+
+Les fonctions `render*()` nativement disponibles :
+
+```{r, echo = FALSE, eval = TRUE, results = "asis"}
+cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), sep = "\n")
+```
+
+
+## Le serveur (`server`)
+
+* Du `server` à `ui` \(\rightarrow\) `output`.
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(17, 19:21, 23)]}
+```
+
+* `textOutput()`, la fonction gérant l'affichage des éléments construits par le serveur (`server`).
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(4, 7, 9:11, 13)]}
+```
+
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
+
+
+## Première application <i class="glow">Shiny</i>
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[c(1:2, 4, 7, 10, 13, 15, 17, 20, 23, 25:26)]}
+```
+
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
+
+
+## Première application <i class="glow">Shiny</i>
+
+```{r}
+runApp("materials/02-app")
+```
+
+```{r}
+#> Listening on http://127.0.0.1:4550
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "02"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
+
+
+
+# <i class="glow">Shiny</i> | Les entrées `input` {.flexbox .vcenter}
+
+
+## Les `input` en détails
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[7]}
+```
+
+Contraintes sur les valeurs de `inputID` :
+
+* Doit être unique.
+* Chaîne de caractères alphanumériques et "underscores".
+
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
+
+
+## `input` de type texte
+
+```{r, code = readLines("materials/03-app/app.R", encoding = "UTF-8")[3:7]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "03"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/03-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/03-app/app.R)</div>
+
+
+## `input` de type numérique
+
+```{r, code = readLines("materials/04-app/app.R", encoding = "UTF-8")[3:7]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "04"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/04-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/04-app/app.R)</div>
+
+
+## `input` de type date
+
+```{r, code = readLines("materials/05-app/app.R", encoding = "UTF-8")[3:7]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "05"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/05-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/05-app/app.R)</div>
+
+
+## `input` de sélection simple
+
+```{r, code = readLines("materials/06-app/app.R", encoding = "UTF-8")[3:6]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "06"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/06-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/06-app/app.R)</div>
+
+
+## `input` de sélection multiple
+
+```{r, code = readLines("materials/07-app/app.R", encoding = "UTF-8")[3:9]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "07"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/07-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/07-app/app.R)</div>
+
+
+## `input` d'action
+
+```{r, code = readLines("materials/08-app/app.R", encoding = "UTF-8")[3:7]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "08"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+_Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fontawesome.com/)._
+
+<div class="notes">App [`"materials/08-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/08-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Essayez les différents `input` en jouant sur les arguments.
+
+* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
+
+<div class="notes">App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/09-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
+
+```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[3:14]}
+```
+
+<div class="notes">App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/09-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "09"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  zoom = 0.80,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/09-app/app.R)</div>
+
+
+# <i class="glow">Shiny</i> | Les sorties `output` {.flexbox .vcenter}
+
+
+## Les `output` en détails
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[10]}
+```
+
+Contraintes sur les valeurs de `outputId` :
+
+* Doit être unique.
+
+* Chaîne de caractères alphanumériques et "underscores".
+
+<div class="notes">App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/02-app/app.R)</div>
+
+
+## `output` de type texte
+
+```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")}
+```
+
+<div class="notes">App [`"materials/10-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/10-app/app.R)</div>
+
+
+## `output` de type texte
+
+```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "10"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4.1 * params$dpi,
+  # vheight = 4.7 * params$dpi / 5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/10-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/10-app/app.R)</div>
+
+
+## `output` de type texte
+
+```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "11"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/11-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/11-app/app.R)</div>
+
+
+## `output` de type texte
+
+```{r, code = readLines("materials/12-app/app.R", encoding = "UTF-8")[c(3:15)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "12"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/12-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/12-app/app.R)</div>
+
+
+## `output` de type tableau statique
+
+```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")[c(3:7, 9:13)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "13"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 6 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/13-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/13-app/app.R)</div>
+
+
+## `output` de type tableau dynamique
+
+```{r, code = readLines("materials/14-app/app.R", encoding = "UTF-8")[-c(1:2, 16:18)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "14"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/14-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/14-app/app.R)</div>
+
+
+## `output` de type image (`base`)
+
+```{r, code = readLines("materials/15-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "15"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/15-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/15-app/app.R)</div>
+
+
+## `output` de type image (`ggplot2`)
+
+```{r, code = readLines("materials/16-app/app.R", encoding = "UTF-8")[-c(1, 3, 17:19)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "16"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/16-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/16-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
+  (*Formulaire générer précedemment*)
+
+* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
+
+* Créez une application affichant un graphique et son code.
+
+<div class="notes">
+* App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/09-app/app.R)
+* App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/17-app/app.R)
+* App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/18-app/app.R)
+</div>
+
+
+## Mise en pratique 
+
+* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
+  (*Formulaire généré précedemment*)
+  
+```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[3:14]}
+```
+
+<div class="notes">App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/09-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
+
+```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[3:17]}
+```
+
+<div class="notes">App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/17-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
+
+```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[19:29]}
+```
+
+<div class="notes">App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/17-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
+  
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "17"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/17-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Créez une application affichant un graphique et son code.
+
+```{r, code = readLines("materials/18-app/app.R", encoding = "UTF-8")[3:17]}
+```
+
+<div class="notes">App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/18-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Créez une application affichant un graphique et son code.
+  
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "18"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/18-app/app.R)</div>
+
+
+
+# <i class="glow">Shiny</i> | La mise en page {.flexbox .vcenter}
+
+
+## La mise en page "sidebar"
+
+```{r, echo = FALSE, eval = TRUE, out.width = "100%"}
+include_graphics(paste0("images/sidebar.png"), dpi = params$dpi)
+```
+
+
+## La mise en page "sidebar" en code
+
+```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")[c(3:19)]}
+```
+
+<div class="notes">App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/19-app/app.R)</div>
+
+
+## La mise en page "sidebar" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "19"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/19-app/app.R)</div>
+
+
+## La mise en page "multirow"
+
+```{r, echo = FALSE, eval = TRUE, out.width = "100%"}
+include_graphics(paste0("images/multirow.png"), dpi = params$dpi)
+```
+
+
+## La mise en page "multirow" en code
+
+```{r, code = readLines("materials/20-app/app.R", encoding = "UTF-8")[c(3:22)]}
+```
+
+<div class="notes">App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/20-app/app.R)</div>
+
+
+## La mise en page "multirow" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "20"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/20-app/app.R)</div>
+
+
+## La mise en page "tabset" en code
+
+```{r, code = readLines("materials/21-app/app.R", encoding = "UTF-8")[c(3:13)]}
+```
+
+<div class="notes">App [`"materials/21-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/21-app/app.R)</div>
+
+
+## La mise en page "tabset" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "21"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/21-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/21-app/app.R)</div>
+
+
+## La mise en page "dashboard" en code
+
+```{r, code = readLines("materials/22-app/app.R", encoding = "UTF-8")[c(2:10)]}
+```
+
+<div class="notes">App [`"materials/22-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/22-app/app.R)</div>
+
+
+## La mise en page "dashboard" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "22"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/22-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/22-app/app.R)</div>
+
+
+## La mise en page "dashboard" en code
+
+```{r, code = readLines("materials/23-app/app.R", encoding = "UTF-8")[c(4:21)]}
+```
+
+<div class="notes">App [`"materials/23-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/23-app/app.R)</div>
+
+
+## La mise en page "dashboard" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "23"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/23-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/23-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Essayez la structure grille avec `fluidPage()`, `fluidRow()`, `fixedRow()` et `column()`.
+
+* Reproduisez les interfaces suivantes.
+
+<div class="centered">
+```{r, echo = FALSE, eval = params$webshot, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
+for (iapp in 24:25) {
+  app_name <- iapp 
+  appshot(
+    app = paste0("materials/", app_name, "-app/app.R"), 
+    delay = 2,
+    vwidth = 7.5 * params$dpi,
+    vheight = 4 * params$dpi,
+    # selector = ".container-fluid",
+    envvars = c(display.mode = "normal"),
+    file = paste0("webshot/", app_name, ".png"), 
+  )
+}
+include_graphics(paste0("webshot/", 24:25, ".png"), dpi = params$dpi)
+```
+</div>
+
+<div class="notes">App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/24-app/app.R)</div>
+<div class="notes">App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/25-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Reproduisez l'interface suivante.
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "24"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/24-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Reproduisez l'interface suivante.
+
+```{r, code = readLines("materials/24-app/app.R", encoding = "UTF-8")[c(5:20)]}
+```
+
+<div class="notes">App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/24-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Reproduisez l'interface suivante.
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "25"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/25-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Reproduisez l'interface suivante.
+
+```{r, code = readLines("materials/25-app/app.R", encoding = "UTF-8")[c(5:15)]}
+```
+
+<div class="notes">App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/25-app/app.R)</div>
+
+
+
+# <i class="glow">Shiny</i> | La face cachée `server` {.flexbox .vcenter}
+
+
+## La fonction `server`
+
+```{r}
+server <- function(
+  ###<b>
+  input, 
+  output, 
+  session
+  ###</b>
+) {
+  ...
+}
+```
+
+* `input`, une liste de paramètres d'entrées.
+* `output`, une liste d'objets à afficher dans `ui`.
+* `session`, environnement relatif à la session,  
+    *c.-à-d.*, la connection.
+
+
+## La fonction `server`
+
+* De `ui` au `server` \(\rightarrow\) `input`.
+
+```{r, code = readLines("materials/26-app/app.R", encoding = "UTF-8")[c(3:11)]}
+```
+
+```{r, code = readLines("materials/26-app/app.R", encoding = "UTF-8")[c(13:19)]}
+```
+
+<div class="notes">App [`"materials/26-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/26-app/app.R)</div>
+
+
+## La fonction `server`
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "26"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/26-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/26-app/app.R)</div>
+
+
+## La liste d'entrées `input`
+
+* `input`, une liste de paramètres d'entrées __non-modifiable__.
+
+```{r, code = readLines("materials/27-app/app.R", encoding = "UTF-8")}
+```
+
+<div class="notes">
+App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/27-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "27"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## La liste d'entrées `input`
+
+* `input`, une liste de paramètres d'entrées "__reactive__".
+
+```{r, code = readLines("materials/29-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
+```
+
+<div class="notes">
+App [`"materials/29-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/29-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "29"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## La liste de sorties `output`
+
+* `output`, une liste __non-modifiable__ d'objets à afficher dans `ui`.
+
+```{r, code = readLines("materials/30-app/app.R", encoding = "UTF-8")}
+```
+
+<div class="notes">
+App [`"materials/30-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/30-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "30"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## La liste de sorties `output`
+
+* `output`, une liste "__reactive__" d'objets à afficher dans `ui`.
+
+```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
+```
+
+<div class="notes">
+App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/31-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "31"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## La notion de réactivité `reactive`
+
+Les sorties (`output`) sont mises à jour à la volée par Shiny lorsque les entrées (`input`) sont modifiées.
+
+* La fonction `server` renseigne Shiny sur la __façon__ de produire les sorties.
+
+* Shiny "décide" de __quand__ produire les sorties.
+
+* Shiny n'exécute que les morceaux de code __utiles__.
+
+
+## La notion de réactivité `reactive`
+
+```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[-c(2, 8, 19)]}
+```
+
+<div class="notes">
+App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/32-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "32"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## Les expressions `reactive`
+
+Pourquoi utiliser des expressions `reactive` ?
+
+* Donne à Shiny des informations additionnelles.  
+    \(\Rightarrow\) __Limite les répétitions__ de calcul.
+
+* Réduction de la redondance de code.  
+    \(\Rightarrow\) __Réduction de la complexité__ de l'application.
+
+* Elles peuvent utiliser indifféremment les `input` et `output`.
+
+* Similaire à `input`.  
+    \(\Rightarrow\) Elles peuvent s'utiliser dans `output`.
+
+* Similaire à `output`.  
+    \(\Rightarrow\) Elles sont mises à jour au besoin selon `input`.
+    
+
+## `reactive()` : Exemple 1 {.smaller}
+
+```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")[6:28]}
+```
+
+<div class="notes">App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/33-app/app.R)</div>
+
+
+## `reactive()` : Exemple 1
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "33"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/33-app/app.R)</div>
+
+
+## `reactive()` : Exemple 1 {.smaller}
+
+```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")[30:54]}
+```
+
+<div class="notes">App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/33-app/app.R)</div>
+
+
+## `reactive()` : Exemple 2 {.smaller}
+
+```{r, code = readLines("materials/34-app/app.R", encoding = "UTF-8")[30:61]}
+```
+
+<div class="notes">
+App [`"materials/34-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/34-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot, include = FALSE}
+app_name <- "34"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## `reactive()` : Exemple 3 {.smaller}
+
+```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[30:67]}
+```
+
+<div class="notes">
+App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/35-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot, include = FALSE}
+app_name <- "35"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 4 * params$dpi,
+  vheight = 3 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## `eventReactive()` & `observeEvent()`
+
+Execution selon un événement, *p. ex.*, un changement de valeur d'un `input`.
+
+```{r}
+something <- eventReactive(eventExpr = ..., valueExpr = ...)
+
+observeEvent(eventExpr = ..., handlerExpr = ...)
+```
+
+* `eventExpr`, une expression ou valeur `reactive`.
+
+* `valueExpr`, une expression similaire à celle fournie dans `reactive()`.
+
+* `handlerExpr`, une expression ne retournant rien (`return()`).
+
+
+## Exemple : `reactive()` {.smaller}
+
+```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[-c(16, 18, 21, 23)]}
+```
+
+<div class="notes">App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/36-app/app.R)</div>
+
+
+## Exemple : `eventReactive()` {.smaller}
+
+```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[-c(11, 13, 21, 23)]}
+```
+
+<div class="notes">App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/36-app/app.R)</div>
+
+
+## Exemple : `observeEvent()` {.smaller}
+
+```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[-c(11, 13, 16, 18)]}
+```
+
+<div class="notes">App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/36-app/app.R)</div>
+
+
+## Exemple : App
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "36"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/36-app/app.R)</div>
+
+
+## Exemple : "App 35 v2" {.smaller}
+
+```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[6:31]}
+```
+
+<div class="notes">App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/37-app/app.R)</div>
+
+
+## Exemple : "App 35 v2" {.smaller}
+
+```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[33:73]}
+```
+
+<div class="notes">App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/37-app/app.R)</div>
+
+
+## Exemple : "App 35 v2"
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "37"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/37-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Créez un menu défilant à choix unique listant les jeux de données de `datasets` avec `"iris"` par défaut.
+
+* Affichez le `summary()` et `str()` du jeu de données séléctionné.
+
+* Ajoutez des champs numériques `x` et `y`.
+
+* Générez un graphique avec :
+    - `x` la position de la colonne en abscisse.
+    - `y` la position de la colonne en ordonnée.  
+
+<div class="notes">App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/38-app/app.R)</div>
+
+
+## Mise en pratique {.smaller}
+
+```{r, code = readLines("materials/38-app/app.R", encoding = "UTF-8")[4:27]}
+```
+
+<div class="notes">App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/38-app/app.R)</div>
+
+
+## Mise en pratique 
+
+```{r, code = readLines("materials/38-app/app.R", encoding = "UTF-8")[29:42]}
+```
+
+<div class="notes">App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/38-app/app.R)</div>
+
+
+## Mise en pratique 
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "38"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/38-app/app.R)</div>
+
+
+
+# <i class="glow">Shiny</i> | Contrôle, Validation & Notifications {.flexbox .vcenter}
+
+
+## Contrôle & Validation
+
+```{r}
+req()
+validate()
+```
+
+* `req()`, contrôle si un `input` a été défini.
+
+* `validate()`, fonctionne comme un `tryCatch`.
+
+```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[3:6]}
+```
+
+<div class="notes">App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/39-app/app.R)</div>
+
+
+## Contrôle & Validation
+
+```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[8:15]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "39"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/39-app/app.R)</div>
+
+
+## Contrôle & Validation
+
+```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[8:18]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "40"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 4 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/40-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/40-app/app.R)</div>
+
+
+## Notifications
+
+* `showNotification()` / `removeNotification()`, affiche un encart de texte.
+
+```{r, code = readLines("materials/41-app/app.R", encoding = "UTF-8")[7:19]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "41"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = "#shiny-notification-panel",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/41-app/app.R)</div>
+
+
+## Progression
+
+* `withProgress()` / `setProgress()`, affiche une barre de progression.
+
+```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[7:19]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "42"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = "#shiny-notification-panel",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/42-app/app.R)</div>
+
+
+
+## Mise en pratique 
+
+* Reprenez l'application développé précédemment ([`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/38-app/app.R)).
+
+* Ajoutez les contrôles nécessaires pour éviter les erreurs observées
+
+<div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
+
+
+## Mise en pratique {.smaller}
+
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[4:27]}
+```
+
+<div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
+
+
+## Mise en pratique 
+
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[29:41]}
+```
+
+<div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
+
+
+## Mise en pratique 
+
+```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[43:61]}
+```
+
+<div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
+
+
+## Mise en pratique 
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "43"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/43-app/app.R)</div>
+
+
+
+# <i class="glow">Shiny</i> | Interface Dynamique {.flexbox .vcenter}
+
+
+## Générer des éléments `ui`
+
+```{r, code = readLines("materials/44-app/app.R", encoding = "UTF-8")[c(3:20)]}
+```
+
+<div class="notes">
+App [`"materials/44-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/44-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "44"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## Affichage conditionnel de `ui` {.smaller}
+
+```{r, code = readLines("materials/45-app/app.R", encoding = "UTF-8")[c(3:8, 10:29)]}
+```
+
+<div class="notes">
+App [`"materials/45-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/45-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "45"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## Affichage conditionnel de `ui` {.smaller}
+
+```{r, code = readLines("materials/46-app/app.R", encoding = "UTF-8")[c(3:8, 10:29)]}
+```
+
+<div class="notes">
+App [`"materials/46-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/46-app/app.R)
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "46"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+</div>
+
+
+## Mettre à jour des `input` {.smaller}
+
+```{r, code = readLines("materials/47-app/app.R", encoding = "UTF-8")[c(3:8, 10:16)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot, out.height = "90%"}
+app_name <- "47"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 0.5 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/47-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/47-app/app.R)</div>
+
+
+## Mettre à jour des `input` {.smaller}
+
+```{r, code = readLines("materials/48-app/app.R", encoding = "UTF-8")[c(3:8, 10:15)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot, out.height = "90%"}
+app_name <- "48"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 2,
+  vwidth = 3 * params$dpi,
+  # vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/48-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/48-app/app.R)</div>
+
+
+## Mise en pratique 
+
+* Générez l'application suivante.
+
+```{r, echo = FALSE, eval = params$webshot}
+for (iapp in c(49:52)) {
+  app_name <- as.character(iapp)
+  appshot(
+    app = paste0("materials/", app_name, "-app/app.R"), 
+    delay = 2,
+    vwidth = 7.5 * params$dpi,
+    vheight = 4.2 * params$dpi,
+    # selector = ".container-fluid",
+    cliprect = "viewport",
+    envvars = c(display.mode = "normal"),
+    file = paste0("webshot/", app_name, ".png"), 
+  )
+}
+
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">
+* App [`"materials/49-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/49-app/app.R)
+* App [`"materials/50-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/50-app/app.R)
+* App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/51-app/app.R)
+* App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/51-app/app.R)
+</div>
+
+
+## Mise en pratique : Code 1 {.smaller}
+
+```{r, include = FALSE, eval = TRUE}
+code_ellipsis <- c(
+  readLines("materials/49-app/app.R", encoding = "UTF-8")[c(1:2, 4:9)],
+  "...",
+  readLines("materials/49-app/app.R", encoding = "UTF-8")[c(30:32, 34:44, 46)]
+)
+```
+
+```{r, code = code_ellipsis}
+```
+
+<div class="notes">App [`"materials/49-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/49-app/app.R)</div>
+
+
+## Mise en pratique : Essai app 1
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "49"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/49-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/49-app/app.R)</div>
+
+
+## Mise en pratique : Code 2 {.smaller}
+
+```{r, code = readLines("materials/50-app/app.R", encoding = "UTF-8")[c(4:27)]}
+```
+
+<div class="notes">App [`"materials/50-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/50-app/app.R)</div>
+
+
+## Mise en pratique : Code 2 {.smaller}
+
+```{r, code = readLines("materials/50-app/app.R", encoding = "UTF-8")[c(1:2, 29:38, 40:50, 52)]}
+```
+
+<div class="notes">App [`"materials/50-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/50-app/app.R)</div>
+
+
+## Mise en pratique : Essai app 2
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "50"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/50-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/50-app/app.R)</div>
+
+
+## Mise en pratique : Code 3 {.smaller}
+
+```{r, code = readLines("materials/51-app/app.R", encoding = "UTF-8")[c(5:28)]}
+```
+
+<div class="notes">App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/51-app/app.R)</div>
+
+
+## Mise en pratique : Code 3
+
+```{r, code = readLines("materials/51-app/app.R", encoding = "UTF-8")[c(30:40)]}
+```
+
+<div class="notes">App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/51-app/app.R)</div>
+
+
+## Mise en pratique : Code 3
+
+```{r, code = readLines("materials/51-app/app.R", encoding = "UTF-8")[c(1:4, 42:54)]}
+```
+
+<div class="notes">App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/51-app/app.R)</div>
+
+
+## Mise en pratique : Essai app 3
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "51"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/51-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/51-app/app.R)</div>
+
+
+## Mise en pratique : Code 4 {.smaller}
+
+```{r, code = readLines("materials/52-app/app.R", encoding = "UTF-8")[c(5:28)]}
+```
+
+<div class="notes">App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/52-app/app.R)</div>
+
+
+## Mise en pratique : Code 4
+
+```{r, code = readLines("materials/52-app/app.R", encoding = "UTF-8")[c(30:40)]}
+```
+
+<div class="notes">App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/52-app/app.R)</div>
+
+
+## Mise en pratique : Code 4 {.smaller}
+
+```{r, code = readLines("materials/52-app/app.R", encoding = "UTF-8")[c(42:53, 55:66)]}
+```
+
+<div class="notes">App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/52-app/app.R)</div>
+
+
+## Mise en pratique : Essai app 4
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "52"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+<div class="notes">App [`"materials/52-app"`](https://github.com/mcanouil/rshiny/tree/master/materials/52-app/app.R)</div>
+
+
+
+# <i class="glow">Shiny</i> & Rmarkdown {.flexbox .vcenter}
+
+```{r, echo = FALSE, eval = TRUE, out.height = 250, out.width = 216, out.extra = 'class="auto-fadein" style="margin: 20px auto auto auto;"'}
+include_graphics("images/rmarkdown.png")
+```
+
+
+## <i class="glow">Shiny</i> & Rmarkdown
+
+_Note : La spécification de `app.Rmd` est obligatoire ici avec `rmarkdown::run()`._
+
+* `rmarkdown::html_document`
+    
+```{r}
+rmarkdown::run("materials/53-app/app.Rmd")
+```
+
+* `flexdashboard::flex_dashboard`
+    
+```{r}
+rmarkdown::run("materials/54-app/app.Rmd")
+```
+
+
+* `rmarkdown::ioslides_presentation`
+
+```{r}
+rmarkdown::run("materials/55-app/app.Rmd")
+```
+
+* ...
+
+
+
+# <i class="glow">Shiny</i> & Plus ... {.flexbox .vcenter}
+
+
+## Ressources
+
+* [shiny](https://shiny.rstudio.com/)
+
+* ["Mastering Shiny" (en cours d'écriture)](https://mastering-shiny.org/)
+
+* [shinytest](https://rstudio.github.io/shinytest/)
+
+* [DT](https://rstudio.github.io/DT/)
+
+* [Blog Rstudio](https://blog.rstudio.com/categories/shiny)
+
+* [Groupe des Utilisateurs de R](http://forums.cirad.fr/logiciel-R/)
+
+* [Stack Overflow](https://stackoverflow.com/questions/tagged/r)
+
+* [R Studio Community](https://community.rstudio.com/)
+
+
+
+# <img src="https://avatars1.githubusercontent.com/u/8896044?s=460&v=4" height = "150px" id = "picture"></img> {.flexbox .vcenter}
+
+<div class="columns-2 auto-fadein">
+  <a id="social" href="" target="_blank"><i class="fas fa-phone"></i> +33 (0) 374 00 81 29</a> 
+    
+  <a id="social" href="mailto:mickael.canouil@cnrs.fr" target="_blank"><i class="fas fa-envelope"></i> mickael.canouil@cnrs.fr</a> 
+
+  <a id="social" href="http://mickael.canouil.fr" target="_blank"><i class="fas fa-home"></i> mickael.canouil.fr</a> 
+
+  <a id="social" href="https://www.linkedin.com/in/mickael-canouil" target="_blank"><i class="fab fa-linkedin"></i> mickael-canouil</a> 
+
+  <a id="social" href="https://github.com/mcanouil" target="_blank"><i class="fab fa-github"></i> mcanouil</a> 
+
+  <a id="social" href="https://twitter.com/mickaelcanouil" target="_blank"><i class="fab fa-twitter"></i> @mickaelcanouil</a>
+</div>

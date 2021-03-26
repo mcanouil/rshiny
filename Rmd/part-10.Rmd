@@ -1,0 +1,36 @@
+---
+class: part-slide
+
+# <i class="glow">Shiny</i> & Rmarkdown
+
+```{r, echo = FALSE, eval = TRUE, out.height = 250, out.width = 216, out.extra = 'class="auto-fadein" style="margin: 20px auto auto auto;"'}
+include_graphics("images/rmarkdown.png")
+```
+
+---
+
+# <i class="glow">Shiny</i> & Rmarkdown
+
+_Note : La spécification de `app.Rmd` est obligatoire ici avec `rmarkdown::run()`._
+
+* `rmarkdown::html_document`
+    
+```{r}
+rmarkdown::run("materials/53-app/app.Rmd")
+```
+
+* `flexdashboard::flex_dashboard`
+    
+```{r}
+rmarkdown::run("materials/54-app/app.Rmd")
+```
+
+
+* `rmarkdown::ioslides_presentation`
+
+```{r}
+rmarkdown::run("materials/55-app/app.Rmd")
+```
+
+* ...
+
