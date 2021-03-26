@@ -2,9 +2,9 @@
 output: github_document
 ---
 
-# First Steps With The Shiny Package
+# First Steps With The Shiny R Package
 
-This is the work-in-progress repo for the slides about `Shiny`.
+This is a workshop for the R package `shiny`.
 
 ```{r, include = FALSE}
 library(magick)

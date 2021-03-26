@@ -44,18 +44,9 @@ App [`"materials/26-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # La fonction `server`
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "26"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 1,
-  vwidth = 7.5 * params$dpi,
-  vheight = 4 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
@@ -73,23 +64,12 @@ App [`"materials/26-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ???
 
-
 App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/27-app/app.R)
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "27"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 1,
-  vwidth = 4 * params$dpi,
-  vheight = 3 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
-
 
 ---
 
@@ -102,23 +82,12 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ???
 
-
 App [`"materials/29-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/29-app/app.R)
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "29"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 1,
-  vwidth = 4 * params$dpi,
-  vheight = 3 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
-
 
 ---
 
@@ -131,23 +100,12 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ???
 
-
 App [`"materials/30-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/30-app/app.R)
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "30"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 1,
-  vwidth = 4 * params$dpi,
-  vheight = 3 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
-
 
 ---
 
@@ -160,23 +118,12 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ???
 
-
 App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/31-app/app.R)
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "31"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 1,
-  vwidth = 4 * params$dpi,
-  vheight = 3 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
-
 
 ---
 
@@ -199,23 +146,12 @@ Les sorties (`output`) sont mises à jour à la volée par Shiny lorsque les ent
 
 ???
 
-
 App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/32-app/app.R)
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "32"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 1,
-  vwidth = 4 * params$dpi,
-  # vheight = 4 * params$dpi,
-  selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
-
 
 ---
 
@@ -252,18 +188,9 @@ App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # `reactive()` : Exemple 1
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "33"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 7.5 * params$dpi,
-  vheight = 4 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
@@ -290,23 +217,12 @@ App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ???
 
-
 App [`"materials/34-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/34-app/app.R)
 
-```{r, echo = FALSE, eval = params$webshot, include = FALSE}
+```{r, echo = FALSE, eval = TRUE, include = FALSE}
 app_name <- "34"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 4 * params$dpi,
-  vheight = 3 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
-
 
 ---
 
@@ -317,23 +233,12 @@ include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
 
 ???
 
-
 App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/35-app/app.R)
 
-```{r, echo = FALSE, eval = params$webshot, include = FALSE}
+```{r, echo = FALSE, eval = TRUE, include = FALSE}
 app_name <- "35"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 4 * params$dpi,
-  vheight = 3 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
-
 
 ---
 
@@ -390,18 +295,9 @@ App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Exemple : App
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "36"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 7.5 * params$dpi,
-  vheight = 4 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
@@ -434,18 +330,9 @@ App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Exemple : "App 35 v2"
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "37"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 7.5 * params$dpi,
-  vheight = 4 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
@@ -463,7 +350,9 @@ App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 * Ajoutez des champs numériques `x` et `y`.
 
 * Générez un graphique avec :
+
     - `x` la position de la colonne en abscisse.
+    
     - `y` la position de la colonne en ordonnée.  
 
 ???
@@ -496,18 +385,9 @@ App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Mise en pratique
 
-```{r, echo = FALSE, eval = params$webshot}
+```{r, echo = FALSE, eval = TRUE}
 app_name <- "38"
-appshot(
-  app = paste0("materials/", app_name, "-app/app.R"), 
-  delay = 2,
-  vwidth = 7.5 * params$dpi,
-  vheight = 4 * params$dpi,
-  # selector = ".container-fluid",
-  envvars = c(display.mode = "normal"),
-  file = paste0("webshot/", app_name, ".png"), 
-)
-include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 ```
 
 ???
