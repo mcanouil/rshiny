@@ -1,0 +1,328 @@
+---
+class: part-slide
+
+# <i class="glow">Shiny</i><br>Les sorties `output`
+
+---
+
+#  Les `output` en détails
+
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[10]}
+```
+
+Contraintes sur les valeurs de `outputId` :
+
+* Doit être unique.
+
+* Chaîne de caractères alphanumériques et "underscores".
+
+???
+
+App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/02-app/app.R)
+
+---
+
+# `output` de type texte
+
+```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")}
+```
+
+???
+
+App [`"materials/10-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/10-app/app.R)
+
+---
+
+# `output` de type texte
+
+```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "10"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4.1 * params$dpi,
+  # vheight = 4.7 * params$dpi / 5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/10-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/10-app/app.R)
+
+---
+
+# `output` de type texte
+
+```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "11"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 3.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/11-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/11-app/app.R)
+
+---
+
+# `output` de type texte
+
+```{r, code = readLines("materials/12-app/app.R", encoding = "UTF-8")[c(3:15)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "12"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 4.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/12-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/12-app/app.R)
+
+---
+
+# `output` de type tableau statique
+
+```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")[c(3:7, 9:13)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "13"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 6 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/13-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/13-app/app.R)
+
+---
+
+# `output` de type tableau dynamique
+
+```{r, code = readLines("materials/14-app/app.R", encoding = "UTF-8")[-c(1:2, 16:18)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "14"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/14-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/14-app/app.R)
+
+---
+
+# `output` de type image (`base`)
+
+```{r, code = readLines("materials/15-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "15"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/15-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/15-app/app.R)
+
+---
+
+# `output` de type image (`ggplot2`)
+
+```{r, code = readLines("materials/16-app/app.R", encoding = "UTF-8")[-c(1, 3, 17:19)]}
+```
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "16"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/16-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/16-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
+  (*Formulaire générer précedemment*)
+
+* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
+
+* Créez une application affichant un graphique et son code.
+
+???
+
+
+* App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/09-app/app.R)
+* App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/17-app/app.R)
+* App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/18-app/app.R)
+
+
+---
+
+# Mise en pratique 
+
+* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
+  (*Formulaire généré précedemment*)
+  
+```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[3:14]}
+```
+
+???
+
+App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/09-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
+
+```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[3:17]}
+```
+
+???
+
+App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/17-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
+
+```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[19:29]}
+```
+
+???
+
+App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/17-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
+  
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "17"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/17-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Créez une application affichant un graphique et son code.
+
+```{r, code = readLines("materials/18-app/app.R", encoding = "UTF-8")[3:17]}
+```
+
+???
+
+App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/18-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Créez une application affichant un graphique et son code.
+  
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "18"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  # vheight = 4.7 * params$dpi / 2.5,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/18-app/app.R)
+

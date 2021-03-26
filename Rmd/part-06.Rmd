@@ -1,0 +1,274 @@
+---
+class: part-slide
+
+# <i class="glow">Shiny</i><br>La mise en page
+
+---
+
+#  La mise en page "sidebar"
+
+```{r, echo = FALSE, eval = TRUE, out.width = "100%"}
+include_graphics(paste0("images/sidebar.png"), dpi = params$dpi)
+```
+
+---
+
+# La mise en page "sidebar" en code
+
+```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")[c(3:19)]}
+```
+
+???
+
+App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/19-app/app.R)
+
+---
+
+# La mise en page "sidebar" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "19"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/19-app/app.R)
+
+---
+
+# La mise en page "multirow"
+
+```{r, echo = FALSE, eval = TRUE, out.width = "100%"}
+include_graphics(paste0("images/multirow.png"), dpi = params$dpi)
+```
+
+---
+
+# La mise en page "multirow" en code
+
+```{r, code = readLines("materials/20-app/app.R", encoding = "UTF-8")[c(3:22)]}
+```
+
+???
+
+App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/20-app/app.R)
+
+---
+
+# La mise en page "multirow" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "20"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/20-app/app.R)
+
+---
+
+# La mise en page "tabset" en code
+
+```{r, code = readLines("materials/21-app/app.R", encoding = "UTF-8")[c(3:13)]}
+```
+
+???
+
+App [`"materials/21-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/21-app/app.R)
+
+---
+
+# La mise en page "tabset" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "21"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/21-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/21-app/app.R)
+
+---
+
+# La mise en page "dashboard" en code
+
+```{r, code = readLines("materials/22-app/app.R", encoding = "UTF-8")[c(2:10)]}
+```
+
+???
+
+App [`"materials/22-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/22-app/app.R)
+
+---
+
+# La mise en page "dashboard" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "22"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/22-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/22-app/app.R)
+
+---
+
+# La mise en page "dashboard" en code
+
+```{r, code = readLines("materials/23-app/app.R", encoding = "UTF-8")[c(4:21)]}
+```
+
+???
+
+App [`"materials/23-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/23-app/app.R)
+
+---
+
+# La mise en page "dashboard" en image
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "23"
+appshot(
+  app = paste0("materials/", app_name, "-app/app.R"), 
+  delay = 1,
+  vwidth = 7.5 * params$dpi,
+  vheight = 4 * params$dpi,
+  # selector = ".container-fluid",
+  envvars = c(display.mode = "normal"),
+  file = paste0("webshot/", app_name, ".png"), 
+)
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/23-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/23-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Essayez la structure grille avec `fluidPage()`, `fluidRow()`, `fixedRow()` et `column()`.
+
+* Reproduisez les interfaces suivantes.
+
+.center[
+
+```{r, echo = FALSE, eval = params$webshot, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
+for (iapp in 24:25) {
+  app_name <- iapp 
+  appshot(
+    app = paste0("materials/", app_name, "-app/app.R"), 
+    delay = 2,
+    vwidth = 7.5 * params$dpi,
+    vheight = 4 * params$dpi,
+    # selector = ".container-fluid",
+    envvars = c(display.mode = "normal"),
+    file = paste0("webshot/", app_name, ".png"), 
+  )
+}
+include_graphics(paste0("webshot/", 24:25, ".png"), dpi = params$dpi)
+```
+
+]
+
+???
+
+App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/24-app/app.R)
+App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/25-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Reproduisez l'interface suivante.
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "24"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/24-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Reproduisez l'interface suivante.
+
+```{r, code = readLines("materials/24-app/app.R", encoding = "UTF-8")[c(5:20)]}
+```
+
+???
+
+App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/24-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Reproduisez l'interface suivante.
+
+```{r, echo = FALSE, eval = params$webshot}
+app_name <- "25"
+include_graphics(paste0("webshot/", app_name, ".png"), dpi = params$dpi)
+```
+
+???
+
+App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/25-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Reproduisez l'interface suivante.
+
+```{r, code = readLines("materials/25-app/app.R", encoding = "UTF-8")[c(5:15)]}
+```
+
+???
+
+App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/25-app/app.R)
