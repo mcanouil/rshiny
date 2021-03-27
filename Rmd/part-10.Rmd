@@ -22,11 +22,4 @@ rmarkdown::run("materials/52-app/app.Rmd")
 rmarkdown::run("materials/53-app/app.Rmd")
 ```
 
-
-* `rmarkdown::ioslides_presentation`
-
-```{r}
-rmarkdown::run("materials/54-app/app.Rmd")
-```
-
 * ...
