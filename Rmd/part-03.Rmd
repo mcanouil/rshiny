@@ -2,7 +2,7 @@
 ---
 class: part-slide
 
-# Qu'est-ce que <i class="glow">Shiny</i> ?<br><img src = "images/shiny.png", width = "216px" />
+# Qu'est-ce que <i class="glow">Shiny</i> ?<br><img src = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/SVG/shiny.svg", width = "216px" />
 
 ---
 

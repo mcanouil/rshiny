@@ -59,7 +59,7 @@ App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 # La mise en page "multirow" en image
 
 .center[
-<img src = "images/20.png" width = "65%" />
+<img src = "images/20.png" width = "55%" />
 ]
 
 ???

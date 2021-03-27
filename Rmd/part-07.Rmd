@@ -154,8 +154,6 @@ App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 Pourquoi utiliser des expressions `reactive` ?
 
-.pull-left[
-
 * Donne à Shiny des informations additionnelles.  
     &rarr; __Limite les répétitions__ de calcul.
 
@@ -164,17 +162,11 @@ Pourquoi utiliser des expressions `reactive` ?
 
 * Elles peuvent utiliser indifféremment les `input` et `output`.
 
-]
-
-.pull-right[
-
 * Similaire à `input`.  
     &rarr; Elles peuvent s'utiliser dans `output`.
 
 * Similaire à `output`.  
     &rarr; Elles sont mises à jour au besoin selon `input`.
-    
-]
     
 ---
 
@@ -192,7 +184,7 @@ App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 # `reactive()` : Exemple 1
 
 .center[
-<img src = "images/32.png" width = "65%" />
+<img src = "images/32.png" width = "55%" />
 ]
 
 ???
@@ -388,7 +380,7 @@ App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 # Mise en pratique
 
 .center[
-<img src = "images/37.png" width = "75%" />
+<img src = "images/37.png" width = "65%" />
 ]
 
 ???

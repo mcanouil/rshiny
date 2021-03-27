@@ -4,7 +4,7 @@ code_for_plot <- "plot(1:10)"
 
 ui <- fluidPage(
   verbatimTextOutput("code"),
-  plotOutput("plot")
+  plotOutput("plot", height = "600px")
 )
 
 server <- function(input, output, session) { 

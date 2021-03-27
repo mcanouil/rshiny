@@ -2,7 +2,7 @@
 ---
 class: part-slide
 
-# <i class="glow">Shiny</i> & Rmarkdown<br><img src = "images/rmarkdown.png", width = "216px" />
+# <i class="glow">Shiny</i> & Rmarkdown<br><img src = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/SVG/rmarkdown.svg", width = "216px" />
 
 ---
 

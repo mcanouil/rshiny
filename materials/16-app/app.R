@@ -2,7 +2,7 @@ library("shiny")
 library("ggplot2")
 
 ui <- fluidPage(
-  plotOutput("plot")
+  plotOutput("plot", height = "600px")
 )
 
 server <- function(input, output, session) {
