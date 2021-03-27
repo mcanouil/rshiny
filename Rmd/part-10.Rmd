@@ -1,3 +1,4 @@
+
 ---
 class: part-slide
 
@@ -12,20 +13,20 @@ _Note : La spécification de `app.Rmd` est obligatoire ici avec `rmarkdown::run(
 * `rmarkdown::html_document`
     
 ```{r}
-rmarkdown::run("materials/53-app/app.Rmd")
+rmarkdown::run("materials/52-app/app.Rmd")
 ```
 
 * `flexdashboard::flex_dashboard`
     
 ```{r}
-rmarkdown::run("materials/54-app/app.Rmd")
+rmarkdown::run("materials/53-app/app.Rmd")
 ```
 
 
 * `rmarkdown::ioslides_presentation`
 
 ```{r}
-rmarkdown::run("materials/55-app/app.Rmd")
+rmarkdown::run("materials/54-app/app.Rmd")
 ```
 
 * ...

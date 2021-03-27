@@ -132,10 +132,10 @@ runApp("materials/00-app")
 #> Listening on http://127.0.0.1:4550
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "00"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/00.png)
+]
+
 
 ???
 
@@ -221,10 +221,10 @@ runApp("materials/01-app")
 #> Listening on http://127.0.0.1:4550
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "01"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/01.png)
+]
+
 
 ???
 
@@ -247,7 +247,7 @@ App [`"materials/01-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Le serveur `server`
 
-* Du `server` à `ui` \(\rightarrow\) `output`.
+* Du `server` à `ui` &rarr; `output`.
 
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[8:10]}
 ```
@@ -272,15 +272,31 @@ App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 Les fonctions `render*()` nativement disponibles :
 
-```{r, echo = FALSE, eval = TRUE, results = "asis"}
-cat(paste0("* `", grep("^render*", ls("package:shiny"), value = TRUE), "()`"), sep = "\n\n")
+```{r, include = FALSE, eval = TRUE}
+list_output <- grep("^render*", ls("package:shiny"), value = TRUE)
 ```
+
+.pull-left[
+
+```{r, echo = FALSE, eval = TRUE, results = "asis"}
+cat(paste0("* `", list_output[1:floor(length(list_output) / 2)], "()`"), sep = "\n\n")
+```
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, eval = TRUE, results = "asis"}
+cat(paste0("* `", list_output[(floor(length(list_output) / 2) + 1): length(list_output)], "()`"), sep = "\n\n")
+```
+
+]
 
 ---
 
 # Le serveur `server`
 
-* Du `server` à `ui` \(\rightarrow\) `output`.
+* Du `server` à `ui` &rarr; `output`.
 
 ```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[8:10]}
 ```
@@ -317,10 +333,9 @@ runApp("materials/02-app")
 #> Listening on http://127.0.0.1:4550
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "02"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/02.png)
+]
 
 ???
 

@@ -29,34 +29,41 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   ###<b>
-  iris1 <- reactive({ filter(iris, Species == input$species1) })
-  iris2 <- reactive({ filter(iris, Species == input$species2) })
+  iris_species1 <- reactive({ filter(iris, Species == input$species1) })
+  iris_species2 <- reactive({ filter(iris, Species == input$species2) })
   ###</b>
   
-  output$point1 <- renderPlot({
-    ###<b>
-    ggplot(iris1(), aes(x = .data[[input$col1x]], y = .data[[input$col1y]])) + 
-    ###</b>
-      geom_point()
+  ###<b>
+  gg_species1 <- reactive({
+  ###</b>
+    ggplot(
+      ###<b>
+      data = iris_species1(), 
+      mapping = aes(x = .data[[input$col1x]], y = .data[[input$col1y]])
+      ###</b>
+    ) + geom_point()
+  ###<b>
   })
-  
-  output$point2 <- renderPlot({
-    ###<b>
-    ggplot(iris2(), aes(x = .data[[input$col2x]], y = .data[[input$col2y]])) + 
-    ###</b>
-      geom_point()
+  gg_species2 <- reactive({
+  ###</b>
+    ggplot(
+      ###<b>
+      data = iris_species2(), 
+      mapping = aes(x = .data[[input$col2x]], y = .data[[input$col2y]])
+      ###</b>
+    ) + geom_point()
+  ###<b>
   })
+  ###</b>
   
+  ###<b>
+  output$point1 <- renderPlot({ gg_species1() })
+  output$point2 <- renderPlot({ gg_species2() })
+  ###</b>
   output$point12 <- renderPlot({
     ###<b>
-    p1 <- ggplot(iris1(), aes(x = .data[[input$col1x]], y = .data[[input$col1y]])) + 
+    ggarrange(gg_species1(), gg_species2(), ncol = 2, labels = LETTERS)
     ###</b>
-      geom_point()
-    ###<b>
-    p2 <- ggplot(iris2(), aes(x = .data[[input$col2x]], y = .data[[input$col2y]])) + 
-    ###</b>
-      geom_point()
-    ggarrange(p1, p2, ncol = 2, labels = LETTERS)
   })
 }
 

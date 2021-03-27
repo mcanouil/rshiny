@@ -1,3 +1,4 @@
+
 ---
 class: part-slide
 
@@ -28,7 +29,7 @@ server <- function(
 
 # La fonction `server`
 
-* De `ui` au `server` \(\rightarrow\) `input`.
+* De `ui` au `server` &rarr; `input`.
 
 ```{r, code = readLines("materials/26-app/app.R", encoding = "UTF-8")[c(3:11)]}
 ```
@@ -44,10 +45,9 @@ App [`"materials/26-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # La fonction `server`
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "26"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/26.png)
+]
 
 ???
 
@@ -66,10 +66,9 @@ App [`"materials/26-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/27-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "27"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/27.png)
+]
 
 ---
 
@@ -77,17 +76,16 @@ include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 
 * `input`, une liste de paramètres d'entrées "__reactive__".
 
-```{r, code = readLines("materials/29-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
+```{r, code = readLines("materials/28-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
 ```
 
 ???
 
-App [`"materials/29-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/29-app/app.R)
+App [`"materials/28-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/28-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "29"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/28.png)
+]
 
 ---
 
@@ -95,17 +93,16 @@ include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 
 * `output`, une liste __non-modifiable__ d'objets à afficher dans `ui`.
 
-```{r, code = readLines("materials/30-app/app.R", encoding = "UTF-8")}
+```{r, code = readLines("materials/29-app/app.R", encoding = "UTF-8")}
 ```
 
 ???
 
-App [`"materials/30-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/30-app/app.R)
+App [`"materials/29-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/29-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "30"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/29.png)
+]
 
 ---
 
@@ -113,17 +110,16 @@ include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 
 * `output`, une liste "__reactive__" d'objets à afficher dans `ui`.
 
-```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
+```{r, code = readLines("materials/30-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
 ```
 
 ???
 
-App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/31-app/app.R)
+App [`"materials/30-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/30-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "31"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/30.png)
+]
 
 ---
 
@@ -141,17 +137,16 @@ Les sorties (`output`) sont mises à jour à la volée par Shiny lorsque les ent
 
 # La notion de réactivité `reactive`
 
-```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[-c(2, 8, 19)]}
+```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(2, 8, 19)]}
 ```
 
 ???
 
-App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/32-app/app.R)
+App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/31-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "32"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/31.png)
+]
 
 ---
 
@@ -159,86 +154,95 @@ include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
 
 Pourquoi utiliser des expressions `reactive` ?
 
+.pull-left[
+
 * Donne à Shiny des informations additionnelles.  
-    \(\Rightarrow\) __Limite les répétitions__ de calcul.
+    &rarr; __Limite les répétitions__ de calcul.
 
 * Réduction de la redondance de code.  
-    \(\Rightarrow\) __Réduction de la complexité__ de l'application.
+    &rarr; __Réduction de la complexité__ de l'application.
 
 * Elles peuvent utiliser indifféremment les `input` et `output`.
 
+]
+
+.pull-right[
+
 * Similaire à `input`.  
-    \(\Rightarrow\) Elles peuvent s'utiliser dans `output`.
+    &rarr; Elles peuvent s'utiliser dans `output`.
 
 * Similaire à `output`.  
-    \(\Rightarrow\) Elles sont mises à jour au besoin selon `input`.
+    &rarr; Elles sont mises à jour au besoin selon `input`.
+    
+]
     
 ---
 
 # `reactive()` : Exemple 1
 
-```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")[6:28]}
+```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[6:28]}
 ```
 
 ???
 
-App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/33-app/app.R)
+App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/32-app/app.R)
 
 ---
 
 # `reactive()` : Exemple 1
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "33"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+<img src = "images/32.png" width = "65%" />
+]
 
 ???
 
-App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/33-app/app.R)
+App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/32-app/app.R)
 
 ---
 
 # `reactive()` : Exemple 1
 
-```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")[30:54]}
+.code90[
+
+```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[30:54]}
 ```
+
+]
 
 ???
 
-App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/33-app/app.R)
+App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/32-app/app.R)
 
 ---
 
 # `reactive()` : Exemple 2
 
-```{r, code = readLines("materials/34-app/app.R", encoding = "UTF-8")[30:61]}
+```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")[30:61]}
+```
+
+???
+
+App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/33-app/app.R)
+
+.center[
+![](images/33.png)
+]
+
+---
+
+# `reactive()` : Exemple 3
+
+```{r, code = readLines("materials/34-app/app.R", encoding = "UTF-8")[30:67]}
 ```
 
 ???
 
 App [`"materials/34-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/34-app/app.R)
 
-```{r, echo = FALSE, eval = TRUE, include = FALSE}
-app_name <- "34"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
-
----
-
-# `reactive()` : Exemple 3
-
-```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[30:67]}
-```
-
-???
-
-App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/35-app/app.R)
-
-```{r, echo = FALSE, eval = TRUE, include = FALSE}
-app_name <- "35"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/34.png)
+]
 
 ---
 
@@ -262,42 +266,52 @@ observeEvent(eventExpr = ..., handlerExpr = ...)
 
 # Exemple : `reactive()`
 
-```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[-c(16, 18, 21, 23)]}
+```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[-c(16, 18, 21, 23)]}
 ```
 
 ???
 
-App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/36-app/app.R)
+App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/35-app/app.R)
 
 ---
 
 # Exemple : `eventReactive()`
 
-```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[-c(11, 13, 21, 23)]}
+```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[-c(11, 13, 21, 23)]}
 ```
 
 ???
 
-App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/36-app/app.R)
+App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/35-app/app.R)
 
 ---
 
 # Exemple : `observeEvent()`
 
-```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[-c(11, 13, 16, 18)]}
+```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[-c(11, 13, 16, 18)]}
 ```
 
 ???
 
-App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/36-app/app.R)
+App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/35-app/app.R)
 
 ---
 
 # Exemple : App
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "36"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
+.center[
+![](images/35.png)
+]
+
+???
+
+App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/35-app/app.R)
+
+---
+
+# Exemple : "App 35 v2"
+
+```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[6:31]}
 ```
 
 ???
@@ -308,36 +322,24 @@ App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Exemple : "App 35 v2"
 
-```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[6:31]}
+```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[33:73]}
 ```
 
 ???
 
-App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)
+App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/36-app/app.R)
 
 ---
 
 # Exemple : "App 35 v2"
 
-```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[33:73]}
-```
+.center[
+![](images/36.png)
+]
 
 ???
 
-App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)
-
----
-
-# Exemple : "App 35 v2"
-
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "37"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
-
-???
-
-App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)
+App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/36-app/app.R)
 
 ---
 
@@ -357,39 +359,38 @@ App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ???
 
-App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/38-app/app.R)
+App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)
 
 ---
 
 # Mise en pratique
 
-```{r, code = readLines("materials/38-app/app.R", encoding = "UTF-8")[4:27]}
+```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[4:27]}
 ```
 
 ???
 
-App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/38-app/app.R)
+App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)
 
 ---
 
 #  Mise en pratique
 
-```{r, code = readLines("materials/38-app/app.R", encoding = "UTF-8")[29:42]}
+```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[29:42]}
 ```
 
 ???
 
-App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/38-app/app.R)
+App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)
 
 ---
 
 # Mise en pratique
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "38"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+<img src = "images/37.png" width = "75%" />
+]
 
 ???
 
-App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/38-app/app.R)
+App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)

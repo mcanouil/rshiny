@@ -1,3 +1,4 @@
+
 ---
 class: part-slide
 
@@ -7,7 +8,7 @@ class: part-slide
 
 #  Les `output` en détails
 
-```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[10]}
+```{r, code = readLines("materials/02-app/app.R", encoding = "UTF-8")[9]}
 ```
 
 Contraintes sur les valeurs de `outputId` :
@@ -24,24 +25,18 @@ App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # `output` de type texte
 
+.pull-left[
+
 ```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")}
 ```
 
-???
+]
 
-App [`"materials/10-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/10-app/app.R)
-
----
-
-# `output` de type texte
-
-```{r, code = readLines("materials/10-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
-```
-
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "10"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.pull-right[
+.center[
+![](images/10.png)
+]
+]
 
 ???
 
@@ -51,13 +46,18 @@ App [`"materials/10-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # `output` de type texte
 
-```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")[-c(1:2, 9, 24:26)]}
+.pull-left[
+
+```{r, code = readLines("materials/11-app/app.R", encoding = "UTF-8")}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "11"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+]
+
+.pull-right[
+.center[
+![](images/11.png)
+]
+]
 
 ???
 
@@ -70,10 +70,9 @@ App [`"materials/11-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/12-app/app.R", encoding = "UTF-8")[c(3:15)]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "12"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/12.png)
+]
 
 ???
 
@@ -83,13 +82,12 @@ App [`"materials/12-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # `output` de type tableau statique
 
-```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")[c(3:7, 9:13)]}
+```{r, code = readLines("materials/13-app/app.R", encoding = "UTF-8")}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "13"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/13.png)
+]
 
 ???
 
@@ -99,13 +97,12 @@ App [`"materials/13-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # `output` de type tableau dynamique
 
-```{r, code = readLines("materials/14-app/app.R", encoding = "UTF-8")[-c(1:2, 16:18)]}
+```{r, code = readLines("materials/14-app/app.R", encoding = "UTF-8")}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "14"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/14.png)
+]
 
 ???
 
@@ -115,13 +112,18 @@ App [`"materials/14-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # `output` de type image (`base`)
 
-```{r, code = readLines("materials/15-app/app.R", encoding = "UTF-8")[-c(1:2, 14:16)]}
+.pull-left[
+
+```{r, code = readLines("materials/15-app/app.R", encoding = "UTF-8")}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "15"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+]
+
+.pull-right[
+.center[
+![](images/15.png)
+]
+]
 
 ???
 
@@ -131,13 +133,18 @@ App [`"materials/15-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # `output` de type image (`ggplot2`)
 
-```{r, code = readLines("materials/16-app/app.R", encoding = "UTF-8")[-c(1, 3, 17:19)]}
+.pull-left[
+
+```{r, code = readLines("materials/16-app/app.R", encoding = "UTF-8")}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "16"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+]
+
+.pull-right[
+.center[
+![](images/16.png)
+]
+]
 
 ???
 
@@ -145,10 +152,10 @@ App [`"materials/16-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ---
 
-# Mise en pratique 
+# Mise en pratique
 
-* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
-  (*Formulaire générer précedemment*)
+* Créez un formulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
+  (*Formulaire généré précedemment*)
 
 * Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
 
@@ -164,11 +171,12 @@ App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ---
 
-# Mise en pratique 
 
-* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
+# Mise en pratique
+
+* Créez un formulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
   (*Formulaire généré précedemment*)
-  
+
 ```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[3:14]}
 ```
 
@@ -177,26 +185,23 @@ App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/09-app/app.R)
 
 ---
-
 # Mise en pratique 
 
 * Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
 
-```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[3:17]}
+.pull-left[
+
+```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[3:18]}
 ```
 
-???
+]
 
-App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/17-app/app.R)
+.pull-right[
 
----
-
-# Mise en pratique 
-
-* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
-
-```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[19:29]}
+```{r, code = readLines("materials/17-app/app.R", encoding = "UTF-8")[20:28]}
 ```
+
+]
 
 ???
 
@@ -208,10 +213,9 @@ App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
   
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "17"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/17.png)
+]
 
 ???
 
@@ -223,23 +227,18 @@ App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * Créez une application affichant un graphique et son code.
 
-```{r, code = readLines("materials/18-app/app.R", encoding = "UTF-8")[3:17]}
+.pull-left[
+
+```{r, code = readLines("materials/18-app/app.R", encoding = "UTF-8")}
 ```
 
-???
+]
 
-App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/18-app/app.R)
-
----
-
-# Mise en pratique 
-
-* Créez une application affichant un graphique et son code.
-  
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "18"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.pull-right[
+.center[
+![](images/18.png)
+]
+]
 
 ???
 

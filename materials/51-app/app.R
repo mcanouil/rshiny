@@ -40,14 +40,28 @@ filter_var <- function(data_var, input_var) {
 }
 
 ui <- fluidPage(
-  column(4, map(colnames(iris), ~ make_ui(iris, .x))),
-  column(8, tableOutput("iris"))
+  fluidRow(column(4, offset = 5,
+    selectInput("dataset", label = h3("Datasets"), 
+      choices = ls("package:datasets"), 
+      selected = "iris"
+    )
+  )),
+  fluidRow(
+    column(4, uiOutput("ui")),
+    column(8, tableOutput("iris"))
+  )
 )
 
 server <- function(input, output, session) {
+  datasets <- reactive({get(input$dataset, "package:datasets")})
   output$iris <- renderTable({
-    vals <- map(colnames(iris), ~ filter_var(iris[[.x]], input[[.x]]))
-    iris[reduce(vals, `&`), ]
+    validate(need(inherits(datasets(), "data.frame"), 'Not a "data.frame"'))
+    vals <- map(colnames(datasets()), ~ filter_var(datasets()[[.x]], input[[.x]]))
+    datasets()[reduce(vals, `&`), ]
+  })
+  output$ui <- renderUI({
+    validate(need(inherits(datasets(), "data.frame"), 'Not a "data.frame"'))
+    map(colnames(datasets()), ~ make_ui(datasets(), .x))
   })
 }
 

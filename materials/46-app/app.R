@@ -1,30 +1,20 @@
 library("shiny")
 
 ui <- fluidPage(
-  fluidRow(
-    column(6, textInput("lastname", "Nom :"), uiOutput("firstname")),
-    column(6, uiOutput("input_age"), uiOutput("age"))
-  )
+  numericInput("min", "Minimum", 0), 
+  numericInput("max", "Maximum", 3),
+  uiOutput("n")
 )
 
 server <- function(input, output, session) {
-  output$firstname <- renderUI({
-    req(input$lastname)
-    textInput("firstname", "Prénom :")
-  })
-  output$input_age <- renderUI({
-    req(input$firstname)
-    selectInput("type", "type", c("slider", "numeric"))
-  })
-  output$age <- renderUI({
-    req(input$type, input$firstname)
-    ###<b>
-    if (input$type == "slider") {
-      sliderInput("age", "Age :", value = isolate(input$age), min = 0, max = 99)
-    } else {
-      numericInput("age", "Age :", value = isolate(input$age))  
-    }
-    ###</b>
+  output$n <- renderUI({
+    sliderInput(
+      inputId = "n", 
+      label = "n", 
+      min = input$min, 
+      max = input$max, 
+      value = 1
+    )
   })
 }
 

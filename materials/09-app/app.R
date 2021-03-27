@@ -9,7 +9,10 @@ ui <- fluidPage(
     selected = "Ne sait pas"
   ),
   checkboxGroupInput("hobbies", "Loisirs", 
-    choices = c("Vélo", "Rando", "Natation", "Badminton", "Autres")
+    choices = c(
+      "Vélo", "Rando", "Natation", 
+      "Badminton", "Autres"
+    )
   )
 )
 
