@@ -2,17 +2,14 @@ library("shiny")
 
 ui <- fluidPage(
   textInput("text", "Texte : "),
-  p(
-    "Le texte saisi est : ", 
-    textOutput("text", inline = TRUE)
-  )
+  textOutput("text")
 )
 
 server <- function(input, output, session) {
-  ###<b>
-  message("Le texte saisi est : ", input$text)
-  ###</b>
   output$text <- renderText({ input$text })
+  ###<b>
+  output$text <- "Du texte par défaut ..."
+  ###</b>
 }
 
 shinyApp(ui, server)

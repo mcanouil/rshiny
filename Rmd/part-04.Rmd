@@ -1,3 +1,4 @@
+
 ---
 class: part-slide
 
@@ -27,10 +28,10 @@ App [`"materials/02-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/03-app/app.R", encoding = "UTF-8")[3:7]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "03"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/03.png)
+]
+
 
 ???
 
@@ -43,10 +44,10 @@ App [`"materials/03-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/04-app/app.R", encoding = "UTF-8")[3:7]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "04"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/04.png)
+]
+
 
 ???
 
@@ -59,10 +60,10 @@ App [`"materials/04-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/05-app/app.R", encoding = "UTF-8")[3:7]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "05"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/05.png)
+]
+
 
 ???
 
@@ -75,10 +76,10 @@ App [`"materials/05-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/06-app/app.R", encoding = "UTF-8")[3:6]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "06"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/06.png)
+]
+
 
 ???
 
@@ -91,10 +92,10 @@ App [`"materials/06-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/07-app/app.R", encoding = "UTF-8")[3:9]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "07"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/07.png)
+]
+
 
 ???
 
@@ -107,12 +108,13 @@ App [`"materials/07-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ```{r, code = readLines("materials/08-app/app.R", encoding = "UTF-8")[3:7]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "08"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/08.png)
+]
 
-_Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fontawesome.com/)._
+.footnote[
+Note : `icon()` utilise la bibliothèque d'icônes [Font Awesome](https://fontawesome.com/).
+]
 
 ???
 
@@ -122,37 +124,22 @@ App [`"materials/08-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Mise en pratique 
 
+.pull-left[
+
 * Essayez les différents `input` en jouant sur les arguments.
 
-* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
-
-???
-
-App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/09-app/app.R)
-
----
-
-# Mise en pratique 
-
-* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
+* Créez un formulaire : nom, prénom, age, sexe, loisirs (choix multiples).
 
 ```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[3:14]}
 ```
 
-???
+]
 
-App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/09-app/app.R)
-
----
-
-# Mise en pratique 
-
-* Créez un fomulaire : nom, prénom, age, sexe, loisirs (choix multiples).
-
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "09"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.pull-right[
+.center[
+![](images/09.png)
+]
+]
 
 ???
 

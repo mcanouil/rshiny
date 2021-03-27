@@ -1,3 +1,4 @@
+
 ---
 class: part-slide
 
@@ -16,44 +17,42 @@ validate()
 
 * `validate()`, fonctionne comme un `tryCatch`.
 
-```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[3:6]}
+```{r, code = readLines("materials/38-app/app.R", encoding = "UTF-8")[3:6]}
 ```
 
 ???
 
-App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/39-app/app.R)
+App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/38-app/app.R)
 
 ---
 
 # Contrôle & Validation
 
-```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[8:15]}
+```{r, code = readLines("materials/38-app/app.R", encoding = "UTF-8")[8:15]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "39"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/38.png)
+]
 
 ???
 
-App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/39-app/app.R)
+App [`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/38-app/app.R)
 
 ---
 
 # Contrôle & Validation
 
-```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[8:18]}
+```{r, code = readLines("materials/39-app/app.R", encoding = "UTF-8")[8:18]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "40"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/39.png)
+]
 
 ???
 
-App [`"materials/40-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/40-app/app.R)
+App [`"materials/39-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/39-app/app.R)
 
 ---
 
@@ -61,18 +60,22 @@ App [`"materials/40-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * `showNotification()` / `removeNotification()`, affiche un encart de texte.
 
-```{r, code = readLines("materials/41-app/app.R", encoding = "UTF-8")[7:19]}
+.pull-left[
+
+```{r, code = readLines("materials/40-app/app.R", encoding = "UTF-8")[7:19]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "41"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
+]
 
-```
+.pull-right[
+.center[
+![](images/40.png)
+]
+]
 
 ???
 
-App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/41-app/app.R)
+App [`"materials/40-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/40-app/app.R)
 
 ---
 
@@ -80,12 +83,62 @@ App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * `withProgress()` / `setProgress()`, affiche une barre de progression.
 
-```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[7:19]}
+.pull-left[
+
+```{r, code = readLines("materials/41-app/app.R", encoding = "UTF-8")[7:20]}
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "42"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
+]
+
+.pull-right[
+.center[
+![](images/41.png)
+]
+]
+
+???
+
+App [`"materials/41-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/41-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Reprenez l'application développé précédemment ([`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)).
+
+* Ajoutez les contrôles nécessaires pour éviter les erreurs observées
+
+???
+
+App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/42-app/app.R)
+
+---
+
+# Mise en pratique
+
+```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[4:27]}
+```
+
+???
+
+App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/42-app/app.R)
+
+---
+
+# Mise en pratique
+
+```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[29:41]}
+```
+
+???
+
+App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/42-app/app.R)
+
+---
+
+# Mise en pratique
+
+```{r, code = readLines("materials/42-app/app.R", encoding = "UTF-8")[43:61]}
 ```
 
 ???
@@ -96,58 +149,11 @@ App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Mise en pratique 
 
-* Reprenez l'application développé précédemment ([`"materials/38-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/38-app/app.R)).
-
-* Ajoutez les contrôles nécessaires pour éviter les erreurs observées
-
-???
-
-App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
-
----
-
-# Mise en pratique
-
-```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[4:27]}
-```
+.center[
+<img src = "images/42.png" width = "65%" />
+]
 
 ???
 
-App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
-
----
-
-# Mise en pratique
-
-```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[29:41]}
-```
-
-???
-
-App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
-
----
-
-# Mise en pratique
-
-```{r, code = readLines("materials/43-app/app.R", encoding = "UTF-8")[43:61]}
-```
-
-???
-
-App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
-
----
-
-# Mise en pratique 
-
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "43"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-
-```
-
-???
-
-App [`"materials/43-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/43-app/app.R)
+App [`"materials/42-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/42-app/app.R)
 

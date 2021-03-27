@@ -1,12 +1,11 @@
 ---
 title: "L'Extension <i class = 'fab fa-r-project'></i> : <i class = 'glow'>Shiny</i>"
 pagetitle: "R - Shiny"
-subtitle: "Mes Premiers Pas"
+subtitle: "Premiers Pas"
 author:  'Mickaël Canouil, *Ph.D.* (<a href="http://m.canouil.fr/" target="_blank"><i class="fas fa-home"></i> m.canouil.fr</a>)'
 date: 'Dernière mise à jour : `r format(Sys.Date(), "%d-%m-%Y")`'
 knit: (function(inputFile, encoding) rmarkdown::render(inputFile, encoding = encoding, output_file = "docs/index.html"))
 params:
-  dpi: 72
   content: !r sprintf("Rmd/part-%02d.Rmd", 1:11)
 output:
   xaringan::moon_reader:

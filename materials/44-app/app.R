@@ -1,22 +1,31 @@
 library("shiny")
 
 ui <- fluidPage(
-  textInput("lastname", "Nom :"),
-  ###<b>
-  uiOutput("firstname"),
-  ###</b>
-  uiOutput("age")
+  fluidRow(
+    column(6, textInput("lastname", "Nom :"), uiOutput("firstname")),
+    column(6, uiOutput("input_age"), uiOutput("age"))
+  )
 )
 
 server <- function(input, output, session) {
   ###<b>
   output$firstname <- renderUI({
+    req(input$lastname)
     textInput("firstname", "Prénom :")
   })
-  ###</b>
-  output$age <- renderUI({
-    numericInput("age", "Age :", value = 0)
+  output$input_age <- renderUI({
+    req(input$firstname)
+    selectInput("type", "type", c("slider", "numeric"))
   })
+  output$age <- renderUI({
+    req(input$type, input$firstname)
+    if (input$type == "slider") {
+      sliderInput("dynamic", "Age :", value = 0, min = 0, max = 99)
+    } else {
+      numericInput("age", "Age :", value = 0)  
+    }
+  })
+  ###</b>
 }
 
 shinyApp(ui, server)

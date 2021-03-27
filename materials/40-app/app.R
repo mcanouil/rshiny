@@ -1,19 +1,20 @@
 library("shiny")
 
 ui <- fluidPage(
-  textInput("text", "texte : "),
-  textOutput("text")
+  plotOutput("plot", height = "300px")
 )
 
 server <- function(input, output, session) {
-  output$text <- renderText({
+  output$plot <- renderPlot({
     ###<b>
-    validate(need(
-      expr = input$text == "texte", 
-      message = '[NOTE] Le texte saisie est différent de "texte".'
-    ))
+    id <- showNotification(
+      ui = "Importation des données ...", 
+      duration = NULL, closeButton = FALSE
+    )
+    on.exit(removeNotification(id), add = TRUE)
     ###</b>
-    paste("Ceci est un texte saisie :", input$text)
+    Sys.sleep(5)
+    plot(1:10)
   })
 }
 

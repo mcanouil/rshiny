@@ -1,5 +1,6 @@
 library("shiny")
 library("dplyr")
+library("purrr")
 
 make_ui <- function(data, var) {
   x <- data[, var]
@@ -26,26 +27,27 @@ make_ui <- function(data, var) {
   }
 }
 
+filter_var <- function(data_var, input_var) {
+  if (is.numeric(data_var)) {
+    !is.na(data_var) & # dplyr::between
+      data_var >= input_var[1] & 
+      data_var <= input_var[2]
+  } else if (is.character(data_var) | is.factor(data_var)) {
+    data_var %in% input_var
+  } else {
+    TRUE # default
+  }
+}
+
 ui <- fluidPage(
-  column(4,
-    make_ui(iris, "Sepal.Length"),
-    make_ui(iris, "Sepal.Width"),
-    make_ui(iris, "Petal.Length"),
-    make_ui(iris, "Petal.Width"),
-    make_ui(iris, "Species")
-  ),
+  column(4, map(colnames(iris), ~ make_ui(iris, .x))),
   column(8, tableOutput("iris"))
 )
 
 server <- function(input, output, session) {
   output$iris <- renderTable({
-    filter(.data = iris,
-      between(Sepal.Length, input$Sepal.Length[1], input$Sepal.Length[2]),
-      between(Sepal.Width, input$Sepal.Width[1], input$Sepal.Width[2]),
-      between(Petal.Length, input$Petal.Length[1], input$Petal.Length[2]),
-      between(Petal.Width, input$Petal.Width[1], input$Petal.Width[2]),
-      Species %in% input$Species
-    )
+    vals <- map(colnames(iris), ~ filter_var(iris[[.x]], input[[.x]]))
+    iris[reduce(vals, `&`), ]
   })
 }
 

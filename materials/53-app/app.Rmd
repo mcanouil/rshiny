@@ -1,23 +1,25 @@
 ---
 title: "Untitled"
 runtime: shiny
-output: html_document
+output: flexdashboard::flex_dashboard
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include=FALSE}
 library(shiny)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-This R Markdown document is made interactive using Shiny. Unlike the more traditional workflow of creating static reports, you can now create documents that allow your readers to change the assumptions underlying your analysis and see the results immediately. 
+## Shiny Presentation {.sidebar}
+
+This R Markdown presentation is made interactive using Shiny. The viewers of the presentation can change the assumptions underlying what's presented and see the results immediately. 
 
 To learn more, see [Interactive Documents](http://rmarkdown.rstudio.com/authoring_shiny.html).
 
-## Inputs and Outputs
+## Interactive Plot
 
-You can embed Shiny inputs and outputs in your document. Outputs are automatically updated whenever inputs change.  This demonstrates how a standard R plot can be made interactive by wrapping it in the Shiny `renderPlot` function. The `selectInput` and `sliderInput` functions create the input widgets used to drive the plot.
+### Input
 
-```{r eruptions, echo=FALSE}
+```{r eruptions}
 inputPanel(
   selectInput("n_breaks", label = "Number of bins:",
               choices = c(10, 20, 35, 50), selected = 20),
@@ -25,7 +27,10 @@ inputPanel(
   sliderInput("bw_adjust", label = "Bandwidth adjustment:",
               min = 0.2, max = 2, value = 1, step = 0.2)
 )
+```
 
+### Output
+```{r eruptions-plot}
 renderPlot({
   hist(faithful$eruptions, probability = TRUE, breaks = as.numeric(input$n_breaks),
        xlab = "Duration (minutes)", main = "Geyser eruption duration")
@@ -35,24 +40,16 @@ renderPlot({
 })
 ```
 
-## Embedded Application
+## Some Results
 
-It's also possible to embed an entire Shiny application within an R Markdown document using the `shinyAppDir` function. This example embeds a Shiny application located in another directory:
+### Bullets
 
-```{r tabsets, echo=FALSE}
-shinyAppDir(
-  system.file("examples/06_tabsets", package = "shiny"),
-  options = list(
-    width = "100%", height = 550
-  )
-)
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+### R Output
+
+```{r cars}
+summary(cars)
 ```
-
-Note the use of the `height` parameter to determine how much vertical space the embedded application should occupy.
-
-You can also use the `shinyApp` function to define an application inline rather then in an external directory.
-
-In all of R code chunks above the `echo = FALSE` attribute is used. This is to prevent the R code within the chunk from rendering in the document alongside the Shiny components.
-
-
-

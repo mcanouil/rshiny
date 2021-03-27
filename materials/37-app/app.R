@@ -1,74 +1,43 @@
 library("shiny")
 library("dplyr")
-library("ggplot2")
-library("ggpubr")
 
-ui <- fluidPage(
-  ###<b>
-  fluidRow(column(12, actionButton("update", "Actualiser"), offset = 5)),
-  ###</b>
+ui <- fluidPage(theme = "bootstrap.min.css",
   fluidRow(
-    column(4, 
-     "Exemple 1",
-      textInput("species1", "Espèce : ", value = "setosa"),
-      textInput("col1x", "Axe x : ", value = "Petal.Length"),
-      textInput("col1y", "Axe y : ", value = "Sepal.Length")
-    ),
-    column(8, plotOutput("point1", height = "250px"))
+    column(4, offset = 5,
+      selectInput("dataset", label = h3("Datasets"), 
+        choices = ls("package:datasets"), 
+        selected = "iris"
+      )
+    )
   ),
   fluidRow(
-    column(4, 
-     "Exemple 2",
-      textInput("species2", "Espèce : ", value = "versicolor"),
-      textInput("col2x", "Axe x : ", value = "Petal.Length"),
-      textInput("col2y", "Axe y : ", value = "Sepal.Length")
+    column(6,
+      h3("Summary"), 
+      verbatimTextOutput("summary"),
+      h3("Structure"), 
+      verbatimTextOutput("structure")
     ),
-    column(8, plotOutput("point2", height = "250px"))
-  ),
-  fluidRow(
-    column(12, plotOutput("point12", height = "250px"))
+    column(6,
+      h3("Plot"), 
+      numericInput("x", label = h4("X-axis column index"), value = 1),
+      numericInput("y", label = h4("Y-axis column index"), value = 2),
+      plotOutput("plot")
+    )
   )
 )
 
-server <- function(input, output, session) {
-  ###<b>
-  iris_species1 <- eventReactive(input$update, { filter(iris, Species == input$species1) })
-  iris_species2 <- eventReactive(input$update, { filter(iris, Species == input$species2) })
-  ###</b>
-  
-  ###<b>
-  gg_species1 <- eventReactive(input$update, {
-  ###</b>
-    ggplot(
-      ###<b>
-      data = iris_species1(), 
-      mapping = aes(x = !!sym(input$col1x), y = !!sym(input$col1y))
-      # mapping = aes(x = .data[[input$col1x]], y = .data[[input$col1y]])
-      ###</b>
-    ) + geom_point()
-  ###<b>
+server <- function(input, output, session) { 
+  dataset <- reactive({ 
+    get(input$dataset, "package:datasets") 
   })
-  gg_species2 <- eventReactive(input$update, {
-  ###</b>
-    ggplot(
-      ###<b>
-      data = iris_species2(), 
-      mapping = aes(x = !!sym(input$col2x), y = !!sym(input$col2y))
-      # mapping = aes(x = .data[[input$col2x]], y = .data[[input$col2y]])
-      ###</b>
-    ) + geom_point()
-  ###<b>
+  output$summary <- renderPrint({
+    summary(dataset()) 
   })
-  ###</b>
-  
-  ###<b>
-  output$point1 <- renderPlot({ gg_species1() })
-  output$point2 <- renderPlot({ gg_species2() })
-  ###</b>
-  output$point12 <- renderPlot({
-    ###<b>
-    ggarrange(gg_species1(), gg_species2(), ncol = 2, labels = LETTERS)
-    ###</b>
+  output$structure <- renderPrint({ 
+    str(dataset()) 
+  })
+  output$plot <- renderPlot({ 
+    plot(dataset()[, input$x], dataset()[, input$y]) 
   })
 }
 

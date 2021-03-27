@@ -1,18 +1,12 @@
 library("shiny")
 
 ui <- fluidPage(
-  ###<b>
   dataTableOutput("dynamic")
-  ###</b>
 )
 
 server <- function(input, output, session) {
-  ###<b>
-  # Light version of DT::renderDataTable (server side)
-  output$dynamic <- renderDataTable(
-    expr = swiss, options = list(pageLength = 2)
-  )
-  ###</b>
+  # light DT::renderDataTable
+  output$dynamic <- renderDataTable(swiss, options = list(pageLength = 2))
 }
 
 shinyApp(ui, server)

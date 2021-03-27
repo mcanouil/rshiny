@@ -30,6 +30,7 @@ img {
 
 ```{r, include = FALSE}
 opts_chunk$set(eval = FALSE)
+
 ref <- file.mtime(here("Rmd/part-01.Rmd"))
 
 appshots_parameters <- tribble(
@@ -49,92 +50,118 @@ appshots_parameters <- tribble(
   "12",     540,       NA, ".container-fluid",        NA,
   "13",     720,       NA, ".container-fluid",        NA,
   "14",     900,       NA, ".container-fluid",        NA,
-  "15",     900,       NA, ".container-fluid",        NA,
-  "16",     900,       NA, ".container-fluid",        NA,
+  "15",     900,      675,                 NA,        NA,
+  "16",     900,      675,                 NA,        NA,
   "17",     900,       NA, ".container-fluid",        NA,
-  "18",     900,       NA, ".container-fluid",        NA,
+  "18",     900,      675,                 NA,        NA,
   "19",     900,       NA, ".container-fluid",        NA,
-  "20",     900,      480,                 NA,        NA,
-  "21",     900,      480,                 NA,        NA,
+  "20",     900,   506.25,                 NA,        NA,
+  "21",     900,   506.25,                 NA,        NA,
   "22",     900,      480,                 NA,        NA,
   "23",     900,      480,                 NA,        NA,
-  "24",     900,      480,                 NA,        NA,
-  "25",     900,      480,                 NA,        NA,
-  "26",     900,      480,                 NA,        NA,
-  "27",     480,      360,                 NA,        NA,
-  "29",     480,      360,                 NA,        NA,
-  "30",     480,      360,                 NA,        NA,
-  "31",     480,      360,                 NA,        NA,
-  "32",     900,       NA, ".container-fluid",        NA,
-  "33",     900,      480,                 NA,        NA,
-  "34",     480,      360,                 NA,        NA,
-  "35",     480,      360,                 NA,        NA,
-  "36",     900,      480,                 NA,        NA,
+  "24",     900,   506.25,                 NA,        NA,
+  "25",     900,   506.25,                 NA,        NA,
+  "26",     900,   506.25,                 NA,        NA,
+  "27",     480,      270,                 NA,        NA,
+  "28",     480,      270,                 NA,        NA,
+  "29",     480,      270,                 NA,        NA,
+  "30",     480,      270,                 NA,        NA,
+  "31",     900,       NA, ".container-fluid",        NA,
+  "32",     900,   506.25,                 NA,        NA,
+  "33",     480,      270,                 NA,        NA,
+  "34",     480,      270,                 NA,        NA,
+  "35",     900,   506.25,                 NA,        NA,
+  "36",     900,      420,                 NA,        NA,
   "37",     900,      480,                 NA,        NA,
-  "38",     900,      480,                 NA,        NA,
-  "39",     360,       NA, ".container-fluid",        NA,
-  "40",     480,       NA, ".container-fluid",        NA,
+  "38",     360,       NA, ".container-fluid",        NA,
+  "39",     480,       NA, ".container-fluid",        NA,
+  "40",     360,       NA, ".container-fluid",        NA,
   "41",     360,       NA, ".container-fluid",        NA,
-  "42",     360,       NA, ".container-fluid",        NA,
-  "43",     900,       NA, ".container-fluid",        NA,
-  "44",     360,       60,                 NA,        NA,
+  "42",     900,       NA, ".container-fluid",        NA,
+  "43",     360,       60,                 NA,        NA,
+  "44",     360,       NA, ".container-fluid",        NA,
   "45",     360,       NA, ".container-fluid",        NA,
   "46",     360,       NA, ".container-fluid",        NA,
   "47",     360,       NA, ".container-fluid",        NA,
-  "48",     360,       NA, ".container-fluid",        NA,
-  "49",     900,      504,                 NA, "viewport",
-  "50",     900,      504,                 NA, "viewport",
-  "51",     900,      504,                 NA, "viewport",
-  "52",     900,      504,                 NA, "viewport"
+  "48",     900,   506.25,                 NA, "viewport",
+  "49",     900,   506.25,                 NA, "viewport",
+  "50",     900,   506.25,                 NA, "viewport",
+  "51",     900,   506.25,                 NA, "viewport",
+  "52",     900,   506.25,                 NA, "viewport",
+  "53",     900,   506.25,                 NA, "viewport"
 )
 
 pwalk(
-  .l = appshots_parameters, 
+  .l = appshots_parameters[1:52, ], 
   .f = function(app_name, vwidth, vheight, selector, cliprect) {
-  if (
-    file.mtime(here("images", paste0(app_name, ".png"))) < 
-    max(ref, file.mtime(here("materials", sprintf("%s-app/app.R", app_name))))
-  ) {
-    if (!is.na(selector)) {
-      return(
-        appshot(
-          app = here("materials", sprintf("%s-app/app.R", app_name)), 
-          delay = 2,
-          vwidth = vwidth,
-          # vheight = vheight,
-          selector = selector,
-          # cliprect = cliprect,
-          envvars = c(display.mode = "normal"),
-          file = here("images", sprintf("%s.png", app_name))
+    if (
+      !file.exists(here("images", sprintf("%s.png", app_name))) | 
+        file.mtime(here("images", sprintf("%s.png", app_name))) < 
+        max(ref, file.mtime(here("materials", sprintf("%s-app/app.R", app_name))))
+    ) {
+      if (!is.na(selector)) {
+        return(
+          appshot(
+            app = here("materials", sprintf("%s-app/app.R", app_name)), 
+            delay = 2,
+            vwidth = vwidth,
+            # vheight = vheight,
+            selector = selector,
+            # cliprect = cliprect,
+            envvars = c(display.mode = "normal"),
+            file = here("images", sprintf("%s.png", app_name))
+          )
         )
+      }
+      if (!is.na(cliprect)) {
+        return(
+          appshot(
+            app = here("materials", sprintf("%s-app/app.R", app_name)), 
+            delay = 2,
+            vwidth = vwidth,
+            vheight = vheight,
+            # selector = selector,
+            cliprect = cliprect,
+            envvars = c(display.mode = "normal"),
+            file = here("images", sprintf("%s.png", app_name))
+          )
+        )
+      }
+      appshot(
+        app = here("materials", sprintf("%s-app/app.R", app_name)), 
+        delay = 2,
+        vwidth = vwidth,
+        vheight = vheight,
+        # selector = selector,
+        # cliprect = cliprect,
+        envvars = c(display.mode = "normal"),
+        file = here("images", sprintf("%s.png", app_name))
       )
     }
-    if (!is.na(cliprect)) {
-      return(
-        appshot(
-          app = here("materials", sprintf("%s-app/app.R", app_name)), 
-          delay = 2,
-          vwidth = vwidth,
-          vheight = vheight,
-          # selector = selector,
-          cliprect = cliprect,
-          envvars = c(display.mode = "normal"),
-          file = here("images", sprintf("%s.png", app_name))
-        )
-      )
-    }
-    appshot(
-      app = here("materials", sprintf("%s-app/app.R", app_name)), 
-      delay = 2,
-      vwidth = vwidth,
-      vheight = vheight,
-      # selector = selector,
-      # cliprect = cliprect,
-      envvars = c(display.mode = "normal"),
-      file = here("images", sprintf("%s.png", app_name))
-    )
   }
-})
+)
+
+pwalk(
+  .l = appshots_parameters[53:54, ],
+  .f = function(app_name, vwidth, vheight, selector, cliprect) {
+    if (
+      !file.exists(here("images", sprintf("%s.png", app_name))) |
+        file.mtime(here("images", sprintf("%s.png", app_name))) <
+        max(ref, file.mtime(here("materials", sprintf("%s-app/app.Rmd", app_name))))
+    ) {
+      rmdshot(
+        doc = here("materials", sprintf("%s-app/app.Rmd", app_name)),
+        delay = 2,
+        vwidth = vwidth,
+        vheight = vheight,
+        # selector = selector,
+        cliprect = cliprect,
+        envvars = c(display.mode = "normal"),
+        file = here("images", sprintf("%s.png", app_name))
+      )
+    }
+  }
+)
 ```
 
 # Diapositives et matériel<br>[<i class="fab fa-github" style="font-size: 250px;"></i><br>mcanouil/rshiny](https://github.com/mcanouil/rshiny/)

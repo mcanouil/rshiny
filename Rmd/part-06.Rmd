@@ -1,3 +1,4 @@
+
 ---
 class: part-slide
 
@@ -7,9 +8,9 @@ class: part-slide
 
 #  La mise en page "sidebar"
 
-```{r, echo = FALSE, eval = TRUE, out.width = "100%"}
-include_graphics(here("images", "sidebar.png"), dpi = params$dpi)
-```
+.center[
+<img src = "images/sidebar.png" width = "75%" />
+]
 
 ---
 
@@ -26,10 +27,9 @@ App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # La mise en page "sidebar" en image
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "19"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/19.png)
+]
 
 ???
 
@@ -39,9 +39,9 @@ App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # La mise en page "multirow"
 
-```{r, echo = FALSE, eval = TRUE, out.width = "100%"}
-include_graphics(here("images", "multirow.png"), dpi = params$dpi)
-```
+.center[
+<img src = "images/multirow.png" width = "65%" />
+]
 
 ---
 
@@ -58,10 +58,9 @@ App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # La mise en page "multirow" en image
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "20"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+<img src = "images/20.png" width = "65%" />
+]
 
 ???
 
@@ -82,10 +81,9 @@ App [`"materials/21-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # La mise en page "tabset" en image
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "21"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/21.png)
+]
 
 ???
 
@@ -106,10 +104,9 @@ App [`"materials/22-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # La mise en page "dashboard" en image
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "22"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/22.png)
+]
 
 ???
 
@@ -130,10 +127,9 @@ App [`"materials/23-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # La mise en page "dashboard" en image
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "23"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/23.png)
+]
 
 ???
 
@@ -147,13 +143,19 @@ App [`"materials/23-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * Reproduisez les interfaces suivantes.
 
-.center[
+.pull-left[
 
-```{r, echo = FALSE, eval = TRUE, out.width = "49%", out.extra = 'class="shadow" style="display: inline;"'}
-for (app_name in 24:25) {
-  include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-}
-```
+.center[
+![](images/24.png)
+]
+
+]
+
+.pull-right[
+
+.center[
+![](images/25.png)
+]
 
 ]
 
@@ -169,10 +171,9 @@ App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * Reproduisez l'interface suivante.
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "24"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/24.png)
+]
 
 ???
 
@@ -197,10 +198,9 @@ App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * Reproduisez l'interface suivante.
 
-```{r, echo = FALSE, eval = TRUE}
-app_name <- "25"
-include_graphics(here("images", sprintf("%s.png", app_name)), dpi = params$dpi)
-```
+.center[
+![](images/25.png)
+]
 
 ???
 
