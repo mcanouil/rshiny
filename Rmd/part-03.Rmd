@@ -136,11 +136,6 @@ runApp("materials/00-app")
 ![](images/00.png)
 ]
 
-
-???
-
-App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/00-app/app.R)
-
 * URL par défaut (hôte)
 
 * Port défini au hasard
@@ -152,6 +147,11 @@ App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/main/material
     * `Ctrl`+ `c`
 
     * Fermer la fenêtre de l'application
+
+
+???
+
+App [`"materials/00-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/00-app/app.R)
 
 ---
 

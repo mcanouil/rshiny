@@ -3,7 +3,8 @@ library("dplyr")
 
 ui <- fluidPage(
   column(4,
-    sliderInput("Sepal.Length", "Sepal.Length", 
+    sliderInput(
+      "Sepal.Length", "Sepal.Length", 
       min = min(iris$Sepal.Length), max = max(iris$Sepal.Length), 
       value = range(iris$Sepal.Length)
     ),

@@ -10,6 +10,7 @@ server <- function(input, output, session) {
   observeEvent(input$min, { 
     updateNumericInput(session, "n", min = input$min) 
   })  
+  
   observeEvent(input$max, { 
     updateNumericInput(session, "n", max = input$max) 
   })

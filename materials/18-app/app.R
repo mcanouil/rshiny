@@ -11,6 +11,7 @@ server <- function(input, output, session) {
   output$code <- renderText({ 
     code_for_plot
   })
+  
   output$plot <- renderPlot({ 
     eval(parse(text = code_for_plot))
   })

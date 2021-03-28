@@ -67,7 +67,7 @@ App [`"materials/11-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # `output` de type texte
 
-```{r, code = readLines("materials/12-app/app.R", encoding = "UTF-8")[c(3:15)]}
+```{r, code = readLines("materials/12-app/app.R", encoding = "UTF-8")}
 ```
 
 .center[
@@ -154,38 +154,30 @@ App [`"materials/16-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Mise en pratique
 
-* Créez un formulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
+.panelset[
+  
+.panel[.panel-name[Exercice]
+
+1. Créez un formulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
   (*Formulaire généré précedemment*)
 
-* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
+2. Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
 
-* Créez une application affichant un graphique et son code.
+3. Créez une application affichant un graphique et son code.
 
-???
+]
 
-App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/09-app/app.R)
-
-App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/17-app/app.R)
-
-App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/18-app/app.R)
-
----
-
-
-# Mise en pratique
+.panel[.panel-name[Question 1]
 
 * Créez un formulaire : nom, prénom, age, sexe, loisirs (choix multiples).  
   (*Formulaire généré précedemment*)
 
-```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[3:14]}
+```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[3:17]}
 ```
 
-???
+]
 
-App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/09-app/app.R)
-
----
-# Mise en pratique 
+.panel[.panel-name[Question 2 : Code]
 
 * Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
 
@@ -203,35 +195,27 @@ App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ]
 
-???
-
-App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/17-app/app.R)
-
----
-
-# Mise en pratique 
-
-* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
-  
-.center[
-![](images/17.png)
 ]
 
-???
+.panel[.panel-name[Question 2 : Application]
 
-App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/17-app/app.R)
+* Ajoutez une phrase de bienvenue aléatoire depuis le `server`.
 
----
+.center[
+<img src = "images/17.png" width = "65%" />
+]
 
-# Mise en pratique 
+]
+
+.panel[.panel-name[Question 3]
 
 * Créez une application affichant un graphique et son code.
 
 .pull-left[
-
+.code60[
 ```{r, code = readLines("materials/18-app/app.R", encoding = "UTF-8")}
 ```
-
+]
 ]
 
 .pull-right[
@@ -240,7 +224,14 @@ App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 ]
 ]
 
+]
+
+]
+
 ???
 
-App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/18-app/app.R)
+App [`"materials/09-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/09-app/app.R)
 
+App [`"materials/17-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/17-app/app.R)
+
+App [`"materials/18-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/18-app/app.R)

@@ -8,7 +8,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  ###<b>
   output$firstname <- renderUI({
     req(input$lastname)
     textInput("firstname", "Prénom :")
@@ -20,12 +19,13 @@ server <- function(input, output, session) {
   output$age <- renderUI({
     req(input$type, input$firstname)
     if (input$type == "slider") {
-      sliderInput("dynamic", "Age :", value = 0, min = 0, max = 99)
+      sliderInput("dynamic", "Age :", 
+        value = 0, min = 0, max = 99
+      )
     } else {
       numericInput("age", "Age :", value = 0)  
     }
   })
-  ###</b>
 }
 
 shinyApp(ui, server)

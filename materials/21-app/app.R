@@ -1,6 +1,5 @@
 library("shiny")
 
-###<b>
 ui <- navbarPage("App Title",
   tabPanel("Figures", 
     tabsetPanel(
@@ -10,7 +9,6 @@ ui <- navbarPage("App Title",
   ),
   tabPanel("Table", tableOutput("desc"))
 )
-###</b>
 
 server <- function(input, output) {
   output$plot <- renderPlot(plot(1:10))

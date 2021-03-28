@@ -28,33 +28,23 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  ###<b>
   iris1 <- reactive({ filter(iris, Species == input$species1) })
   iris2 <- reactive({ filter(iris, Species == input$species2) })
-  ###</b>
   
   output$point1 <- renderPlot({
-    ###<b>
     ggplot(iris1(), aes(x = .data[[input$col1x]], y = .data[[input$col1y]])) + 
-    ###</b>
       geom_point()
   })
   
   output$point2 <- renderPlot({
-    ###<b>
     ggplot(iris2(), aes(x = .data[[input$col2x]], y = .data[[input$col2y]])) + 
-    ###</b>
       geom_point()
   })
   
   output$point12 <- renderPlot({
-    ###<b>
     p1 <- ggplot(iris1(), aes(x = .data[[input$col1x]], y = .data[[input$col1y]])) + 
-    ###</b>
       geom_point()
-    ###<b>
     p2 <- ggplot(iris2(), aes(x = .data[[input$col2x]], y = .data[[input$col2y]])) + 
-    ###</b>
       geom_point()
     ggarrange(p1, p2, ncol = 2, labels = LETTERS)
   })

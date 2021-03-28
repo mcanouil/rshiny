@@ -8,26 +8,18 @@ class: part-slide
 
 # Ressources
 
-.pull-left[
+* shiny (https://shiny.rstudio.com/)
 
-* [shiny](https://shiny.rstudio.com/)
+* "maining Shiny" (https://maining-shiny.org/)
 
-* ["maining Shiny" (en cours d'écriture)](https://maining-shiny.org/)
+* shinytest (https://rstudio.github.io/shinytest/)
 
-* [shinytest](https://rstudio.github.io/shinytest/)
+* DT (https://rstudio.github.io/DT/)
 
-* [DT](https://rstudio.github.io/DT/)
+* Blog Rstudio (https://blog.rstudio.com/categories/shiny)
 
-]
+* Groupe des Utilisateurs de R (http://forums.cirad.fr/logiciel-R/)
 
-.pull-right[
+* Stack Overflow (https://stackoverflow.com/questions/tagged/r)
 
-* [Blog Rstudio](https://blog.rstudio.com/categories/shiny)
-
-* [Groupe des Utilisateurs de R](http://forums.cirad.fr/logiciel-R/)
-
-* [Stack Overflow](https://stackoverflow.com/questions/tagged/r)
-
-* [R Studio Community](https://community.rstudio.com/)
-
-]
+* R Studio Community (https://community.rstudio.com/)

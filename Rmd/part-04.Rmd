@@ -105,7 +105,7 @@ App [`"materials/07-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # `input` d'action
 
-```{r, code = readLines("materials/08-app/app.R", encoding = "UTF-8")[3:7]}
+```{r, code = readLines("materials/08-app/app.R", encoding = "UTF-8")[3:10]}
 ```
 
 .center[
@@ -130,7 +130,7 @@ App [`"materials/08-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * Créez un formulaire : nom, prénom, age, sexe, loisirs (choix multiples).
 
-```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[3:14]}
+```{r, code = readLines("materials/09-app/app.R", encoding = "UTF-8")[3:17]}
 ```
 
 ]

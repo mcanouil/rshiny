@@ -1,15 +1,12 @@
 library("shiny")
 library("shinydashboard")
 
-###<b>
 ui <- dashboardPage(
   dashboardHeader(title = "Shiny App"),
   dashboardSidebar(
-###</b>
     textInput("title", "Titre :", value = "Titre"),
     sliderInput("point", "Point :", min = 0, max = 20, value = 5),
     sliderInput("mean", "Moyenne :", min = 0, max = 2, value = 1)
-###<b>
   ),
   dashboardBody(
     fluidRow(
@@ -18,7 +15,6 @@ ui <- dashboardPage(
     )
   )
 )
-###</b>
 
 server <- function(input, output) {
   output$plot <- renderPlot(plot(1:10))

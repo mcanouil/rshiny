@@ -9,9 +9,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  ###<b>
   message("Le texte saisi est : ", input$text)
-  ###</b>
   output$text <- renderText({ input$text })
 }
 
