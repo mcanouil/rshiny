@@ -29,6 +29,7 @@ if (!file.exists(thumb) | file.mtime(thumb) < file.mtime(index_html)) {
   }
   web_browser$Page$navigate(index_html, wait_ = FALSE)
   page_browser <- web_browser$Page$loadEventFired()
+  Sys.sleep(1)
   web_browser$screenshot(
     filename = png,
     selector = "div.remark-slide-scaler",
