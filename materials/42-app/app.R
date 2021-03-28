@@ -45,7 +45,6 @@ server <- function(input, output, session) {
   output$summary <- renderPrint({ summary(dataset()) })
   output$structure <- renderPrint({ str(dataset()) })
   output$plot <- renderPlot({
-    ###<b>
     validate(need(
       expr = inherits(dataset(), "data.frame"), 
       message = "Not a data.frame!"
@@ -55,7 +54,6 @@ server <- function(input, output, session) {
       need_numeric(dataset(), input$x),
       need_numeric(dataset(), input$y)
     )
-    ###</b>
     plot(dataset()[, input$x], dataset()[, input$y]) 
   })
 }

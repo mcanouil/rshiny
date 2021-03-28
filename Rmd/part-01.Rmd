@@ -2,9 +2,6 @@ class: part-slide
 
 ```{css, echo = FALSE}
 .glow {
-  /*font-size: 80px;*/
-  /*color: #fff;*/
-  /*text-align: center;*/
   -webkit-animation: glow 2s ease-in-out infinite alternate;
   -moz-animation: glow 2s ease-in-out infinite alternate;
   animation: glow 2s ease-in-out infinite alternate;
@@ -57,11 +54,11 @@ appshots_parameters <- tribble(
   "19",     900,       NA, ".container-fluid",        NA,
   "20",     900,   506.25,                 NA,        NA,
   "21",     900,   506.25,                 NA,        NA,
-  "22",     900,      370,                 NA,        NA,
-  "23",     900,      370,                 NA,        NA,
+  "22",     900,   506.25,                 NA,        NA,
+  "23",     900,   506.25,                 NA,        NA,
   "24",     900,   506.25,                 NA,        NA,
   "25",     900,   506.25,                 NA,        NA,
-  "26",     900,   506.25,                 NA,        NA,
+  "26",     480,      220,                 NA,        NA,
   "27",     480,      270,                 NA,        NA,
   "28",     480,      270,                 NA,        NA,
   "29",     480,      270,                 NA,        NA,
@@ -71,7 +68,7 @@ appshots_parameters <- tribble(
   "33",     900,   506.25,                 NA,        NA,
   "34",     900,   506.25,                 NA,        NA,
   "35",     900,   506.25,                 NA,        NA,
-  "36",     900,      420,                 NA,        NA,
+  "36",     480,      270,                 NA, "viewport",
   "37",     900,      480,                 NA,        NA,
   "38",     360,       NA, ".container-fluid",        NA,
   "39",     480,       NA, ".container-fluid",        NA,

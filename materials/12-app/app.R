@@ -9,6 +9,7 @@ server <- function(input, output, session) {
   output$text <- renderText({ 
     summary(rnorm(10))
   })
+  
   output$code <- renderPrint({
     summary(rnorm(10))
   })

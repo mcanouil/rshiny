@@ -8,27 +8,30 @@ class: part-slide
 
 #  La mise en page "sidebar"
 
+.panelset[
+  
+.panel[.panel-name[Structure]
+
 .center[
-<img src = "images/sidebar.png" width = "75%" />
+<img src = "images/sidebar.png" width = "65%" />
 ]
 
----
+]
 
-# La mise en page "sidebar" en code
+.panel[.panel-name[Application]
 
-```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")[c(3:19)]}
+.pull-left.code60[
+```{r, code = readLines("materials/19-app/app.R", encoding = "UTF-8")}
 ```
-
-???
-
-App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/19-app/app.R)
-
----
-
-# La mise en page "sidebar" en image
-
+]
+.pull-right[
 .center[
 ![](images/19.png)
+]
+]
+
+]
+
 ]
 
 ???
@@ -39,16 +42,27 @@ App [`"materials/19-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # La mise en page "multirow"
 
+.panelset[
+  
+.panel[.panel-name[Structure]
 .center[
-<img src = "images/multirow.png" width = "65%" />
+<img src = "images/multirow.png" width = "55%" />
+]
 ]
 
----
-
-# La mise en page "multirow" en code
-
-```{r, code = readLines("materials/20-app/app.R", encoding = "UTF-8")[c(3:22)]}
+.panel[.panel-name[Application]
+.pull-left.code60[
+```{r, code = readLines("materials/20-app/app.R", encoding = "UTF-8")}
 ```
+]
+.pull-right[
+.center[
+![](images/20.png)
+]
+]
+]
+
+]
 
 ???
 
@@ -56,34 +70,17 @@ App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ---
 
-# La mise en page "multirow" en image
+# La mise en page "tabset"
 
-.center[
-<img src = "images/20.png" width = "55%" />
-]
-
-???
-
-App [`"materials/20-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/20-app/app.R)
-
----
-
-# La mise en page "tabset" en code
-
-```{r, code = readLines("materials/21-app/app.R", encoding = "UTF-8")[c(3:13)]}
+.pull-left.code60[
+```{r, code = readLines("materials/21-app/app.R", encoding = "UTF-8")}
 ```
-
-???
-
-App [`"materials/21-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/21-app/app.R)
-
----
-
-# La mise en page "tabset" en image
-
+]
+.pull-right[
 .center[
 ![](images/21.png)
 ]
+]
 
 ???
 
@@ -91,130 +88,104 @@ App [`"materials/21-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 ---
 
-# La mise en page "dashboard" en code
+# La mise en page "dashboard"
 
-```{r, code = readLines("materials/22-app/app.R", encoding = "UTF-8")[c(2:10)]}
+.panelset[
+  
+.panel[.panel-name[Application vierge]
+.pull-left[
+```{r, code = readLines("materials/22-app/app.R", encoding = "UTF-8")}
 ```
-
-???
-
-App [`"materials/22-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/22-app/app.R)
-
----
-
-# La mise en page "dashboard" en image
-
+]
+.pull-right[
 .center[
 ![](images/22.png)
 ]
+]
+]
+
+.panel[.panel-name[Application]
+.pull-left.code60[
+```{r, code = readLines("materials/23-app/app.R", encoding = "UTF-8")}
+```
+]
+.pull-right[
+.center[
+![](images/23.png)
+]
+]
+]
+
+]
 
 ???
 
 App [`"materials/22-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/22-app/app.R)
 
----
-
-# La mise en page "dashboard" en code
-
-```{r, code = readLines("materials/23-app/app.R", encoding = "UTF-8")[c(4:21)]}
-```
-
-???
-
 App [`"materials/23-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/23-app/app.R)
 
 ---
 
-# La mise en page "dashboard" en image
+# Mise en pratique
 
-.center[
-![](images/23.png)
-]
+.panelset[
+  
+.panel[.panel-name[Question 1]
 
-???
+1. Essayez la structure grille avec `fluidPage()`, `fluidRow()`, `fixedRow()` et `column()`.
 
-App [`"materials/23-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/23-app/app.R)
-
----
-
-# Mise en pratique 
-
-* Essayez la structure grille avec `fluidPage()`, `fluidRow()`, `fixedRow()` et `column()`.
-
-* Reproduisez les interfaces suivantes.
+2. Reproduisez les interfaces suivantes.
 
 .pull-left[
-
 .center[
 ![](images/24.png)
 ]
-
 ]
 
 .pull-right[
-
 .center[
 ![](images/25.png)
 ]
+]
 
 ]
 
-???
-
-App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/24-app/app.R)
-
-App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/25-app/app.R)
-
----
-
-# Mise en pratique 
+.panel[.panel-name[Question 2a]
 
 * Reproduisez l'interface suivante.
 
+.pull-left[
+```{r, code = readLines("materials/24-app/app.R", encoding = "UTF-8")[c(5:20)]}
+```
+]
+.pull-right[
 .center[
 ![](images/24.png)
 ]
+]
 
-???
+]
 
-App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/24-app/app.R)
-
----
-
-# Mise en pratique 
+.panel[.panel-name[Question 2b]
 
 * Reproduisez l'interface suivante.
 
-```{r, code = readLines("materials/24-app/app.R", encoding = "UTF-8")[c(5:20)]}
+.pull-left[
+```{r, code = readLines("materials/25-app/app.R", encoding = "UTF-8")[c(5:15)]}
 ```
-
-???
-
-App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/24-app/app.R)
-
----
-
-# Mise en pratique 
-
-* Reproduisez l'interface suivante.
-
+]
+.pull-right[
 .center[
 ![](images/25.png)
+]
+]
+
+]
+
 ]
 
 ???
 
-App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/25-app/app.R)
-
----
-
-# Mise en pratique 
-
-* Reproduisez l'interface suivante.
-
-```{r, code = readLines("materials/25-app/app.R", encoding = "UTF-8")[c(5:15)]}
-```
-
-???
+App [`"materials/24-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/24-app/app.R)
 
 App [`"materials/25-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/25-app/app.R)

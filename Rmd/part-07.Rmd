@@ -10,11 +10,9 @@ class: part-slide
 
 ```{r}
 server <- function(
-  ###<b>
   input, 
   output, 
   session
-  ###</b>
 ) {
   ...
 }
@@ -31,22 +29,20 @@ server <- function(
 
 * De `ui` au `server` &rarr; `input`.
 
-```{r, code = readLines("materials/26-app/app.R", encoding = "UTF-8")[c(3:11)]}
+.pull-left[
+
+```{r, code = readLines("materials/26-app/app.R", encoding = "UTF-8")[c(3:10)]}
 ```
 
-```{r, code = readLines("materials/26-app/app.R", encoding = "UTF-8")[c(13:19)]}
+```{r, code = readLines("materials/26-app/app.R", encoding = "UTF-8")[c(12:16)]}
 ```
 
-???
+]
 
-App [`"materials/26-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/26-app/app.R)
-
----
-
-# La fonction `server`
-
+.pull-right[
 .center[
 ![](images/26.png)
+]
 ]
 
 ???
@@ -59,16 +55,22 @@ App [`"materials/26-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * `input`, une liste de paramètres d'entrées __non-modifiable__.
 
+.pull-left[
+
 ```{r, code = readLines("materials/27-app/app.R", encoding = "UTF-8")}
 ```
+
+]
+
+.pull-right[
+.center[
+![](images/27.png)
+]
+]
 
 ???
 
 App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/27-app/app.R)
-
-.center[
-![](images/27.png)
-]
 
 ---
 
@@ -76,16 +78,22 @@ App [`"materials/27-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * `input`, une liste de paramètres d'entrées "__reactive__".
 
-```{r, code = readLines("materials/28-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
+.pull-left[
+
+```{r, code = readLines("materials/28-app/app.R", encoding = "UTF-8")}
 ```
+
+]
+
+.pull-right[
+.center[
+![](images/28.png)
+]
+]
 
 ???
 
 App [`"materials/28-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/28-app/app.R)
-
-.center[
-![](images/28.png)
-]
 
 ---
 
@@ -93,16 +101,22 @@ App [`"materials/28-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * `output`, une liste __non-modifiable__ d'objets à afficher dans `ui`.
 
+.pull-left[
+
 ```{r, code = readLines("materials/29-app/app.R", encoding = "UTF-8")}
 ```
+
+]
+
+.pull-right[
+.center[
+![](images/29.png)
+]
+]
 
 ???
 
 App [`"materials/29-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/29-app/app.R)
-
-.center[
-![](images/29.png)
-]
 
 ---
 
@@ -110,16 +124,22 @@ App [`"materials/29-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 * `output`, une liste "__reactive__" d'objets à afficher dans `ui`.
 
-```{r, code = readLines("materials/30-app/app.R", encoding = "UTF-8")[-c(2, 10, 17)]}
+.pull-left[
+
+```{r, code = readLines("materials/30-app/app.R", encoding = "UTF-8")}
 ```
+
+]
+
+.pull-right[
+.center[
+![](images/30.png)
+]
+]
 
 ???
 
 App [`"materials/30-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/30-app/app.R)
-
-.center[
-![](images/30.png)
-]
 
 ---
 
@@ -137,16 +157,22 @@ Les sorties (`output`) sont mises à jour à la volée par Shiny lorsque les ent
 
 # La notion de réactivité `reactive`
 
-```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")[-c(2, 8, 19)]}
+.pull-left[
+
+```{r, code = readLines("materials/31-app/app.R", encoding = "UTF-8")}
 ```
+
+]
+
+.pull-right[
+.center[
+![](images/31.png)
+]
+]
 
 ???
 
 App [`"materials/31-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/31-app/app.R)
-
-.center[
-![](images/31.png)
-]
 
 ---
 
@@ -170,71 +196,52 @@ Pourquoi utiliser des expressions `reactive` ?
     
 ---
 
-# `reactive()` : Exemple 1
+# `reactive()` : Exemple
 
+.panelset[
+
+.panel[.panel-name[Interface]
+
+.pull-left[
+.code60[
 ```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[6:28]}
 ```
-
-???
-
-App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/32-app/app.R)
-
----
-
-# `reactive()` : Exemple 1
-
+]
+]
+.pull-right[
 .center[
-<img src = "images/32.png" width = "55%" />
+![](images/32.png)
+]
 ]
 
-???
+]
 
-App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/32-app/app.R)
-
----
-
-# `reactive()` : Exemple 1
-
-.code90[
-
+.panel[.panel-name[Serveur 1]
+.code60[
 ```{r, code = readLines("materials/32-app/app.R", encoding = "UTF-8")[30:54]}
 ```
+]
+]
+
+.panel[.panel-name[Serveur 2]
+.code60[
+```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")[30:51]}
+```
+]
+]
+
+.panel[.panel-name[Serveur 3]
+.code60[
+```{r, code = readLines("materials/34-app/app.R", encoding = "UTF-8")[30:52]}
+```
+]
+]
 
 ]
 
 ???
 
 App [`"materials/32-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/32-app/app.R)
-
----
-
-# `reactive()` : Exemple 2
-
-```{r, code = readLines("materials/33-app/app.R", encoding = "UTF-8")[30:61]}
-```
-
-???
-
-App [`"materials/33-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/33-app/app.R)
-
-.center[
-![](images/33.png)
-]
-
----
-
-# `reactive()` : Exemple 3
-
-```{r, code = readLines("materials/34-app/app.R", encoding = "UTF-8")[30:67]}
-```
-
-???
-
-App [`"materials/34-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/34-app/app.R)
-
-.center[
-![](images/34.png)
-]
 
 ---
 
@@ -256,43 +263,17 @@ observeEvent(eventExpr = ..., handlerExpr = ...)
 
 ---
 
-# Exemple : `reactive()`
+# Exemple
 
-```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[-c(16, 18, 21, 23)]}
+.pull-left.code60[
+```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")}
 ```
+]
 
-???
-
-App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/35-app/app.R)
-
----
-
-# Exemple : `eventReactive()`
-
-```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[-c(11, 13, 21, 23)]}
-```
-
-???
-
-App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/35-app/app.R)
-
----
-
-# Exemple : `observeEvent()`
-
-```{r, code = readLines("materials/35-app/app.R", encoding = "UTF-8")[-c(11, 13, 16, 18)]}
-```
-
-???
-
-App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/35-app/app.R)
-
----
-
-# Exemple : App
-
+.pull-right[
 .center[
 ![](images/35.png)
+]
 ]
 
 ???
@@ -303,30 +284,30 @@ App [`"materials/35-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Exemple : "App 35 v2"
 
-```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[6:31]}
+.panelset[
+
+.panel[.panel-name[Interface]
+.code60[
+```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[6:29]}
 ```
+]
+]
 
-???
-
-App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/36-app/app.R)
-
----
-
-# Exemple : "App 35 v2"
-
-```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[33:73]}
+.panel[.panel-name[Serveur]
+.code60[
+```{r, code = readLines("materials/36-app/app.R", encoding = "UTF-8")[31:55]}
 ```
+]
+]
 
-???
-
-App [`"materials/36-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/36-app/app.R)
-
----
-
-# Exemple : "App 35 v2"
+.panel[.panel-name[Application]
 
 .center[
 ![](images/36.png)
+]
+
+]
+
 ]
 
 ???
@@ -357,30 +338,32 @@ App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/material
 
 # Mise en pratique
 
+.panelset[
+  
+.panel[.panel-name[Interface]
+.code60[
+
 ```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[4:27]}
 ```
 
-???
+]
+]
 
-App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)
-
----
-
-#  Mise en pratique
+.panel[.panel-name[Serveur]
 
 ```{r, code = readLines("materials/37-app/app.R", encoding = "UTF-8")[29:42]}
 ```
 
-???
+]
 
-App [`"materials/37-app"`](https://github.com/mcanouil/rshiny/tree/main/materials/37-app/app.R)
-
----
-
-# Mise en pratique
+.panel[.panel-name[Application]
 
 .center[
-<img src = "images/37.png" width = "65%" />
+<img src = "images/37.png" width = "62%" />
+]
+
+]
+
 ]
 
 ???

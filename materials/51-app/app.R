@@ -55,12 +55,21 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   datasets <- reactive({get(input$dataset, "package:datasets")})
   output$iris <- renderTable({
-    validate(need(inherits(datasets(), "data.frame"), 'Not a "data.frame"'))
-    vals <- map(colnames(datasets()), ~ filter_var(datasets()[[.x]], input[[.x]]))
+    validate(need(
+      expr = inherits(datasets(), "data.frame"), 
+      message = 'Not a "data.frame"'
+    ))
+    vals <- map(
+      .x = colnames(datasets()), 
+      .f = ~ filter_var(datasets()[[.x]], input[[.x]])
+    )
     datasets()[reduce(vals, `&`), ]
   })
   output$ui <- renderUI({
-    validate(need(inherits(datasets(), "data.frame"), 'Not a "data.frame"'))
+    validate(need(
+      expr = inherits(datasets(), "data.frame"), 
+      message = 'Not a "data.frame"'
+    ))
     map(colnames(datasets()), ~ make_ui(datasets(), .x))
   })
 }

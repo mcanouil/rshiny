@@ -10,9 +10,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   output$text <- renderText({ input$text })
-  ###<b>
   message("Le texte saisi est : ", output$text)
-  ###</b>
 }
 
 shinyApp(ui, server)

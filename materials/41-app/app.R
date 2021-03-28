@@ -1,12 +1,11 @@
 library("shiny")
 
 ui <- fluidPage(
-  plotOutput("plot", height = "300px")
+  plotOutput("plot", height = "400px")
 )
 
 server <- function(input, output, session) {
   output$plot <- renderPlot({
-    ###<b>
     withProgress(
       message = "importation des données ...", {
         for (i in seq_len(10)) {
@@ -15,7 +14,6 @@ server <- function(input, output, session) {
         }
       }
     )
-    ###</b>
     plot(1:10)
   })
 }
