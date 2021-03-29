@@ -7,10 +7,10 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   output$plot <- renderPlot({
     withProgress(
-      message = "importation des données ...", {
+      message = "Importation des données ...", {
         for (i in seq_len(10)) {
-          Sys.sleep(0.2)
-          setProgress(i / 10, message = NULL)
+          Sys.sleep(0.5)
+          setProgress(i / 10)
         }
       }
     )
