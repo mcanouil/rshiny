@@ -72,8 +72,8 @@ appshots_parameters <- tribble(
   "37",     900,      480,                 NA,        NA,
   "38",     360,       NA, ".container-fluid",        NA,
   "39",     480,       NA, ".container-fluid",        NA,
-  "40",     360,       NA, ".container-fluid",        NA,
-  "41",     360,       NA, ".container-fluid",        NA,
+  "40",     360,      360,                 NA,        NA,
+  "41",     360,      360,                 NA,        NA,
   "42",     900,       NA, ".container-fluid",        NA,
   "43",     360,       60,                 NA,        NA,
   "44",     360,       NA, ".container-fluid",        NA,
@@ -100,11 +100,10 @@ pwalk(
         return(
           appshot(
             app = here("materials", sprintf("%s-app/app.R", app_name)), 
-            delay = 2,
+            delay = 3,
             vwidth = vwidth,
             # vheight = vheight,
             selector = selector,
-            # cliprect = cliprect,
             envvars = c(display.mode = "normal"),
             file = here("images", sprintf("%s.png", app_name))
           )
@@ -114,10 +113,9 @@ pwalk(
         return(
           appshot(
             app = here("materials", sprintf("%s-app/app.R", app_name)), 
-            delay = 2,
+            delay = 3,
             vwidth = vwidth,
             vheight = vheight,
-            # selector = selector,
             cliprect = cliprect,
             envvars = c(display.mode = "normal"),
             file = here("images", sprintf("%s.png", app_name))
@@ -126,11 +124,9 @@ pwalk(
       }
       appshot(
         app = here("materials", sprintf("%s-app/app.R", app_name)), 
-        delay = 2,
+        delay = 3,
         vwidth = vwidth,
         vheight = vheight,
-        # selector = selector,
-        # cliprect = cliprect,
         envvars = c(display.mode = "normal"),
         file = here("images", sprintf("%s.png", app_name))
       )
@@ -148,7 +144,7 @@ pwalk(
     ) {
       rmdshot(
         doc = here("materials", sprintf("%s-app/app.Rmd", app_name)),
-        delay = 2,
+        delay = 3,
         vwidth = vwidth,
         vheight = vheight,
         # selector = selector,

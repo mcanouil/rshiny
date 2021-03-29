@@ -8,10 +8,10 @@ server <- function(input, output, session) {
   output$plot <- renderPlot({
     id <- showNotification(
       ui = "Importation des données ...", 
-      duration = 10, closeButton = FALSE
+      duration = NULL, closeButton = FALSE
     )
     on.exit(removeNotification(id), add = TRUE)
-    Sys.sleep(5)
+    Sys.sleep(10)
     plot(1:10)
   })
 }
