@@ -1,0 +1,160 @@
+class: part-slide
+
+```{css, echo = FALSE}
+.glow {
+  -webkit-animation: glow 2s ease-in-out infinite alternate;
+  -moz-animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    /*text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #1b81e5, 0 0 40px #1b81e5, 0 0 50px #1b81e5, 0 0 60px #1b81e5, 0 0 70px #1b81e5;*/
+  }
+  to {
+    text-shadow: 0 0 20px #a9a9a9, 0 0 30px #a9a9a9, 0 0 40px #a9a9a9, 0 0 50px #a9a9a9;
+  }
+}
+
+img {
+  box-shadow: 3px 5px 3px 1px #33333380;
+}
+
+.part-slide img {
+  box-shadow: none;
+}
+```
+
+```{r, include = FALSE}
+opts_chunk$set(eval = FALSE)
+
+ref <- file.mtime(here("content/part-01.Rmd"))
+
+appshots_parameters <- tribble(
+  ~app, ~vwidth, ~vheight,          ~selector, ~cliprect,
+  "00",     900,       NA, ".container-fluid",        NA,
+  "01",     900,       NA, ".container-fluid",        NA,
+  "02",     900,       NA, ".container-fluid",        NA,
+  "03",     360,       NA, ".container-fluid",        NA,
+  "04",     360,       NA, ".container-fluid",        NA,
+  "05",     360,       NA, ".container-fluid",        NA,
+  "06",     360,       NA, ".container-fluid",        NA,
+  "07",     360,       NA, ".container-fluid",        NA,
+  "08",     360,       NA, ".container-fluid",        NA,
+  "09",     360,       NA, ".container-fluid",        NA,
+  "10",     492,       NA, ".container-fluid",        NA,
+  "11",     420,       NA, ".container-fluid",        NA,
+  "12",     540,       NA, ".container-fluid",        NA,
+  "13",     720,       NA, ".container-fluid",        NA,
+  "14",     900,       NA, ".container-fluid",        NA,
+  "15",     900,       NA, ".container-fluid",        NA,
+  "16",     900,       NA, ".container-fluid",        NA,
+  "17",     900,       NA, ".container-fluid",        NA,
+  "18",     900,       NA, ".container-fluid",        NA,
+  "19",     900,       NA, ".container-fluid",        NA,
+  "20",     900,   506.25,                 NA,        NA,
+  "21",     900,   506.25,                 NA,        NA,
+  "22",     900,   506.25,                 NA,        NA,
+  "23",     900,   506.25,                 NA,        NA,
+  "24",     900,   506.25,                 NA,        NA,
+  "25",     900,   506.25,                 NA,        NA,
+  "26",     480,      220,                 NA,        NA,
+  "27",     480,      270,                 NA,        NA,
+  "28",     480,      270,                 NA,        NA,
+  "29",     480,      270,                 NA,        NA,
+  "30",     480,      270,                 NA,        NA,
+  "31",     900,       NA, ".container-fluid",        NA,
+  "32",     900,   506.25,                 NA,        NA,
+  "33",     900,   506.25,                 NA,        NA,
+  "34",     900,   506.25,                 NA,        NA,
+  "35",     900,   506.25,                 NA,        NA,
+  "36",     480,      270,                 NA, "viewport",
+  "37",     900,      480,                 NA,        NA,
+  "38",     360,       NA, ".container-fluid",        NA,
+  "39",     480,       NA, ".container-fluid",        NA,
+  "40",     360,      360,                 NA,        NA,
+  "41",     360,      360,                 NA,        NA,
+  "42",     900,       NA, ".container-fluid",        NA,
+  "43",     360,       60,                 NA,        NA,
+  "44",     360,       NA, ".container-fluid",        NA,
+  "45",     360,       NA, ".container-fluid",        NA,
+  "46",     360,       NA, ".container-fluid",        NA,
+  "47",     360,       NA, ".container-fluid",        NA,
+  "48",     900,   506.25,                 NA, "viewport",
+  "49",     900,   506.25,                 NA, "viewport",
+  "50",     900,   506.25,                 NA, "viewport",
+  "51",     900,   506.25,                 NA, "viewport",
+  "52",     900,   506.25,                 NA, "viewport",
+  "53",     900,   506.25,                 NA, "viewport"
+)
+
+pwalk(
+  .l = appshots_parameters[1:52, ], 
+  .f = function(app_name, vwidth, vheight, selector, cliprect) {
+    if (
+      !file.exists(here("content", "media", sprintf("%s.png", app_name))) | 
+        file.mtime(here("content", "media", sprintf("%s.png", app_name))) < 
+        max(ref, file.mtime(here("content", "scripts", sprintf("%s-app/app.R", app_name))))
+    ) {
+      if (!is.na(selector)) {
+        return(
+          appshot(
+            app = here("content", "scripts", sprintf("%s-app/app.R", app_name)), 
+            delay = 3,
+            vwidth = vwidth,
+            # vheight = vheight,
+            selector = selector,
+            envvars = c(display.mode = "normal"),
+            file = here("content", "media", sprintf("%s.png", app_name))
+          )
+        )
+      }
+      if (!is.na(cliprect)) {
+        return(
+          appshot(
+            app = here("content", "scripts", sprintf("%s-app/app.R", app_name)), 
+            delay = 3,
+            vwidth = vwidth,
+            vheight = vheight,
+            cliprect = cliprect,
+            envvars = c(display.mode = "normal"),
+            file = here("content", "media", sprintf("%s.png", app_name))
+          )
+        )
+      }
+      appshot(
+        app = here("content", "scripts", sprintf("%s-app/app.R", app_name)), 
+        delay = 3,
+        vwidth = vwidth,
+        vheight = vheight,
+        envvars = c(display.mode = "normal"),
+        file = here("content", "media", sprintf("%s.png", app_name))
+      )
+    }
+  }
+)
+
+pwalk(
+  .l = appshots_parameters[53:54, ],
+  .f = function(app_name, vwidth, vheight, selector, cliprect) {
+    if (
+      !file.exists(here("content", "media", sprintf("%s.png", app_name))) |
+        file.mtime(here("content", "media", sprintf("%s.png", app_name))) <
+        max(ref, file.mtime(here("content", "scripts", sprintf("%s-app/app.Rmd", app_name))))
+    ) {
+      rmdshot(
+        doc = here("content", "scripts", sprintf("%s-app/app.Rmd", app_name)),
+        delay = 3,
+        vwidth = vwidth,
+        vheight = vheight,
+        # selector = selector,
+        cliprect = cliprect,
+        envvars = c(display.mode = "normal"),
+        file = here("content", "media", sprintf("%s.png", app_name))
+      )
+    }
+  }
+)
+```
+
+# Diapositives et matériel<br>[<i class="fab fa-github" style="font-size: 250px;"></i><br>mcanouil/rshiny](https://github.com/mcanouil/rshiny/)
