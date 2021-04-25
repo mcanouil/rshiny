@@ -1,0 +1,25 @@
+
+---
+class: part-slide
+
+# <i class="glow">Shiny</i> & Rmarkdown<br><img src = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/SVG/rmarkdown.svg", width = "216px" />
+
+---
+
+# <i class="glow">Shiny</i> & Rmarkdown
+
+_Note : La spécification de `app.Rmd` est obligatoire ici avec `rmarkdown::run()`._
+
+* `rmarkdown::html_document`
+    
+```{r}
+rmarkdown::run("content/scripts/52-app/app.Rmd")
+```
+
+* `flexdashboard::flex_dashboard`
+    
+```{r}
+rmarkdown::run("content/scripts/53-app/app.Rmd")
+```
+
+* ...

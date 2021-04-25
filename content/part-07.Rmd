@@ -1,0 +1,371 @@
+
+---
+class: part-slide
+
+# <i class="glow">Shiny</i><br>La face cachée `server`
+
+---
+
+# La fonction `server`
+
+```{r}
+server <- function(
+  input, 
+  output, 
+  session
+) {
+  ...
+}
+```
+
+* `input`, une liste de paramètres d'entrées.
+* `output`, une liste d'objets à afficher dans `ui`.
+* `session`, environnement relatif à la session,  
+    *c.-à-d.*, la connection.
+
+---
+
+# La fonction `server`
+
+* De `ui` au `server` &rarr; `input`.
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/26-app/app.R", encoding = "UTF-8")[c(3:10)]}
+```
+
+```{r, code = readLines("content/scripts/26-app/app.R", encoding = "UTF-8")[c(12:16)]}
+```
+
+]
+
+.pull-right[
+.center[
+![](content/media/26.png)
+]
+]
+
+???
+
+App [`"content/scripts/26-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/26-app/app.R)
+
+---
+
+# La liste d'entrées `input`
+
+* `input`, une liste de paramètres d'entrées __non-modifiable__.
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/27-app/app.R", encoding = "UTF-8")}
+```
+
+]
+
+.pull-right[
+.center[
+![](content/media/27.png)
+]
+]
+
+???
+
+App [`"content/scripts/27-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/27-app/app.R)
+
+---
+
+# La liste d'entrées `input`
+
+* `input`, une liste de paramètres d'entrées "__reactive__".
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/28-app/app.R", encoding = "UTF-8")}
+```
+
+]
+
+.pull-right[
+.center[
+![](content/media/28.png)
+]
+]
+
+???
+
+App [`"content/scripts/28-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/28-app/app.R)
+
+---
+
+# La liste de sorties `output`
+
+* `output`, une liste __non-modifiable__ d'objets à afficher dans `ui`.
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/29-app/app.R", encoding = "UTF-8")}
+```
+
+]
+
+.pull-right[
+.center[
+![](content/media/29.png)
+]
+]
+
+???
+
+App [`"content/scripts/29-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/29-app/app.R)
+
+---
+
+# La liste de sorties `output`
+
+* `output`, une liste "__reactive__" d'objets à afficher dans `ui`.
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/30-app/app.R", encoding = "UTF-8")}
+```
+
+]
+
+.pull-right[
+.center[
+![](content/media/30.png)
+]
+]
+
+???
+
+App [`"content/scripts/30-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/30-app/app.R)
+
+---
+
+# La notion de réactivité `reactive`
+
+Les sorties (`output`) sont mises à jour à la volée par Shiny lorsque les entrées (`input`) sont modifiées.
+
+* La fonction `server` renseigne Shiny sur la __façon__ de produire les sorties.
+
+* Shiny "décide" de __quand__ produire les sorties.
+
+* Shiny n'exécute que les morceaux de code __utiles__.
+
+---
+
+# La notion de réactivité `reactive`
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/31-app/app.R", encoding = "UTF-8")}
+```
+
+]
+
+.pull-right[
+.center[
+![](content/media/31.png)
+]
+]
+
+???
+
+App [`"content/scripts/31-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/31-app/app.R)
+
+---
+
+# Les expressions `reactive`
+
+Pourquoi utiliser des expressions `reactive` ?
+
+* Donne à Shiny des informations additionnelles.  
+    &rarr; __Limite les répétitions__ de calcul.
+
+* Réduction de la redondance de code.  
+    &rarr; __Réduction de la complexité__ de l'application.
+
+* Elles peuvent utiliser indifféremment les `input` et `output`.
+
+* Similaire à `input`.  
+    &rarr; Elles peuvent s'utiliser dans `output`.
+
+* Similaire à `output`.  
+    &rarr; Elles sont mises à jour au besoin selon `input`.
+    
+---
+
+# `reactive()` : Exemple
+
+.panelset[
+
+.panel[.panel-name[Interface]
+
+.pull-left[
+.code60[
+```{r, code = readLines("content/scripts/32-app/app.R", encoding = "UTF-8")[6:28]}
+```
+]
+]
+.pull-right[
+.center[
+![](content/media/32.png)
+]
+]
+
+]
+
+.panel[.panel-name[Serveur 1]
+.code60[
+```{r, code = readLines("content/scripts/32-app/app.R", encoding = "UTF-8")[30:54]}
+```
+]
+]
+
+.panel[.panel-name[Serveur 2]
+.code60[
+```{r, code = readLines("content/scripts/33-app/app.R", encoding = "UTF-8")[30:51]}
+```
+]
+]
+
+.panel[.panel-name[Serveur 3]
+.code60[
+```{r, code = readLines("content/scripts/34-app/app.R", encoding = "UTF-8")[30:52]}
+```
+]
+]
+
+]
+
+???
+
+App [`"content/scripts/32-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/32-app/app.R)
+
+---
+
+# `eventReactive()` & `observeEvent()`
+
+Execution selon un événement, *p. ex.*, un changement de valeur d'un `input`.
+
+```{r}
+something <- eventReactive(eventExpr = ..., valueExpr = ...)
+
+observeEvent(eventExpr = ..., handlerExpr = ...)
+```
+
+* `eventExpr`, une expression ou valeur `reactive`.
+
+* `valueExpr`, une expression similaire à celle fournie dans `reactive()`.
+
+* `handlerExpr`, une expression ne retournant rien (`return()`).
+
+---
+
+# Exemple
+
+.pull-left.code60[
+```{r, code = readLines("content/scripts/35-app/app.R", encoding = "UTF-8")}
+```
+]
+
+.pull-right[
+.center[
+![](content/media/35.png)
+]
+]
+
+???
+
+App [`"content/scripts/35-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/35-app/app.R)
+
+---
+
+# Exemple : "App 35 v2"
+
+.panelset[
+
+.panel[.panel-name[Interface]
+.code60[
+```{r, code = readLines("content/scripts/36-app/app.R", encoding = "UTF-8")[6:29]}
+```
+]
+]
+
+.panel[.panel-name[Serveur]
+.code60[
+```{r, code = readLines("content/scripts/36-app/app.R", encoding = "UTF-8")[31:55]}
+```
+]
+]
+
+.panel[.panel-name[Application]
+
+.center[
+![](content/media/36.png)
+]
+
+]
+
+]
+
+???
+
+App [`"content/scripts/36-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/36-app/app.R)
+
+---
+
+# Mise en pratique
+
+* Créez un menu défilant à choix unique listant les jeux de données de `datasets` avec `"iris"` par défaut.
+
+* Affichez le `summary()` et `str()` du jeu de données séléctionné.
+
+* Ajoutez des champs numériques `x` et `y`.
+
+* Générez un graphique avec :
+
+    - `x` la position de la colonne en abscisse.
+    
+    - `y` la position de la colonne en ordonnée.  
+
+???
+
+App [`"content/scripts/37-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/37-app/app.R)
+
+---
+
+# Mise en pratique
+
+.panelset[
+  
+.panel[.panel-name[Interface]
+.code60[
+
+```{r, code = readLines("content/scripts/37-app/app.R", encoding = "UTF-8")[4:27]}
+```
+
+]
+]
+
+.panel[.panel-name[Serveur]
+
+```{r, code = readLines("content/scripts/37-app/app.R", encoding = "UTF-8")[29:42]}
+```
+
+]
+
+.panel[.panel-name[Application]
+
+.center[
+<img src = "content/media/37.png" width = "62%" />
+]
+
+]
+
+]
+
+???
+
+App [`"content/scripts/37-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/37-app/app.R)

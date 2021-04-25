@@ -1,0 +1,154 @@
+
+---
+class: part-slide
+
+# <i class="glow">Shiny</i><br>Contrôle, Validation & Notifications
+
+---
+
+# Contrôle & Validation
+
+```{r}
+req()
+validate()
+```
+
+* `req()`, contrôle si un `input` a été défini.
+
+* `validate()`, fonctionne comme un `tryCatch`.
+
+```{r, code = readLines("content/scripts/38-app/app.R", encoding = "UTF-8")[3:6]}
+```
+
+???
+
+App [`"content/scripts/38-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/38-app/app.R)
+
+---
+
+# Contrôle & Validation
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/38-app/app.R", encoding = "UTF-8")[8:13]}
+```
+
+]
+
+.pull-right[
+.center[
+![](content/media/38.png)
+]
+]
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/39-app/app.R", encoding = "UTF-8")[8:16]}
+```
+
+]
+
+.pull-right[
+.center[
+![](content/media/39.png)
+]
+]
+
+???
+
+App [`"content/scripts/38-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/38-app/app.R)
+
+App [`"content/scripts/39-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/39-app/app.R)
+
+---
+
+# Notifications
+
+* `showNotification()` / `removeNotification()`, affiche un encart de texte.
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/40-app/app.R", encoding = "UTF-8")}
+```
+
+]
+
+.pull-right[
+.center[
+![](images/40.png)
+]
+]
+
+???
+
+App [`"content/scripts/40-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/40-app/app.R)
+
+---
+
+# Progression
+
+* `withProgress()` / `setProgress()`, affiche une barre de progression.
+
+.pull-left[
+
+```{r, code = readLines("content/scripts/41-app/app.R", encoding = "UTF-8")}
+```
+
+]
+
+.pull-right[
+.center[
+![](images/41.png)
+]
+]
+
+???
+
+App [`"content/scripts/41-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/41-app/app.R)
+
+---
+
+# Mise en pratique 
+
+* Reprenez l'application développé précédemment ([`"content/scripts/37-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/37-app/app.R)).
+
+* Ajoutez les contrôles nécessaires pour éviter les erreurs observées
+
+???
+
+App [`"content/scripts/42-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/42-app/app.R)
+
+---
+
+# Mise en pratique
+
+.panelset[
+  
+.panel[.panel-name[Interface]
+.code60[
+```{r, code = readLines("content/scripts/42-app/app.R", encoding = "UTF-8")[4:27]}
+```
+]
+]
+
+.panel[.panel-name[Fonctions]
+```{r, code = readLines("content/scripts/42-app/app.R", encoding = "UTF-8")[29:41]}
+```
+]
+
+.panel[.panel-name[Serveur]
+```{r, code = readLines("content/scripts/42-app/app.R", encoding = "UTF-8")[43:59]}
+```
+]
+
+.panel[.panel-name[Application]
+.center[
+<img src = "images/42.png" width = "62%" />
+]
+]
+
+]
+
+???
+
+App [`"content/scripts/42-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/42-app/app.R)

@@ -1,0 +1,191 @@
+
+---
+class: part-slide
+
+# <i class="glow">Shiny</i><br>La mise en page
+
+---
+
+#  La mise en page "sidebar"
+
+.panelset[
+  
+.panel[.panel-name[Structure]
+
+.center[
+<img src = "content/media/sidebar.png" width = "65%" />
+]
+
+]
+
+.panel[.panel-name[Application]
+
+.pull-left.code60[
+```{r, code = readLines("content/scripts/19-app/app.R", encoding = "UTF-8")}
+```
+]
+.pull-right[
+.center[
+![](content/media/19.png)
+]
+]
+
+]
+
+]
+
+???
+
+App [`"content/scripts/19-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/19-app/app.R)
+
+---
+
+# La mise en page "multirow"
+
+.panelset[
+  
+.panel[.panel-name[Structure]
+.center[
+<img src = "content/media/multirow.png" width = "55%" />
+]
+]
+
+.panel[.panel-name[Application]
+.pull-left.code60[
+```{r, code = readLines("content/scripts/20-app/app.R", encoding = "UTF-8")}
+```
+]
+.pull-right[
+.center[
+![](content/media/20.png)
+]
+]
+]
+
+]
+
+???
+
+App [`"content/scripts/20-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/20-app/app.R)
+
+---
+
+# La mise en page "tabset"
+
+.pull-left.code60[
+```{r, code = readLines("content/scripts/21-app/app.R", encoding = "UTF-8")}
+```
+]
+.pull-right[
+.center[
+![](content/media/21.png)
+]
+]
+
+???
+
+App [`"content/scripts/21-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/21-app/app.R)
+
+---
+
+# La mise en page "dashboard"
+
+.panelset[
+  
+.panel[.panel-name[Application vierge]
+.pull-left[
+```{r, code = readLines("content/scripts/22-app/app.R", encoding = "UTF-8")}
+```
+]
+.pull-right[
+.center[
+![](content/media/22.png)
+]
+]
+]
+
+.panel[.panel-name[Application]
+.pull-left.code60[
+```{r, code = readLines("content/scripts/23-app/app.R", encoding = "UTF-8")}
+```
+]
+.pull-right[
+.center[
+![](content/media/23.png)
+]
+]
+]
+
+]
+
+???
+
+App [`"content/scripts/22-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/22-app/app.R)
+
+App [`"content/scripts/23-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/23-app/app.R)
+
+---
+
+# Mise en pratique
+
+.panelset[
+  
+.panel[.panel-name[Question 1]
+
+1. Essayez la structure grille avec `fluidPage()`, `fluidRow()`, `fixedRow()` et `column()`.
+
+2. Reproduisez les interfaces suivantes.
+
+.pull-left[
+.center[
+![](content/media/24.png)
+]
+]
+
+.pull-right[
+.center[
+![](content/media/25.png)
+]
+]
+
+]
+
+.panel[.panel-name[Question 2a]
+
+* Reproduisez l'interface suivante.
+
+.pull-left[
+```{r, code = readLines("content/scripts/24-app/app.R", encoding = "UTF-8")[c(5:20)]}
+```
+]
+.pull-right[
+.center[
+![](content/media/24.png)
+]
+]
+
+]
+
+.panel[.panel-name[Question 2b]
+
+* Reproduisez l'interface suivante.
+
+.pull-left[
+```{r, code = readLines("content/scripts/25-app/app.R", encoding = "UTF-8")[c(5:15)]}
+```
+]
+.pull-right[
+.center[
+![](content/media/25.png)
+]
+]
+
+]
+
+]
+
+???
+
+App [`"content/scripts/24-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/24-app/app.R)
+
+App [`"content/scripts/25-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/25-app/app.R)
