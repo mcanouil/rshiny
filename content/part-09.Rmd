@@ -15,7 +15,7 @@ class: part-slide
 
 .pull-right[
 .center[
-![](images/43.png)
+![](content/media/43.png)
 ]
 ]
 
@@ -34,7 +34,7 @@ App [`"content/scripts/43-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .pull-right[
 .center[
-![](images/44.png)
+![](content/media/44.png)
 ]
 ]
 
@@ -55,7 +55,7 @@ App [`"content/scripts/44-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .pull-right[
 .center[
-![](images/45.png)
+![](content/media/45.png)
 ]
 ]
 
@@ -74,7 +74,7 @@ App [`"content/scripts/45-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .pull-right[
 .center[
-![](images/46.png)
+![](content/media/46.png)
 ]
 ]
 
@@ -93,7 +93,7 @@ App [`"content/scripts/46-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .pull-right[
 .center[
-![](images/47.png)
+![](content/media/47.png)
 ]
 ]
 
@@ -108,7 +108,7 @@ App [`"content/scripts/47-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 * Générez l'application suivante.
 
 .center[
-![](images/51.png)
+![](content/media/51.png)
 ]
 
 ???
@@ -140,7 +140,7 @@ App [`"content/scripts/51-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .panel[.panel-name[App 1]
 .center[
-<img src = "images/48.png", width = "75%" />
+<img src = "content/media/48.png", width = "75%" />
 ]
 ]
 
@@ -160,7 +160,7 @@ App [`"content/scripts/51-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .panel[.panel-name[App 2]
 .center[
-<img src = "images/49.png", width = "75%" />
+<img src = "content/media/49.png", width = "75%" />
 ]
 ]
 
@@ -182,7 +182,7 @@ App [`"content/scripts/51-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .panel[.panel-name[App 3]
 .center[
-<img src = "images/50.png", width = "75%" />
+<img src = "content/media/50.png", width = "75%" />
 ]
 ]
 
@@ -210,7 +210,7 @@ App [`"content/scripts/51-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .panel[.panel-name[App 4]
 .center[
-<img src = "images/51.png", width = "75%" />
+<img src = "content/media/51.png", width = "75%" />
 ]
 ]
 

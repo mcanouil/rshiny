@@ -75,7 +75,7 @@ App [`"content/scripts/39-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .pull-right[
 .center[
-![](images/40.png)
+![](content/media/40.png)
 ]
 ]
 
@@ -98,7 +98,7 @@ App [`"content/scripts/40-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .pull-right[
 .center[
-![](images/41.png)
+![](content/media/41.png)
 ]
 ]
 
@@ -143,7 +143,7 @@ App [`"content/scripts/42-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .panel[.panel-name[Application]
 .center[
-<img src = "images/42.png" width = "62%" />
+<img src = "content/media/42.png" width = "62%" />
 ]
 ]
 
