@@ -10,7 +10,7 @@ class: part-slide
 
 *  Eviter de changer votre répertoire de travail avec `setwd()`.
 *  Ne pas utiliser de `.Rprofile` modifiant <i class="fab fa-r-project"></i>.
-*  Désactiver la conversion automatique en facteurs `options(stringsAsFactors = FALSE)`.
+*  Désactiver la conversion automatique en facteurs `options(stringsAsFactors = FALSE)` (<i class="fab fa-r-project"></i> < 4.0o).
 *  Ne pas utiliser `rm(list = ls())` pour "rafraichir".
 *  Ne pas utiliser la sauvegarde/restauration par défaut de <i class="fab fa-r-project"></i>.
 
