@@ -12,6 +12,8 @@ class: part-slide
 
 * "Mastering Shiny" (https://mastering-shiny.org/)
 
+* "Engineering Production-Grade Shiny Apps" (https://engineering-shiny.org/)
+
 * shinytest (https://rstudio.github.io/shinytest/)
 
 * DT (https://rstudio.github.io/DT/)
