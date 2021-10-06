@@ -67,7 +67,7 @@ library("shiny")
     ```{r, code = readLines("content/scripts/00-app/app.R", encoding = "UTF-8")[1]}
     ```
 
-+ Une interface (`ui`, *i.e.*, "user interface").
++ Une interface (`ui`, *c.-à-d.*, "user interface").
     ```{r, code = readLines("content/scripts/00-app/app.R", encoding = "UTF-8")[3]}
     ```
 

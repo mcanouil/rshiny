@@ -8,6 +8,8 @@ class: part-slide
 
 # Ressources
 
+.font150[
+
 * shiny (https://shiny.rstudio.com/)
 
 * "Mastering Shiny" (https://mastering-shiny.org/)
@@ -18,6 +20,14 @@ class: part-slide
 
 * DT (https://rstudio.github.io/DT/)
 
+]
+
+---
+
+# Autres Ressources
+
+.font150[
+
 * Blog Rstudio (https://blog.rstudio.com/categories/shiny)
 
 * Groupe des Utilisateurs de R (http://forums.cirad.fr/logiciel-R/)
@@ -25,3 +35,5 @@ class: part-slide
 * Stack Overflow (https://stackoverflow.com/questions/tagged/r)
 
 * R Studio Community (https://community.rstudio.com/)
+
+]

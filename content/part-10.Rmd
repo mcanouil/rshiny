@@ -8,8 +8,6 @@ class: part-slide
 
 # <i class="glow">Shiny</i> & Rmarkdown
 
-_Note : La spécification de `app.Rmd` est obligatoire ici avec `rmarkdown::run()`._
-
 * `rmarkdown::html_document`
     
 ```{r}
@@ -23,3 +21,5 @@ rmarkdown::run("content/scripts/53-app/app.Rmd")
 ```
 
 * ...
+
+.footnote[Note : La spécification de `app.Rmd` est obligatoire ici avec `rmarkdown::run()`.]
