@@ -23,3 +23,10 @@ rmarkdown::run("content/scripts/53-app/app.Rmd")
 * ...
 
 .footnote[Note : La spécification de `app.Rmd` est obligatoire ici avec `rmarkdown::run()`.]
+
+
+???
+
+App [`"content/scripts/52-app/app.Rmd"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/52-app/app.Rmd)
+
+App [`"content/scripts/53-app/app.Rmd"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/53-app/app.Rmd)
