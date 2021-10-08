@@ -42,14 +42,16 @@ suppressPackageStartupMessages({
   library(showtext)
 })
 
-suppressPackageStartupMessages({
-  library(tidyverse)
+suppressPackageStartupMessages({ # needed for shiny apps
   library(remotes)
   library(webshot)
   library(fs)
   library(shiny)
   library(shinydashboard)
-  library(ggpubr)
+  library(ggplot2)
+  library(patchwork)
+  library(dplyr)
+  library(purrr)
 })
 ```
 
