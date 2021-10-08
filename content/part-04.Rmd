@@ -130,6 +130,26 @@ App [`"content/scripts/08-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 * Créez un formulaire : nom, prénom, age, sexe, loisirs (choix multiples).
 
+]
+
+.pull-right[
+
+]
+
+???
+
+App [`"content/scripts/09-app"`](https://github.com/mcanouil/rshiny/tree/main/content/scripts/09-app/app.R)
+
+---
+
+# Mise en pratique 
+
+.pull-left[
+
+* Essayez les différents `input` en jouant sur les arguments.
+
+* Créez un formulaire : nom, prénom, age, sexe, loisirs (choix multiples).
+
 ```{r, code = readLines("content/scripts/09-app/app.R", encoding = "UTF-8")[3:17]}
 ```
 
