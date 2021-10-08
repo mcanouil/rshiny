@@ -48,6 +48,7 @@ suppressPackageStartupMessages({ # needed for shiny apps
   library(fs)
   library(shiny)
   library(shinydashboard)
+  library(shinythemes)
   library(ggplot2)
   library(patchwork)
   library(dplyr)
