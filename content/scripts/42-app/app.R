@@ -40,7 +40,10 @@ need_in <- function(data, input) {
 }
 
 server <- function(input, output, session) {
-  dataset <- reactive({ get(input$dataset, "package:datasets") })
+  dataset <- reactive({ 
+    req(input$dataset)
+    get(input$dataset, "package:datasets")
+  })
   output$summary <- renderPrint({ summary(dataset()) })
   output$structure <- renderPrint({ str(dataset()) })
   output$plot <- renderPlot({
