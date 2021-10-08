@@ -1,5 +1,4 @@
 library("shiny")
-library("dplyr")
 library("purrr")
 
 make_ui <- function(data, var) {
@@ -8,18 +7,18 @@ make_ui <- function(data, var) {
     min_max <- range(x, na.rm = TRUE)
     sliderInput(
       inputId = var,
-      label = var, 
-      min = min_max[1], 
-      max = min_max[2], 
+      label = var,
+      min = min_max[1],
+      max = min_max[2],
       value = min_max
     )
   } else if (is.character(x) | is.factor(x)) {
     unique_x <- unique(x)
     selectInput(
       inputId = var,
-      label = var, 
-      choices = unique_x, 
-      selected = unique_x, 
+      label = var,
+      choices = unique_x,
+      selected = unique_x,
       multiple = TRUE
     )
   } else {
@@ -30,7 +29,7 @@ make_ui <- function(data, var) {
 filter_var <- function(data_var, input_var) {
   if (is.numeric(data_var)) {
     !is.na(data_var) & # dplyr::between
-      data_var >= input_var[1] & 
+      data_var >= input_var[1] &
       data_var <= input_var[2]
   } else if (is.character(data_var) | is.factor(data_var)) {
     data_var %in% input_var
@@ -41,8 +40,8 @@ filter_var <- function(data_var, input_var) {
 
 ui <- fluidPage(
   fluidRow(column(4, offset = 5,
-    selectInput("dataset", label = h3("Datasets"), 
-      choices = ls("package:datasets"), 
+    selectInput("dataset", label = h3("Datasets"),
+      choices = ls("package:datasets"),
       selected = "iris"
     )
   )),
@@ -56,21 +55,21 @@ server <- function(input, output, session) {
   datasets <- reactive({get(input$dataset, "package:datasets")})
   output$iris <- renderTable({
     validate(need(
-      expr = inherits(datasets(), "data.frame"), 
+      expr = inherits(datasets(), "data.frame"),
       message = 'Not a "data.frame"'
     ))
-    vals <- map(
-      .x = colnames(datasets()), 
+    vals <- purrr::map(
+      .x = colnames(datasets()),
       .f = ~ filter_var(datasets()[[.x]], input[[.x]])
     )
-    datasets()[reduce(vals, `&`), ]
+    datasets()[purrr::reduce(vals, `&`), ]
   })
   output$ui <- renderUI({
     validate(need(
-      expr = inherits(datasets(), "data.frame"), 
+      expr = inherits(datasets(), "data.frame"),
       message = 'Not a "data.frame"'
     ))
-    map(colnames(datasets()), ~ make_ui(datasets(), .x))
+    purrr::map(colnames(datasets()), ~ make_ui(datasets(), .x))
   })
 }
 

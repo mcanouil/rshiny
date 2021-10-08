@@ -1,11 +1,10 @@
 library("shiny")
-library("dplyr")
 library("ggplot2")
-library("ggpubr")
+library("patchwork")
 
 ui <- fluidPage(
   fluidRow(
-    column(4, 
+    column(4,
       "Exemple 1",
       textInput("species1", "Espèce : ", value = "setosa"),
       textInput("col1x", "Axe x : ", value = "Petal.Length"),
@@ -14,7 +13,7 @@ ui <- fluidPage(
     column(8, plotOutput("point1", height = "250px"))
   ),
   fluidRow(
-    column(4, 
+    column(4,
       "Exemple 2",
       textInput("species2", "Espèce : ", value = "versicolor"),
       textInput("col2x", "Axe x : ", value = "Petal.Length"),
@@ -28,18 +27,18 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  iris_species1 <- reactive({ filter(iris, Species == input$species1) })
-  iris_species2 <- reactive({ filter(iris, Species == input$species2) })
+  iris_species1 <- reactive({ iris[iris$Species == input$species1, ] })
+  iris_species2 <- reactive({ iris[iris$Species == input$species2, ] })
 
   gg_species1 <- reactive({
     ggplot(
-      data = iris_species1(), 
+      data = iris_species1(),
       mapping = aes(x = .data[[input$col1x]], y = .data[[input$col1y]])
     ) + geom_point()
   })
   gg_species2 <- reactive({
     ggplot(
-      data = iris_species2(), 
+      data = iris_species2(),
       mapping = aes(x = .data[[input$col2x]], y = .data[[input$col2y]])
     ) + geom_point()
   })
@@ -47,7 +46,8 @@ server <- function(input, output, session) {
   output$point1 <- renderPlot({ gg_species1() })
   output$point2 <- renderPlot({ gg_species2() })
   output$point12 <- renderPlot({
-    ggarrange(gg_species1(), gg_species2(), ncol = 2, labels = LETTERS)
+    wrap_plots(gg_species1(), gg_species2(), ncol = 2) +
+      plot_annotation(tag_levels = "A")
   })
 }
 

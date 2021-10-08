@@ -1,24 +1,23 @@
 library("shiny")
-library("dplyr")
 
 ui <- fluidPage(theme = "bootstrap.min.css", # or "shinythemes"
   fluidRow(
     column(4, offset = 5,
-      selectInput("dataset", label = h3("Datasets"), 
-        choices = ls("package:datasets"), 
+      selectInput("dataset", label = h3("Datasets"),
+        choices = ls("package:datasets"),
         selected = "iris"
       )
     )
   ),
   fluidRow(
     column(6,
-      h3("Summary"), 
+      h3("Summary"),
       verbatimTextOutput("summary"),
-      h3("Structure"), 
+      h3("Structure"),
       verbatimTextOutput("structure")
     ),
     column(6,
-      h3("Plot"), 
+      h3("Plot"),
       numericInput("x", label = h4("X-axis column index"), value = 1),
       numericInput("y", label = h4("Y-axis column index"), value = 2),
       plotOutput("plot")
@@ -28,25 +27,25 @@ ui <- fluidPage(theme = "bootstrap.min.css", # or "shinythemes"
 
 need_numeric <- function(data, input) {
   need(
-    expr = is.numeric(data[, input]), 
+    expr = is.numeric(data[, input]),
     message = paste("Column", input, "is not a numeric!")
   )
 }
 
 need_in <- function(data, input) {
   need(
-    expr = all(input %in% 1:ncol(data)), 
+    expr = all(input %in% 1:ncol(data)),
     message = paste("Column", input, "is not available!")
   )
 }
 
-server <- function(input, output, session) { 
+server <- function(input, output, session) {
   dataset <- reactive({ get(input$dataset, "package:datasets") })
   output$summary <- renderPrint({ summary(dataset()) })
   output$structure <- renderPrint({ str(dataset()) })
   output$plot <- renderPlot({
     validate(need(
-      expr = inherits(dataset(), "data.frame"), 
+      expr = inherits(dataset(), "data.frame"),
       message = "Not a data.frame!"
     ))
     validate(need_in(dataset(), c(input$x, input$y)))
@@ -54,7 +53,7 @@ server <- function(input, output, session) {
       need_numeric(dataset(), input$x),
       need_numeric(dataset(), input$y)
     )
-    plot(dataset()[, input$x], dataset()[, input$y]) 
+    plot(dataset()[, input$x], dataset()[, input$y])
   })
 }
 

@@ -1,7 +1,6 @@
 library("shiny")
-library("dplyr")
 library("ggplot2")
-library("ggpubr")
+library("patchwork")
 
 ui <- fluidPage(
   fluidRow(
@@ -28,8 +27,8 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  iris1 <- reactive({ filter(iris, Species == input$species1) })
-  iris2 <- reactive({ filter(iris, Species == input$species2) })
+  iris1 <- reactive({ iris[iris$Species == input$species1, ] })
+  iris2 <- reactive({ iris[iris$Species == input$species2, ] })
   
   output$point1 <- renderPlot({
     ggplot(iris1(), aes(x = .data[[input$col1x]], y = .data[[input$col1y]])) + 
@@ -46,7 +45,8 @@ server <- function(input, output, session) {
       geom_point()
     p2 <- ggplot(iris2(), aes(x = .data[[input$col2x]], y = .data[[input$col2y]])) + 
       geom_point()
-    ggarrange(p1, p2, ncol = 2, labels = LETTERS)
+    wrap_plots(p1, p2, ncol = 2) +
+      plot_annotation(tag_levels = "A")
   })
 }
 

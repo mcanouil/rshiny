@@ -1,5 +1,4 @@
 library("shiny")
-library("dplyr")
 library("ggplot2")
 library("patchwork")
 
@@ -30,12 +29,12 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   gg_species1 <- eventReactive(input$update, {
-    ggplot(filter(iris, Species == input$species1)) +
+    ggplot(iris[iris$Species == input$species1, ]) +
       aes(x = .data[[input$col1x]], y = .data[[input$col1y]]) +
       geom_point()
   })
   gg_species2 <- eventReactive(input$update, {
-    ggplot(filter(iris, Species == input$species2)) +
+    ggplot(iris[iris$Species == input$species2, ]) +
       aes(x = .data[[input$col2x]], y = .data[[input$col2y]]) +
       geom_point()
   })
