@@ -46,7 +46,7 @@ server <- function(input, output, session) {
       mapping = aes(x = .data[[input$col1x]], y = .data[[input$col1y]])
     ) + geom_point()
     p2 <- ggplot(
-      data = filter(iris, Species == !!input$species2), 
+      data = filter(iris, Species == input$species2), 
       mapping = aes(x = .data[[input$col2x]], y = .data[[input$col2y]])
     ) + geom_point()
     ggarrange(p1, p2, ncol = 2, labels = LETTERS)
