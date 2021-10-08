@@ -123,27 +123,27 @@ App [`"content/scripts/42-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 # Mise en pratique
 
 .panelset[
+
+.panel[.panel-name[Fonctions]
+```{r, code = readLines("content/scripts/42-app/app.R", encoding = "UTF-8")[28:40]}
+```
+]
   
 .panel[.panel-name[Interface]
 .code60[
-```{r, code = readLines("content/scripts/42-app/app.R", encoding = "UTF-8")[4:27]}
+```{r, code = readLines("content/scripts/42-app/app.R", encoding = "UTF-8")[3:26]}
 ```
 ]
-]
-
-.panel[.panel-name[Fonctions]
-```{r, code = readLines("content/scripts/42-app/app.R", encoding = "UTF-8")[29:41]}
-```
 ]
 
 .panel[.panel-name[Serveur]
-```{r, code = readLines("content/scripts/42-app/app.R", encoding = "UTF-8")[43:59]}
+```{r, code = readLines("content/scripts/42-app/app.R", encoding = "UTF-8")[42:61]}
 ```
 ]
 
 .panel[.panel-name[Application]
 .center[
-<img src = "content/media/42.png" width = "62%" />
+<img src = "content/media/42.png" width = "48%" />
 ]
 ]
 

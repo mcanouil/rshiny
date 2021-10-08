@@ -10,8 +10,8 @@ class: part-slide
 
 ```{r}
 server <- function(
-  input, 
-  output, 
+  input,
+  output,
   session
 ) {
   ...
@@ -204,7 +204,7 @@ Pourquoi utiliser des expressions `reactive` ?
 
 .pull-left[
 .code60[
-```{r, code = readLines("content/scripts/32-app/app.R", encoding = "UTF-8")[6:28]}
+```{r, code = readLines("content/scripts/32-app/app.R", encoding = "UTF-8")[5:27]}
 ```
 ]
 ]
@@ -218,14 +218,14 @@ Pourquoi utiliser des expressions `reactive` ?
 
 .panel[.panel-name[Serveur 1]
 .code60[
-```{r, code = readLines("content/scripts/32-app/app.R", encoding = "UTF-8")[30:54]}
+```{r, code = readLines("content/scripts/32-app/app.R", encoding = "UTF-8")[29:54]}
 ```
 ]
 ]
 
 .panel[.panel-name[Serveur 2]
 .code60[
-```{r, code = readLines("content/scripts/33-app/app.R", encoding = "UTF-8")[30:51]}
+```{r, code = readLines("content/scripts/33-app/app.R", encoding = "UTF-8")[29:55]}
 ```
 ]
 ]
@@ -288,14 +288,14 @@ App [`"content/scripts/35-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .panel[.panel-name[Interface]
 .code60[
-```{r, code = readLines("content/scripts/36-app/app.R", encoding = "UTF-8")[6:29]}
+```{r, code = readLines("content/scripts/36-app/app.R", encoding = "UTF-8")[5:28]}
 ```
 ]
 ]
 
 .panel[.panel-name[Serveur]
 .code60[
-```{r, code = readLines("content/scripts/36-app/app.R", encoding = "UTF-8")[31:55]}
+```{r, code = readLines("content/scripts/36-app/app.R", encoding = "UTF-8")[30:48]}
 ```
 ]
 ]
@@ -343,7 +343,7 @@ App [`"content/scripts/37-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 .panel[.panel-name[Interface]
 .code60[
 
-```{r, code = readLines("content/scripts/37-app/app.R", encoding = "UTF-8")[4:27]}
+```{r, code = readLines("content/scripts/37-app/app.R", encoding = "UTF-8")[3:26]}
 ```
 
 ]
@@ -351,7 +351,7 @@ App [`"content/scripts/37-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 
 .panel[.panel-name[Serveur]
 
-```{r, code = readLines("content/scripts/37-app/app.R", encoding = "UTF-8")[29:42]}
+```{r, code = readLines("content/scripts/37-app/app.R", encoding = "UTF-8")[28:41]}
 ```
 
 ]
@@ -359,7 +359,7 @@ App [`"content/scripts/37-app"`](https://github.com/mcanouil/rshiny/tree/main/co
 .panel[.panel-name[Application]
 
 .center[
-<img src = "content/media/37.png" width = "62%" />
+<img src = "content/media/37.png" width = "48%" />
 ]
 
 ]

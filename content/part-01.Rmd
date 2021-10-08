@@ -89,17 +89,17 @@ appshots_parameters <- tribble(
 )
 
 pwalk(
-  .l = appshots_parameters[1:52, ], 
+  .l = appshots_parameters[1:52, ],
   .f = function(app_name, vwidth, vheight, selector, cliprect) {
     if (
-      !file.exists(here("content", "media", sprintf("%s.png", app_name))) | 
-        file.mtime(here("content", "media", sprintf("%s.png", app_name))) < 
+      !file.exists(here("content", "media", sprintf("%s.png", app_name))) |
+        file.mtime(here("content", "media", sprintf("%s.png", app_name))) <
         max(ref, file.mtime(here("content", "scripts", sprintf("%s-app/app.R", app_name))))
     ) {
       if (!is.na(selector)) {
         return(
           appshot(
-            app = here("content", "scripts", sprintf("%s-app/app.R", app_name)), 
+            app = here("content", "scripts", sprintf("%s-app/app.R", app_name)),
             delay = 3,
             vwidth = vwidth,
             # vheight = vheight,
@@ -112,7 +112,7 @@ pwalk(
       if (!is.na(cliprect)) {
         return(
           appshot(
-            app = here("content", "scripts", sprintf("%s-app/app.R", app_name)), 
+            app = here("content", "scripts", sprintf("%s-app/app.R", app_name)),
             delay = 3,
             vwidth = vwidth,
             vheight = vheight,
@@ -123,7 +123,7 @@ pwalk(
         )
       }
       appshot(
-        app = here("content", "scripts", sprintf("%s-app/app.R", app_name)), 
+        app = here("content", "scripts", sprintf("%s-app/app.R", app_name)),
         delay = 3,
         vwidth = vwidth,
         vheight = vheight,
