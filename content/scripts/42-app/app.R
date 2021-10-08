@@ -1,6 +1,6 @@
 library("shiny")
 
-ui <- fluidPage(theme = "bootstrap.min.css", # or "shinythemes"
+ui <- fluidPage(theme = shinythemes::shinytheme("cyborg"),
   fluidRow(
     column(4, offset = 5,
       selectInput("dataset", label = h3("Datasets"),
@@ -40,7 +40,7 @@ need_in <- function(data, input) {
 }
 
 server <- function(input, output, session) {
-  dataset <- reactive({ 
+  dataset <- reactive({
     req(input$dataset)
     get(input$dataset, "package:datasets")
   })

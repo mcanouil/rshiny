@@ -1,6 +1,6 @@
 library("shiny")
 
-ui <- fluidPage(theme = "bootstrap.min.css",
+ui <- fluidPage(
   fluidRow(
     column(4, offset = 5,
       selectInput("dataset", label = h3("Datasets"),
