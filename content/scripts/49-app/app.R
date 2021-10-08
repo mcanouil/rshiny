@@ -7,18 +7,18 @@ make_ui <- function(data, var) {
     min_max <- range(x, na.rm = TRUE)
     sliderInput(
       inputId = var,
-      label = var, 
-      min = min_max[1], 
-      max = min_max[2], 
+      label = var,
+      min = min_max[1],
+      max = min_max[2],
       value = min_max
     )
   } else if (is.character(x) | is.factor(x)) {
     unique_x <- unique(x)
     selectInput(
       inputId = var,
-      label = var, 
-      choices = unique_x, 
-      selected = unique_x, 
+      label = var,
+      choices = unique_x,
+      selected = unique_x,
       multiple = TRUE
     )
   } else {

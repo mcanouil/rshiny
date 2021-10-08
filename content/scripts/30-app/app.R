@@ -3,7 +3,7 @@ library("shiny")
 ui <- fluidPage(
   textInput("text", "Texte : "),
   p(
-    "Le texte saisi est : ", 
+    "Le texte saisi est : ",
     textOutput("text", inline = TRUE)
   )
 )

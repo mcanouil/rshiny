@@ -6,11 +6,11 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  output$text <- renderText({ 
+  output$text <- renderText({
     "Bonjour, vous êtes sur une application Shiny !"
   })
-  
-  output$code <- renderPrint({ 
+
+  output$code <- renderPrint({
     summary(rnorm(10))
   })
 }

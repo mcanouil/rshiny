@@ -18,12 +18,13 @@ server <- function(input, output, session) {
   })
   output$age <- renderUI({
     req(input$type, input$firstname)
+    if (is.null(previous_age <- isolate(input$age))) previous_age <- 0
     if (input$type == "slider") {
-      sliderInput("age", "Age :", 
-        value = isolate(input$age), min = 0, max = 99
+      sliderInput("age", "Age :",
+        value = previous_age, min = 0, max = 99
       )
     } else {
-      numericInput("age", "Age :", value = isolate(input$age))  
+      numericInput("age", "Age :", value = previous_age)
     }
   })
 }

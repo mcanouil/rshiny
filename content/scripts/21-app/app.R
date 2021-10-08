@@ -1,7 +1,7 @@
 library("shiny")
 
 ui <- navbarPage("App Title",
-  tabPanel("Figures", 
+  tabPanel("Figures",
     tabsetPanel(
       tabPanel("point", plotOutput("plot")),
       tabPanel("Densité", plotOutput("plot2"))

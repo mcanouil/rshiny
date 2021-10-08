@@ -4,7 +4,7 @@ library("patchwork")
 
 ui <- fluidPage(
   fluidRow(
-    column(4, 
+    column(4,
       "Exemple 1",
       textInput("species1", "Espèce : ", value = "setosa"),
       textInput("col1x", "Axe x : ", value = "Petal.Length"),
@@ -13,7 +13,7 @@ ui <- fluidPage(
     column(8, plotOutput("point1", height = "250px"))
   ),
   fluidRow(
-    column(4, 
+    column(4,
       "Exemple 2",
       textInput("species2", "Espèce : ", value = "versicolor"),
       textInput("col2x", "Axe x : ", value = "Petal.Length"),
@@ -29,23 +29,23 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   output$point1 <- renderPlot({
     ggplot(
-      data = iris[iris$Species == input$species1, ], 
+      data = iris[iris$Species == input$species1, ],
       mapping = aes(x = .data[[input$col1x]], y = .data[[input$col1y]])
     ) + geom_point()
   })
   output$point2 <- renderPlot({
     ggplot(
-      data = iris[iris$Species == input$species2, ], 
+      data = iris[iris$Species == input$species2, ],
       mapping = aes(x = .data[[input$col2x]], y = .data[[input$col2y]])
     ) + geom_point()
   })
   output$point12 <- renderPlot({
     p1 <- ggplot(
-      data = iris[iris$Species == input$species1, ], 
+      data = iris[iris$Species == input$species1, ],
       mapping = aes(x = .data[[input$col1x]], y = .data[[input$col1y]])
     ) + geom_point()
     p2 <- ggplot(
-      data = iris[iris$Species == input$species2, ], 
+      data = iris[iris$Species == input$species2, ],
       mapping = aes(x = .data[[input$col2x]], y = .data[[input$col2y]])
     ) + geom_point()
     wrap_plots(p1, p2, ncol = 2) +

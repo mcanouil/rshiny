@@ -14,7 +14,7 @@ ui <- fluidPage(
   )
 )
 
-server <- function(input, output, session) { 
+server <- function(input, output, session) {
   output$code1 <- renderText({ code_for_plot[1] })
   output$plot1 <- renderPlot({ eval(parse(text = code_for_plot[1])) })
   output$code2 <- renderText({ code_for_plot[2] })

@@ -3,7 +3,7 @@ library("shiny")
 ui <- fluidPage(
   textInput(
     inputId = "text",
-    label =  "Texte : ", 
+    label =  "Texte : ",
     value = "Du texte par défaut ..."
   ),
   textOutput("text")

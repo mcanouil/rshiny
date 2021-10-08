@@ -31,16 +31,14 @@ server <- function(input, output, session) {
   iris_species2 <- reactive({ iris[iris$Species == input$species2, ] })
 
   gg_species1 <- reactive({
-    ggplot(
-      data = iris_species1(),
-      mapping = aes(x = .data[[input$col1x]], y = .data[[input$col1y]])
-    ) + geom_point()
+    ggplot(data = iris_species1()) +
+      aes(x = .data[[input$col1x]], y = .data[[input$col1y]]) +
+      geom_point()
   })
   gg_species2 <- reactive({
-    ggplot(
-      data = iris_species2(),
-      mapping = aes(x = .data[[input$col2x]], y = .data[[input$col2y]])
-    ) + geom_point()
+    ggplot(data = iris_species2()) +
+      aes(x = .data[[input$col2x]], y = .data[[input$col2y]]) +
+      geom_point()
   })
 
   output$point1 <- renderPlot({ gg_species1() })

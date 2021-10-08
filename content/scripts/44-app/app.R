@@ -19,11 +19,11 @@ server <- function(input, output, session) {
   output$age <- renderUI({
     req(input$type, input$firstname)
     if (input$type == "slider") {
-      sliderInput("dynamic", "Age :", 
+      sliderInput("dynamic", "Age :",
         value = 0, min = 0, max = 99
       )
     } else {
-      numericInput("age", "Age :", value = 0)  
+      numericInput("age", "Age :", value = 0)
     }
   })
 }

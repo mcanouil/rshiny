@@ -7,7 +7,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   output$plot <- renderPlot({
     id <- showNotification(
-      ui = "Importation des données ...", 
+      ui = "Importation des données ...",
       duration = NULL, closeButton = FALSE
     )
     on.exit(removeNotification(id), add = TRUE)

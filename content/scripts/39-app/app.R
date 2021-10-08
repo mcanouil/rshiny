@@ -8,7 +8,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   output$text <- renderText({
     validate(need(
-      expr = input$text == "texte", 
+      expr = input$text == "texte",
       message = 'Un texte différent de "texte".'
     ))
     paste("Ceci est un texte saisie :", input$text)
