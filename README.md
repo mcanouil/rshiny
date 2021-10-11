@@ -1,5 +1,12 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # First Steps With The Shiny R Package
+
+<!-- badges: start -->
+
+[![License](https://img.shields.io/github/license/mcanouil/rshiny)](LICENSE)
+<!-- badges: end -->
 
 This is a workshop for the R package `shiny`.
 
